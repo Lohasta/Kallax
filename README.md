@@ -1,4 +1,4 @@
-# S201-Kallax
+# S201 - Développement d'une application
 
 ## Contexte
 
@@ -15,3 +15,24 @@ ScoDoc est un logiciel utilisé par les professeurs et l'administration à l'uni
 | 19/06/26      | Recette client                        |
 
 ## Environnement d'installation
+
+
+## Tâches effectuées :
+
+### Partie IHM :
+- [x] Mockup de l'application
+- [x] Objectifs de l'application
+- [x] Fiches personas
+- [x] Besoins utilisateurs
+- [x] Scénarios d'utilisation
+- [x] Wireframes
+- [ ] Storyboards
+
+### Partie Gestion :
+- [x] Présentation de l'équipe
+- [x] QQOQCCP
+- [x] 5 pourquoi
+- [x] Diagrammes (Gantt, bête à corne, pieuvre)
+
+### - [ ] Diagramme de classes
+### - [ ] Rendu du code
