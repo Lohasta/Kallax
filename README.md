@@ -9,7 +9,7 @@ ScoDoc est un logiciel utilisé par les professeurs et l'administration à l'uni
 | Date de rendu | Livrable                              |
 | :-----------: | :------------------------------------ |
 | 27/03/26      | Maquette du logiciel                  |
-| 27/03/26      | Diagramme de classes de l’application |
+| 10/04/26      | Diagramme de classes de l’application |
 | 08/05/26      | Code commenté en anglais et scénario  |
 | 12/06/26      | Application finale                    |
 | 19/06/26      | Recette client                        |
