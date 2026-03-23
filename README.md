@@ -34,5 +34,7 @@ ScoDoc est un logiciel utilisé par les professeurs et l'administration à l'uni
 - [x] 5 pourquoi
 - [x] Diagrammes (Gantt, bête à corne, pieuvre)
 
-### - [ ] Diagramme de classes
-### - [ ] Rendu du code
+### Partie développement :
+- [ ] Diagramme de classes
+- [ ] Rendu du code
+- [ ] Rendu de l'application finale
