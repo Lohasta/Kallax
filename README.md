@@ -26,7 +26,7 @@ ScoDoc est un logiciel utilisé par les professeurs et l'administration à l'uni
 - [x] Besoins utilisateurs
 - [x] Scénarios d'utilisation
 - [x] Wireframes
-- [ ] Storyboards
+- [x] Storyboards
 
 ### Partie Gestion :
 - [x] Présentation de l'équipe
