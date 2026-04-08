@@ -4,46 +4,46 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-+ interface Utilisateur{
-   -email : String
-   -mdp : String
-   -nom : String
-   -prenom : String
 
-   +getEmail() : String
-   +getNom() : String
-   +getPrenom() : String
-   +setEmail(email : String)
-   +setNom(nom : String)
-   +setPrenom(prenom : String)
+class UtilisateurFactory{
+-email : String
+-mdp : String
+-nom : String
+-prenom : String
++getEmail() : String
++getNom() : String
++getPrenom() : String
++setEmail(email : String)
++setNom(nom : String)
++setPrenom(prenom : String)
 }
-note left of Utilisateur{
+note left of UtilisateurFactory{
 getMdp utile ?
 }
 
-+ class Etudiant{
-   -idEtud : int
 
-   +getIdEtud() : int
-   +setIdEtud(idEtud)
+class Etudiant{
+-idEtud : int
++getIdEtud() : int
++setIdEtud(idEtud)
 }
 
-+ class Enseignant{
-   -idEns : int
 
-   +getIdEns() : int
-   +setIdEns(idEns : int)
+class Enseignant{
+-idEns : int
++getIdEns() : int
++setIdEns(idEns : int)
 }
 
-+ class DirEtud{
+
+class DirEtud{
 }
 note right of DirEtud{
 Rajouter des méthodes "d'admin"
 }
 
-Utilisateur <|.. Etudiant
-Utilisateur <|.. Enseignant
+
+UtilisateurFactory <|.. Etudiant
+UtilisateurFactory <|.. Enseignant
 Enseignant <|-- DirEtud
-
-
 @enduml
