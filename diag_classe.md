@@ -1,9 +1,9 @@
-## Ce fichier contient le code entier pour le diagramme de classes de l'application.
-## NE PAS OUBLIER D'ACTUALISER À CHAQUE CHANGEMENT !
+## Ce fichier contient le code entier pour le diagramme de classes de l'application. ##
+## NE PAS OUBLIER D'ACTUALISER À CHAQUE CHANGEMENT ! ##
 
 @startuml
 skinparam classAttributeIconSize 0
-class UtilisateurFactory{
+abstract class Utilisateur{
 -email : String
 -mdp : String
 -nom : String
@@ -15,7 +15,7 @@ class UtilisateurFactory{
 +setNom(nom : String)
 +setPrenom(prenom : String)
 }
-note left of UtilisateurFactory{
+note left of Utilisateur{
 getMdp utile ?
 }
 class Etudiant{
@@ -54,7 +54,7 @@ note right of DirEtud{
 Rajouter des méthodes "d'admin"
 }
 
-UtilisateurFactory <|.. Etudiant
-UtilisateurFactory <|.. Enseignant
+Utilisateur <|-- Etudiant
+Utilisateur <|-- Enseignant
 Enseignant <|-- DirEtud
 @enduml
