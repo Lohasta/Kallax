@@ -54,6 +54,37 @@ note right of DirEtud{
 Rajouter des méthodes "d'admin"
 }
 
++class Module{
+- idModule : String
+- nomModule : String
++ getIdModule() : String
++ getNomModule() : String
++ setIdModule(newId : String)
++ setNomModule(newName : String)
+}
+
++class Controle{
+- module : Module
+- date : int
++ getModule() : Module 
++ getDate() : int
++ setNomModule(newMod : Module)
++ setDate(newDate : int)
+}
+note bottom of Controle{
+setter comme Note
+date = jjmmaaaa
+}
++class Note{
+- note : double
++ getNote() : double
++ setNote(newNote : double)
+}
+note bottom of Note{
+si newNote = null -> suppr note
+note hérite de controle ?
+}
+
 Utilisateur <|-- Etudiant
 Utilisateur <|-- Enseignant
 Enseignant <|-- DirEtud
