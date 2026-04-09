@@ -64,7 +64,6 @@ Rajouter des méthodes "d'admin"
 }
 
 +class Controle{
-- module : Module
 - date : int
 + getModule() : Module 
 + getDate() : int
@@ -85,6 +84,30 @@ si newNote = null -> suppr note
 note hérite de controle ?
 }
 
++class Promotion{
+- nom : String
++ getNom() : String
++ setNom(nom : String)
++ getGroupes() : ArrayList<Groupe>
++ addGroupe(grp: Groupe)
++ removeGroupe(nom: int)
+}
+
++class Groupe{
+- nom : String
++ getNom() : String
++ setNom(nom : String)
++ getEtudiants() : ArrayList<Etudiant>
++ addEtudiant(etud : Etudiant)
++ removeEtudiant(idEtud : int)
+}
+
+Note "*" <-- Etudiant : -notes
+Module "1" <-- Controle : -module
+Controle "*" <-- Module : -examens
+Enseignant "*" <-- Module : -enseignants
+Etudiant "*" <-- Groupe: -etudiants
+Groupe "*" <-- Promotion : -groupes
 Utilisateur <|-- Etudiant
 Utilisateur <|-- Enseignant
 Enseignant <|-- DirEtud
