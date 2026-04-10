@@ -5,7 +5,7 @@ hide circle
 package Model{
 
 
-abstract class Utilisateur{
+abstract class Utilisateur <<abstract>>{
 -email : String
 -mdp : String
 -nom : String
@@ -20,7 +20,7 @@ abstract class Utilisateur{
 +toString() : String
 }
 
-interface IDroitsEnseignant{
+interface IDroitsEnseignant <<interface>>{
 +getListEtud() : ArrayList<Etudiant>
 +getListControle() : ArrayList<Controle>
 +getListModule() : ArrayList<Module>
@@ -29,6 +29,7 @@ interface IDroitsEnseignant{
 note right of IDroitsEnseignant{
 faut ajouter le truc de présence et modif Controle/Note
 }
+
 class Etudiant{
 -idEtud : int
 +Etudiant(idEtud : int, email : String, mdp : String, nom : String, prenom : String)
@@ -39,6 +40,7 @@ class Etudiant{
 +afficherMoyenne()
 +toString() : String
 }
+
 class Enseignant{
 -idEns : int
 +Enseignant(idEns : int, email : String, mdp : String, nom : String, prenom : String)
@@ -46,8 +48,8 @@ class Enseignant{
 +setIdEns(idEns : int)
 +toString() : String
 +createControle(module : Module, date : int, coefficient : int)
-
 }
+
 class DirEtud{
 +DirEtud(idEns : int, email : String, mdp : String, nom : String, prenom : String)
 +createModule(intituleModule : String, , nomModule : String)
@@ -75,6 +77,7 @@ class DirEtud{
 +setNomModule(newName : String)
 +toString() : String
 }
+
 +class Controle{
 -date : int
 -coeff : int
@@ -88,6 +91,39 @@ class DirEtud{
 }
 note right of Controle{
 date = jjmmaaaa
+}
+
++class Note{
+-note : double
++Note(note : double, date : int, coeff : int, module : Module)
++getNote() : double
++setNote(newNote : double)
++toString() : String
+}
+note bottom of Note{
+si newNote = null -> suppr note
+}
+
++class Promotion{
+-nom : String
++Promotion(nom : String)
++getNom() : String
++setNom(nom : String)
++getGroupes() : ArrayList<Groupe>
++addGroupe(grp: Groupe)
++removeGroupe(nom: int)
++toString() : String
+}
+
++class Groupe{
+-idGroupe : String
++Groupe(idGroupe : String)
++getNom() : String
++setNom(nom : String) : void
++getEtudiants() : ArrayList<Etudiant>
++addEtudiant(etud : Etudiant)
++removeEtudiant(idEtud : int)
++toString() : String
 }
 
 +class Cours{
@@ -107,37 +143,6 @@ date = jjmmaaaa
 }
 
 
-
-+class Note{
--note : double
-+Note(note : double, date : int, coeff : int, module : Module)
-+getNote() : double
-+setNote(newNote : double)
-+toString() : String
-}
-note bottom of Note{
-si newNote = null -> suppr note
-}
-+class Promotion{
--nom : String
-+Promotion(nom : String)
-+getNom() : String
-+setNom(nom : String)
-+getGroupes() : ArrayList<Groupe>
-+addGroupe(grp: Groupe)
-+removeGroupe(nom: int)
-+toString() : String
-}
-+class Groupe{
--idGroupe : String
-+Groupe(idGroupe : String)
-+getNom() : String
-+setNom(nom : String) : void
-+getEtudiants() : ArrayList<Etudiant>
-+addEtudiant(etud : Etudiant)
-+removeEtudiant(idEtud : int)
-+toString() : String
-}
 IDroitsEnseignant <|.. Enseignant
 Note "*" <-- Etudiant : -notes
 Module "1" <-- Controle : -module
