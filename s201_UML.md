@@ -20,7 +20,7 @@ abstract class Utilisateur <<abstract>>{
 +toString() : String
 }
 
-interface IDroitsEnseignant <<abstract>>{
+interface IDroitsEnseignant <<interface>>{
 +getListEtud() : ArrayList<Etudiant>
 +getListControle() : ArrayList<Controle>
 +getListModule() : ArrayList<Module>
@@ -29,6 +29,7 @@ interface IDroitsEnseignant <<abstract>>{
 note right of IDroitsEnseignant{
 faut ajouter le truc de présence et modif Controle/Note
 }
+
 class Etudiant{
 -idEtud : int
 +Etudiant(idEtud : int, email : String, mdp : String, nom : String, prenom : String)
@@ -39,6 +40,7 @@ class Etudiant{
 +afficherMoyenne()
 +toString() : String
 }
+
 class Enseignant{
 -idEns : int
 +Enseignant(idEns : int, email : String, mdp : String, nom : String, prenom : String)
@@ -46,8 +48,8 @@ class Enseignant{
 +setIdEns(idEns : int)
 +toString() : String
 +createControle(module : Module, date : int, coefficient : int)
-
 }
+
 class DirEtud{
 +DirEtud(idEns : int, email : String, mdp : String, nom : String, prenom : String)
 +createModule(intituleModule : String, , nomModule : String)
@@ -75,6 +77,7 @@ class DirEtud{
 +setNomModule(newName : String)
 +toString() : String
 }
+
 +class Controle{
 -date : int
 -coeff : int
@@ -90,24 +93,6 @@ note right of Controle{
 date = jjmmaaaa
 }
 
-+class Cours{
-
--date : String
--heure : String
-
-+appelPresence()
-+getDate() : String
-+setDate(date : String)
-+getHeure() : String
-+setHeure(heure : String)
-+getEtudiants() : ArrayList<Etudiant>
-+getEnseignant() : Enseignant
-+toString() : String
-
-}
-
-
-
 +class Note{
 -note : double
 +Note(note : double, date : int, coeff : int, module : Module)
@@ -118,6 +103,7 @@ date = jjmmaaaa
 note bottom of Note{
 si newNote = null -> suppr note
 }
+
 +class Promotion{
 -nom : String
 +Promotion(nom : String)
@@ -128,6 +114,7 @@ si newNote = null -> suppr note
 +removeGroupe(nom: int)
 +toString() : String
 }
+
 +class Groupe{
 -idGroupe : String
 +Groupe(idGroupe : String)
@@ -138,6 +125,8 @@ si newNote = null -> suppr note
 +removeEtudiant(idEtud : int)
 +toString() : String
 }
+
+
 IDroitsEnseignant <|.. Enseignant
 Note "*" <-- Etudiant : -notes
 Module "1" <-- Controle : -module
@@ -145,8 +134,6 @@ Controle "*" <-- Module : -examens
 Enseignant "*" <-- Module : -enseignants
 Etudiant "*" <-- Groupe: -etudiants
 Groupe "*" <-- Promotion : -groupes
-Enseignant "1" <-- Cours : -enseignant
-Etudiant "*" <-- Cours : -etudiants
 Utilisateur <|-- Etudiant
 Controle "1" <-- Note : -controle
 Utilisateur <|-- Enseignant
