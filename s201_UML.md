@@ -150,8 +150,6 @@ Controle "*" <-- Module : -examens
 Enseignant "*" <-- Module : -enseignants
 Etudiant "*" <-- Groupe: -etudiants
 Groupe "*" <-- Promotion : -groupes
-Enseignant "1" <-- Cours : -enseignant
-Etudiant "*" <-- Cours : -etudiants
 Utilisateur <|-- Etudiant
 Controle "1" <-- Note : -controle
 Utilisateur <|-- Enseignant
