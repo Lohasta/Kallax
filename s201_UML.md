@@ -18,9 +18,7 @@ abstract class Utilisateur{
 +setPrenom(prenom : String)
 +toString() : String
 }
-note left of Utilisateur{
-getMdp utile ?
-}
+
 interface IDroitsEnseignant{
 +getListEtud() : ArrayList<Etudiant>
 +getListControle() : ArrayList<Controle>
@@ -62,9 +60,7 @@ class DirEtud{
 +getListEns() : ArrayList<Enseignant>
 +toString() : String
 }
-note right of DirEtud{
 
-}
 +class Module{
 -idModule : String
 -nomModule : String
@@ -86,8 +82,7 @@ note right of DirEtud{
 +setCoefficient(newCoeff int)
 +toString() : String
 }
-note bottom of Controle{
-setter comme Note
+note right of Controle{
 date = jjmmaaaa
 }
 +class Note{
@@ -121,14 +116,14 @@ si newNote = null -> suppr note
 +toString() : String
 }
 IDroitsEnseignant <|.. Enseignant
-Note " " <-- Etudiant : -notes
+Note "*" <-- Etudiant : -notes
 Module "1" <-- Controle : -module
-Controle " " <-- Module : -examens
-Enseignant " " <-- Module : -enseignants
-Etudiant " " <-- Groupe: -etudiants
+Controle "*" <-- Module : -examens
+Enseignant "*" <-- Module : -enseignants
+Etudiant "*" <-- Groupe: -etudiants
 Groupe "*" <-- Promotion : -groupes
 Utilisateur <|-- Etudiant
-Controle " " <-- Note : -controle
+Controle "1" <-- Note : -controle
 Utilisateur <|-- Enseignant
 Enseignant <|-- DirEtud
 
