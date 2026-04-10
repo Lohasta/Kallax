@@ -23,17 +23,20 @@ abstract class Utilisateur <<abstract>>{
 interface IDroitsEnseignant <<interface>>{
 +getListEtud() : ArrayList<Etudiant>
 +getListControle() : ArrayList<Controle>
-+getListModule() : ArrayList<Module>
-+getListNote() : ArrayList<Note>
+
 +getPresenceCours(cours : Cours) : ArrayList<Etudiant>
 +modifPresenceCours(cours : Cours)
 +createControle(module : Module, date : int, coefficient : int)
-
  
 }
-note right of IDroitsEnseignant{
-faut ajouter le truc de présence et modif Controle/Note
+
+
+interface IDroitsEtudiant <<interface>>{
++getAssiduité(cours : Cours) : ArrayList<Etudiant>
++getListModule() : ArrayList<Module>
++getListNote() : ArrayList<Note>
 }
+
 
 class Etudiant{
 -idEtud : int
@@ -148,6 +151,8 @@ si newNote = null -> suppr note
 
 
 IDroitsEnseignant <|.. Enseignant
+IDroitsEtudiant <|.. Enseignant
+IDroitsEtudiant <|.. Etudiant
 Note "*" <-- Etudiant : -notes
 Module "1" <-- Controle : -module
 Controle "*" <-- Module : -examens
