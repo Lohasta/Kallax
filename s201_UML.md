@@ -1,5 +1,9 @@
 @startuml
 skinparam classAttributeIconSize 0
+
+package Model{
+
+
 abstract class Utilisateur{
 -email : String
 -mdp : String
@@ -53,13 +57,13 @@ class DirEtud{
 +addEns(idEns : int)
 +modifEns()
 +removeEns(idEns : int)
-+addEnsR(...)
-+removeEnsR(...)
++addEnsModule(module : Module, enseignant : Enseignant)
++removeEnsR(module : Module, enseignant : Enseignant)
 +getListEns() : ArrayList<Enseignant>
 +toString() : String
 }
 note right of DirEtud{
-Intitule = Module ?
+
 }
 +class Module{
 -idModule : String
@@ -127,4 +131,6 @@ Utilisateur <|-- Etudiant
 Controle " " <-- Note : -controle
 Utilisateur <|-- Enseignant
 Enseignant <|-- DirEtud
+
+}
 @enduml
