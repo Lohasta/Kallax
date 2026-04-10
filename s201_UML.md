@@ -5,7 +5,7 @@ hide circle
 package Model{
 
 
-abstract class Utilisateur{
+abstract class Utilisateur <<abstract>>{
 -email : String
 -mdp : String
 -nom : String
@@ -20,7 +20,7 @@ abstract class Utilisateur{
 +toString() : String
 }
 
-interface IDroitsEnseignant{
+interface IDroitsEnseignant <<abstract>>{
 +getListEtud() : ArrayList<Etudiant>
 +getListControle() : ArrayList<Controle>
 +getListModule() : ArrayList<Module>
