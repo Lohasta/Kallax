@@ -33,6 +33,9 @@ class Etudiant{
 +Etudiant(idEtud : int, email : String, mdp : String, nom : String, prenom : String)
 +getIdEtud() : int
 +setIdEtud(idEtud) : void
++getNotes() : Note
++calculMoyenne() : double
++afficherMoyenne()
 +toString() : String
 }
 class Enseignant{
