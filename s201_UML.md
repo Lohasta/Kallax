@@ -25,6 +25,11 @@ interface IDroitsEnseignant <<interface>>{
 +getListControle() : ArrayList<Controle>
 +getListModule() : ArrayList<Module>
 +getListNote() : ArrayList<Note>
++getPresenceCours(cours : Cours) : ArrayList<Etudiant>
++modifPresenceCours(cours : Cours)
++createControle(module : Module, date : int, coefficient : int)
+
+ 
 }
 note right of IDroitsEnseignant{
 faut ajouter le truc de présence et modif Controle/Note
@@ -47,7 +52,6 @@ class Enseignant{
 +getIdEns() : int
 +setIdEns(idEns : int)
 +toString() : String
-+createControle(module : Module, date : int, coefficient : int)
 }
 
 class DirEtud{
@@ -62,7 +66,7 @@ class DirEtud{
 +modifEns()
 +removeEns(idEns : int)
 +addEnsModule(module : Module, enseignant : Enseignant)
-+removeEnsR(module : Module, enseignant : Enseignant)
++removeEnsModule(module : Module, enseignant : Enseignant)
 +getListEns() : ArrayList<Enseignant>
 +toString() : String
 }
@@ -131,7 +135,7 @@ si newNote = null -> suppr note
 -date : String
 -heure : String
 
-+appelPresence()
++getPresences() : ArrayList<Etudiant>
 +getDate() : String
 +setDate(date : String)
 +getHeure() : String
