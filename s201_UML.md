@@ -77,11 +77,13 @@ class DirEtud{
 +class Module{
 -idModule : String
 -nomModule : String
++createControle(module : Module, date : int, coefficient : int)
 +Module(idModule : String, nomModule : String)
 +getIdModule() : String
 +getNomModule() : String
 +setIdModule(newId : String)
 +setNomModule(newName : String)
++getEnseignants() : ArrayList<Enseignant>
 +toString() : String
 }
 
@@ -106,9 +108,6 @@ date = jjmmaaaa
 +getNote() : double
 +setNote(newNote : double)
 +toString() : String
-}
-note bottom of Note{
-si newNote = null -> suppr note
 }
 
 +class Promotion{
