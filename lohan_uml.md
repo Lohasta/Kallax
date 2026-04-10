@@ -119,11 +119,11 @@ si newNote = null -> suppr note
 +class Groupe{
 -idGroupe : String
 +Groupe(idGroupe : String)
-+getNom() : String
-+setNom(nom : String) : void
-+getEtudiants() : ArrayList
-+addEtudiant(etud : Etudiant) : void
-+removeEtudiant(idEtud : int) : void
+getNom() : String
+setNom(nom : String) : void
+getEtudiants() : ArrayList
+addEtudiant(etud : Etudiant) : void
+removeEtudiant(idEtud : int) : void
 +toString() : String
 }
 
