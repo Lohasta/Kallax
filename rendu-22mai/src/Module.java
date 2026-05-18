@@ -25,6 +25,15 @@ public class Module{
     /** Promotion qui ont des cours sur le module */
     private Promotion promo;
 
+
+
+    /**
+     * Constructeur de Module
+     * @param code Code du module
+     * @param intitule Intitule du module
+     * @param type Type du module
+     * @param promo Promotion qui ont des cours sur le module
+     */
     public Module(String code, String intitule, EnumModule type, Promotion promo){
         
         if (code == null || intitule == null || type == null || promo == null){
@@ -41,7 +50,11 @@ public class Module{
         }
     }
 
-
+    /**
+     * Chaine de caracteres representant le module
+     * @return Chaine de caracteres representant le module
+     */
+    @Override
     public String toString(){
         String res = "Le module numero" + code + " " + intitule;
         res += " est une " + type + " dont les responsables sont ";

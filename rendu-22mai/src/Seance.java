@@ -69,6 +69,7 @@ public class Seance {
      * Chaine de caracteres representant la seance
      * @return Chaine de caracteres representant la seance
      */
+    @Override
     public String toString(){
         String res = "La seance du " + date + " commence a " + heureDeb;
         res += " et finit a " + heureFin + ", dans le module " + module;

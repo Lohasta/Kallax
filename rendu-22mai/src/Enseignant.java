@@ -15,6 +15,7 @@ public class Enseignant extends Utilisateur{
         }
     }
 
+    @Override
     public String toString(){
         return ("\n*** Enseignant ***\n" + super.toString() + "\nID : " + this.getIdent());
     }
