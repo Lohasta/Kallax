@@ -74,6 +74,8 @@ public class Seance {
         res += " et finit a " + heureFin + ", dans le module " + module;
         res += " avec le groupe " + groupe + ".";
 
+        res += "Le presence au cours est :" + appel.toString();
+
         return res;
 
     }
