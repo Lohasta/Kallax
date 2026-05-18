@@ -30,6 +30,7 @@ public abstract class Utilisateur{
         }
     }
 
+    @Override
     public String toString(){
         return ("Nom : " + this.getNom() + "\nPrenom : " + this.getPrenom() + "\nE-Mail : " + this.getEmail() + "\nMot de Passe : " + this.getMdp());
     }
