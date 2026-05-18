@@ -1,4 +1,8 @@
+/**
+ * 
+ */
 public class Enseignant extends Utilisateur{
+    
     public String ident;
 
     public Enseignant(String nom, String prenom, String email, String mdp, String ident){
