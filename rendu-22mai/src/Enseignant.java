@@ -1,4 +1,8 @@
+/**
+ * 
+ */
 public class Enseignant extends Utilisateur{
+    
     public String ident;
 
     public Enseignant(String nom, String prenom, String email, String mdp, String ident){
@@ -11,6 +15,7 @@ public class Enseignant extends Utilisateur{
         }
     }
 
+    @Override
     public String toString(){
         return ("\n*** Enseignant ***\n" + super.toString() + "\nID : " + this.getIdent());
     }

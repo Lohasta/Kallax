@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import promotion;
+
 public class GroupeTD {
     
     private String nom;
@@ -15,7 +17,10 @@ public class GroupeTD {
             this.promotion = promo;
         }
         this.modulesSuivis=new ArrayList<>();
+
         this.etudiants=new Arraylist<>();
+
+        this.etudiants=new ArrayList<>();
     }
 
     public String toString(){
