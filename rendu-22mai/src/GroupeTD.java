@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-import promotion;
 
 public class GroupeTD {
     
