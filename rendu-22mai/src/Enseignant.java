@@ -2,6 +2,7 @@
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * @author G.REBECHE, L.KERRAULT
@@ -162,11 +163,18 @@ public class Enseignant extends Utilisateur{
     }
 
     public void tousPresents(Seance s){
-        s.ajouterPresence(, EnumPresence.PRESENT);
+        for (HashMap.Entry appel : s.getAppel().entrySet() ) {
+            s.ajouterPresence((Etudiant)appel.getKey(),EnumPresence.PRESENT);
+        }
     }
 
     public void afficherPresenceModule(String codeModule){
-
+        if (codeModule != null && codeModule != ""){
+            
+        }
+        else{
+            System.out.println("Code module incorrecte");
+        }
     }
 
 
