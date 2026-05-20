@@ -1,5 +1,6 @@
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Module qui a un code, un intitule et un type. Ce module a des evaluations et des enseignants responsables. Une promotion lui est attribue.
