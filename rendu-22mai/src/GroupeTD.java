@@ -16,12 +16,18 @@ public class GroupeTD {
      * @param nom name of TD group
      * @param promo The promotion in which the TD group will be add
      */
-    public GroupeTD(String nom,Promotion promo){
+    public GroupeTD(String nom,Promotion promo) throws IllegalArgumentException{
         if (nom != null && nom != ""){
             this.nom = nom;
         }
+        else{
+            throw new IllegalArgumentException("Constructeur de GroupeTD : nom incorrect");
+        }
         if(promo != null){
             this.promotion = promo;
+        }
+        else{
+            System.out.println("Constructeur de GroupeTD : promo incorrect");
         }
         this.modulesSuivis=new ArrayList<>();
 
