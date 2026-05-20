@@ -3,40 +3,43 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Module qui a un code, un intitule et un type. Ce module a des evaluations et des enseignants responsables. Une promotion lui est attribue.
- * @author M.Leroux
+ * Module identified by a code, a title and a type.
+ * A module contains evaluations, responsible teachers and sessions.
+ * A promotion is associated with the module. 
+ * @author TEAM KALLAX
  * @version 1.0
  */
 public class Module{
 
-    /** Code du module */
+    /** Module code */
     private String code;
 
-    /** Intitule du module */
+    /** Module title */
     private String intitule;
 
-    /** Type du module */
+    /** Module type */
     private EnumModule type;
 
-    /** Liste d'evaluations du module */
+    /** List of evaluations for the module */
     private ArrayList<Evaluation> listeEval;
 
-    /** Liste d'enseignants responsables du module */
+    /** List of responsible teachers for the module */
     private ArrayList<Enseignant> responsables;
 
-    /** Promotion qui ont des cours sur le module */
+    /** Promotion that has courses on the module */
     private Promotion promo;
 
+    /** List of sessions for the module */
     private ArrayList<Seance> seances;
 
 
 
     /**
-     * Constructeur de Module
-     * @param code Code du module
-     * @param intitule Intitule du module
-     * @param type Type du module
-     * @param promo Promotion qui ont des cours sur le module
+     * Module constructor
+     * @param code Module code
+     * @param intitule Module title
+     * @param type Module type
+     * @param promo Promotion that has courses on the module
      */
     public Module(String code, String intitule, EnumModule type, Promotion promo) throws IllegalArgumentException{
 
@@ -56,36 +59,38 @@ public class Module{
     }
 
     /**
-     * Chaine de caracteres representant le module
-     * @return Chaine de caracteres representant le module
+     * String representing the module
+     * @return String representing the module
      */
     @Override
     public String toString(){
-        String res = "Le module numero" + code + " " + intitule;
-        res += " est une " + type + " dont les responsables sont ";
+        String res = "Module code : " + this.code + "\n";
+        res += "Module title : " + this.intitule + "\n";
+        res += "Module type : " + this.type + "\n";
+        res += "Responsible teachers : ";
 
         for (Enseignant ens : responsables){
             res += ens.getNom() + ", ";
         }
 
-        res += "\nLes evaluations du modules sont : ";
+        res += "\nEvaluations : ";
 
         for (Evaluation eval : listeEval){
             res += eval.getIdent() + ", ";
         }
 
-        res += ".\nLa promotion qui assiste au module est " + promo;
+        res += ".\nPromotion : " + promo;
         return res;
     }
 
 
     /**
-     *
-     * @param date
-     * @param heureDeb
-     * @param heureFin
-     * @param gr
-     */
+     * Method to add a session to the module
+     * @param date date of the session
+     * @param heureDeb start time of the session
+     * @param heureFin end time of the session
+     * @param gr group of students attending the session
+     */ 
     public void ajouterSeance(Date date, LocalTime heureDeb, LocalTime heureFin, GroupeTD gr){
 
         for (GroupeTD groupe : promo.getGroupes()){
@@ -101,8 +106,8 @@ public class Module{
     }
 
     /**
-     *
-     * @param e
+     * Method to add a responsible teacher to the module
+     * @param e teacher to add as responsible for the module
      */
     public void ajouterResponsable(Enseignant e){
         boolean estResponsable = false;
@@ -128,8 +133,8 @@ public class Module{
 
 
     /**
-     *
-     * @param e
+     * Method to remove a responsible teacher from the module
+     * @param e teacher to remove from the list of responsible teachers for the module
      */
     public void retirerResponsable(Enseignant e){
          boolean estResponsable = false;
@@ -155,8 +160,8 @@ public class Module{
 
 
     /**
-     *
-     * @param e
+     * Method to add an evaluation to the module
+     * @param e evaluation to add to the module
      */
     public void ajouterEvaluation(Evaluation e){
         boolean estEval = false;
@@ -183,8 +188,8 @@ public class Module{
 
 
     /**
-     *
-     * @param e
+     * Method to remove an evaluation from the module
+     * @param e evaluation to remove from the list of evaluations for the module
      */
     public void retirerEvaluation(Evaluation e){
         boolean estEval = false;
@@ -211,8 +216,8 @@ public class Module{
 
 
     /**
-     *
-     * @return
+     * Method to calculate the average mark for the module
+     * @return the average mark for the module
      */
     public double calculerMoyenne(){
 
@@ -228,7 +233,12 @@ public class Module{
     }
 
 
-
+    /**
+     * Static method to search for a module in a list of modules by its code
+     * @param code code of the module to search for
+     * @param liste list of modules to search in
+     * @return the module with the code, or null fi not found
+     */
     public static Module chercherModule(String code, ArrayList<Module> liste){
         int i = 0;
         Module moduleCherche = null;
@@ -255,33 +265,65 @@ public class Module{
     // --- GETTER / SETTER ---
 
     /**
-     *
-     * @return
+     * Code getter
+     * @return the code of the module
      */
     public String getCode(){
         return this.code;
     }
 
     /**
-     *
-     * @return
+     * Intitule getter 
+     * @return the title of the module
      */
     public String getIntitule(){
         return this.intitule;
     }
 
     /**
-     *
-     * @return
+     * Type getter
+     * @return the type of the module
      */
     public EnumModule getType(){
         return this.type;
     }
 
+    /**
+     * ListeEval getter
+     * @return a copy of the list of evaluations for the module
+     */
+    public ArrayList<Evaluation> getListeEval() {
+        return new ArrayList<>(this.listeEval);
+    }
 
     /**
-     *
-     * @param newCode
+     * Responsables getter
+     * @return a copy of the list of responsible teachers for the module
+     */
+    public ArrayList<Enseignant> getResponsables(){
+        return new ArrayList<>(this.responsables);
+    }
+
+    /**
+     * Promotion getter
+     * @return the promotion that has courses on the module
+     */
+    public Promotion getPromo(){
+        return this.promo;
+    }
+
+    /**
+     * Seance getter
+     * @return a copy of the list of sessions for the module
+     */
+    public ArrayList<Seance> getSeance(){
+        return new ArrayList<>(this.seances);
+    }
+
+
+    /**
+     * Code setter
+     * @param newCode the new code for the module
      */
     public void setCode(String newCode){
         if (newCode != null){
@@ -291,8 +333,8 @@ public class Module{
 
 
     /**
-     *
-     * @param newIntitule
+     * Intitule setter
+     * @param newIntitule the new title for the module
      */
     public void setIntitule(String newIntitule){
         if (newIntitule != null){
@@ -300,14 +342,44 @@ public class Module{
         }
     }
 
-
+    /**
+     * Type setter
+     * @param newType the new type for the module
+     */
     public void setType(EnumModule newType){
         this.type = newType;
     }
 
+    /**
+     * ListeEval setter
+     * @param newListeEval the new list of evaluations for the module
+     */
+    public void setListeEval(ArrayList<Evaluation> newListeEval){
+        this.listeEval = newListeEval;
+    }
 
+    /**
+     * Responsables setter
+     * @param newResponsables the new list of responsible teachers for the module
+     */
+    public void setResponsables(ArrayList<Enseignant> newResponsables){
+        this.responsables = newResponsables;
+    }
 
+    /**
+     * Promotion setter
+     * @param newPromo the new promotion that has courses on the module
+     */
+    public void setPromotion(Promotion newPromo){
+        this.promo = newPromo;
+    }
 
-
+    /**
+     * Sessions setter
+     * @param newSeances the new list of sessions for the module
+     */
+    public void setSeance(ArrayList<Seance> newSeances){
+        this.seances = newSeances;
+    }
 
 }
