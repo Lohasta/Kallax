@@ -3,43 +3,59 @@ import java.util.Date;
 import java.util.HashMap;
 
 /**
- * Seance d'un module avec une date et des horaires, avec un dictionnaire de presence.
- * @author M.Leroux
+ * Session of a module, with a date, a start time, an end time, a module, a group of students and a dictionary of presence
+ * @author TEAM KALLAX
  * @version 1.0
  */
 public class Seance {
 
-    /** Date de la seance */
+    /** Date of the session */
     private Date date;
 
-    /** Heure de debut */
+    /** Start time of the session */
     private LocalTime heureDeb;
 
-    /** Heure de fin */
+    /** End time of the session */
     private LocalTime heureFin;
 
-    /** Module de la seance */
+    /** Module of the session */
     private Module module;
 
-    /** Groupe d'etudiants */
+    /** Group of students */
     private GroupeTD groupe;
 
-    /** Dictionnaire de presence */
+    /** Dictionary of presence */
     private HashMap<Etudiant, EnumPresence> appel;
 
 
     /**
-     * Constructeur de Seance
-     * @param date date de la seance
-     * @param hDeb Heure de debut
-     * @param hFin Heure de fin
-     * @param m Module de la seance
-     * @param gr Groupe d'etudiants
-     * @throws IllegalArgumentException si un des argument est invalide
+     * Session constructor
+     * @param date date of the session
+     * @param hDeb start time of the session
+     * @param hFin end time of the session
+     * @param m Module of the session
+     * @param gr Group of students
+     * @throws IllegalArgumentException if any of the arguments is invalid
      */
     public Seance(Date date, LocalTime hDeb, LocalTime hFin, Module m, GroupeTD gr) throws IllegalArgumentException{
-        if (date == null || hDeb == null || hFin == null || m == null || gr == null){
-            throw new IllegalArgumentException("Argument(s) invalide(s) dans le constructeur de Seance");
+        if (date == null ){
+            throw new IllegalArgumentException("Constructeur de Seance : date incorrecte.");
+        }
+
+        if (hDeb == null){
+            throw new IllegalArgumentException("Constructeur de Seance : heure de debut incorrecte.");
+        }
+
+        if (hFin == null){
+            throw new IllegalArgumentException("Constructeur de Seance : heure de fin incorrecte.");
+        }
+
+        if (m == null){
+            throw new IllegalArgumentException("Constructeur de Seance : module incorrect.");
+        }
+
+        if (gr == null){
+            throw new IllegalArgumentException("Constructeur de Seance : groupe incorrect.");
         }
 
         else{
@@ -53,9 +69,9 @@ public class Seance {
     }
 
     /**
-     * Permet d'ajouter des etudiants au dictionnaire de presence
-     * @param e etudiant a ajouter
-     * @param pres etat de presence de l'etudiant
+     * Add a presence for a student in the session
+     * @param e the student to add
+     * @param pres presence status of the student
      */
     public void ajouterPresence(Etudiant e, EnumPresence pres){
 
@@ -66,18 +82,125 @@ public class Seance {
 
 
     /**
-     * Chaine de caracteres representant la seance
-     * @return Chaine de caracteres representant la seance
+     * String representing the session
+     * @return String representing the session
      */
     @Override
     public String toString(){
-        String res = "La seance du " + date + " commence a " + heureDeb;
-        res += " et finit a " + heureFin + ", dans le module " + module;
-        res += " avec le groupe " + groupe + ".";
+        String res = "Session date : " + date + "\n";
+        res += "Start time : " + heureDeb + "\n";
+        res += "End time : " + heureFin + "\n";
+        res+= "Module : " + module + "\n";
+        res += " with group " + groupe + "\n";
 
-        res += "Le presence au cours est :" + appel.toString();
+        res += "Presence " + appel.toString();
 
         return res;
 
+    }
+
+
+
+    /** --- GETTERS / SETTERS --- */
+
+    /**
+     * Date getter
+     * @return date of the session
+     */
+    public Date getDate(){
+        return this.date;
+    }
+
+
+    /**
+     * Start time getter
+     * @return start time of the session
+     */
+    public LocalTime getHeureDeb(){
+        return this.heureDeb;
+    }
+    
+
+    /**
+     * End time getter
+     * @return end time of the session
+     */
+    public LocalTime getHeureFin(){
+        return this.heureFin;
+    }
+
+    /**
+     * Module getter
+     * @return module of the session
+     */
+    public Module getModule(){
+        return this.module;
+    }
+
+    /**
+     * Group getter
+     * @return group of the session
+     */
+    public GroupeTD getGroupe(){
+        return this.groupe;
+    }
+
+    /**
+     * Presence dictionary getter
+     * @return presence dictionary of the session
+     */
+    public HashMap<Etudiant, EnumPresence> getAppel(){
+        return new HashMap<Etudiant, EnumPresence>(this.appel);
+    }
+
+
+    /**
+     * Date setter
+     * @param newDate the new date of the session
+     */
+    public void setDate(Date newDate){
+        this.date = newDate;
+    }
+
+    /**
+     * Start time setter
+     * @param newHeureDeb the new start time of the session
+     */
+    public void setHeureDeb(LocalTime newHeureDeb){
+        this.heureDeb = newHeureDeb;
+    }
+
+
+    /**
+     * End time setter
+     * @param newHeureFin the new end time of the session
+     */
+    public void setHeureFin(LocalTime newHeureFin){
+        this.heureFin = newHeureFin;
+    }
+
+
+    /**
+     * Module setter
+     * @param newModule the new module of the session
+     */
+    public void setModule(Module newModule){
+        this.module = newModule;
+    }
+
+    /**
+     * Group setter
+     * @param newGroupe the new group of the session
+     */
+    public void setGroupe(GroupeTD newGroupe){
+        this.groupe = newGroupe;
+    }
+
+    /**
+     * Presence dictionary setter
+     * @param newAppel the new presence dictionary of the session
+     */
+    public void setAppel(HashMap<Etudiant, EnumPresence> newAppel){
+        this.appel = new HashMap<Etudiant, EnumPresence>(newAppel);
     }
 }
