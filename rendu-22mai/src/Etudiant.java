@@ -1,5 +1,6 @@
 public class Etudiant extends Utilisateur{
     private int numEtudiant;
+    private GroupeTD groupe;
 
     public Etudiant(String nom, String prenom, String email, String mdp, int num){
         super(nom, prenom, email, mdp);
@@ -21,5 +22,9 @@ public class Etudiant extends Utilisateur{
 
     public void setNum(int nvNum){
         this.numEtudiant = nvNum;
+    }
+
+    public GroupeTD getGroupe(){
+        return this.groupe;
     }
 }

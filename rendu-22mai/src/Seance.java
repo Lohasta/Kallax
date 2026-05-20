@@ -26,7 +26,7 @@ public class Seance {
 
     /** Dictionnaire de presence */
     private HashMap<Etudiant, EnumPresence> appel;
-    
+
 
     /**
      * Constructeur de Seance
@@ -59,7 +59,7 @@ public class Seance {
      */
     public void ajouterPresence(Etudiant e, EnumPresence pres){
 
-        if (e.getGroup().equals(groupe)){
+        if (e.getGroupe().equals(groupe)){
             appel.put(e, pres);
         }
     }
