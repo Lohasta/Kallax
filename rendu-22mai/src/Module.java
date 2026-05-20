@@ -252,7 +252,7 @@ public class Module{
      * @param liste list of modules to search in
      * @return the module with the code, or null fi not found
      */
-    public static Module chercherModule(String code, ArrayList<Module> liste){
+    public static Module chercherModuleParCode(String code, ArrayList<Module> liste){
         int i = 0;
         Module moduleCherche = null;
 
