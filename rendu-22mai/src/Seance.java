@@ -39,7 +39,7 @@ public class Seance {
      */
     public Seance(Date date, LocalTime hDeb, LocalTime hFin, Module m, GroupeTD gr) throws IllegalArgumentException{
         if (date == null || hDeb == null || hFin == null || m == null || gr == null){
-            throw new IllegalArgumentException("Argument(s) invalide(s) dans le constructeur");
+            throw new IllegalArgumentException("Argument(s) invalide(s) dans le constructeur de Seance");
         }
 
         else{
