@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 /**
  * Student with an id (numEtudiant) and a group (groupe).
+ * Inherits from Utilisateur attributes
  *
- * @author L. Kerrault
+ * @author Team KALLAX
  */
 public class Etudiant extends Utilisateur{
     /**The Student's ID */
@@ -36,7 +38,7 @@ public class Etudiant extends Utilisateur{
     }
 
     /**
-    * Gets Student's ID
+    * Gets Student's ID.
     * @return numEtudiant
     */
     public int getNum(){
@@ -44,7 +46,7 @@ public class Etudiant extends Utilisateur{
     }
 
     /**
-    * Changes the Student's ID
+    * Changes the Student's ID.
     * @param nvNum the new ID of the Student
     */
     public void setNum(int nvNum){
@@ -65,7 +67,7 @@ public class Etudiant extends Utilisateur{
     }
 
     /**
-    * Calculates the Student's average on a Module
+    * Calculates the Student's average on a Module.
     * @param m the Module to calculate the average on
     * @return the average, or -1 if m is null
     */
@@ -85,6 +87,12 @@ public class Etudiant extends Utilisateur{
         return res;
     }
 
+    /**
+    * Using calcluerMoyenne(), calculates the
+    * entire average.
+    * (i.e sum of the Modules' average / nb of Modules)
+    * @return the average grade of Etudiant
+    */
     public double calculerMoyenneGenerale(){
         ArrayList<Module> mList = this.groupe.getPromotion().getModules();
         double sum = 0.0;
@@ -98,8 +106,65 @@ public class Etudiant extends Utilisateur{
         return res;
     }
 
-    /*public ArrayList<Seance> sceancesSuivies(){
-        ArrayList<Seance> ret = new ArrayList<>();
-        }*/
+    /**
+    * Checks if the Module in parameters is valid, i.e
+    * if it's inside the list of Modules of the Promotion
+    * of the Etudiant.
+    * @param m the Module to check
+    * @return true if the Module is valid, false else.
+    */
+    public boolean moduleValide(Module m){
+        boolean ret = false;
+        if(m != null && this.groupe.getPromotion().getModules().contains(m)){
+            ret = true;
+        }
 
+        return ret;
+    }
+
+    /**
+    * Gets the presence of the Etudiant in the form of an HashMap,
+    * with the Seance as the Key and the Presence as value.
+    * @param m the Module to get the presence from
+    * @return an HashMap containing the Seance and the Presence.
+    */
+    public HashMap<Seance, EnumPresence> recupererPresence(Module m){
+        HashMap<Seance, EnumPresence> ret = new HashMap<>();
+
+        if(m != null){
+            ArrayList<Seance> seances = m.getSeance();
+
+            for(Seance s : seances){
+                HashMap<Etudiant, EnumPresence> appel = s.getAppel();
+                if(appel.containsKey(this)){
+                    EnumPresence presence = appel.get(this);
+                    ret.put(s, presence);
+                }
+            }
+        }
+        return ret;
+    }
+
+    /**
+    * Returns the list of followed Seances of the GroupTD
+    * of the Etudiant.
+    * @return a list of Seance followed by the Etudiant's GroupTD
+    */
+    public ArrayList<Seance> seancesSuivies(){
+        ArrayList<Seance> ret = new ArrayList<>();
+        ArrayList<Module> modules = this.groupe.getPromotion().getModules();
+
+        for(Module m : modules){
+            ArrayList<Seance> seances = m.getSeance();
+
+            if(seances != null){
+                for(Seance s : seances){
+                    if(s.getGroupe() != null && s.getGroupe().equals(this.groupe)){
+                        ret.add(s);
+                    }
+                }
+            }
+        }
+        return ret;
+    }
 }
