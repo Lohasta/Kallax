@@ -6,21 +6,23 @@ public class Evaluation {
     private HashMap<Etudiant, Double> notes;
     private Module module;
     
-    public Evaluation(String type, double coeff, Module m) {
+    public Evaluation(String type, double coeff, Module m) throws IllegalArgumentException {
         if (type != null && !type.equals("")) {
             this.ident = type;
         } else {
-            this.ident = "Default";
+            throw new IllegalArgumentException("Constructeur de Evaluation : type incorrect.");
         }
 
         if (coeff > 0) {
             this.coeff = coeff;
         } else {
-            this.coeff = 1;
+            throw new IllegalArgumentException("Constructeur de Evaluation : coeff incorrect.");
         }
 
         if (m != null) {
             this.module = m;
+        } else {
+            throw new IllegalArgumentException("Constructeur de Evaluation : module incorrect.");
         }
 
         this.notes = new HashMap<>();
