@@ -27,7 +27,7 @@ public class GroupeTD {
             this.promotion = promo;
         }
         else{
-            System.out.println("Constructeur de GroupeTD : promo incorrect");
+            throw new IllegalArgumentException("Constructeur de GroupeTD : promo incorrecte");
         }
         this.modulesSuivis=new ArrayList<>();
 
