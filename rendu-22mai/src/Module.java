@@ -39,7 +39,7 @@ public class Module{
      * @param promo Promotion qui ont des cours sur le module
      */
     public Module(String code, String intitule, EnumModule type, Promotion promo) throws IllegalArgumentException{
-        
+
         if (code == null || intitule == null || type == null || promo == null){
             throw new IllegalArgumentException("Argument(s) invalide(s) dans le constructeur de Module");
         }
@@ -80,15 +80,15 @@ public class Module{
 
 
     /**
-     * 
+     *
      * @param date
      * @param heureDeb
      * @param heureFin
      * @param gr
      */
     public void ajouterSeance(Date date, LocalTime heureDeb, LocalTime heureFin, GroupeTD gr){
-        
-        for (GroupeTD groupe : promo.getGroupeTD()){
+
+        for (GroupeTD groupe : promo.getGroupes()){
             if (groupe == gr){
                 Seance newSeance = new Seance(date, heureDeb, heureFin, this, gr);
                 seances.add(newSeance);
@@ -101,16 +101,16 @@ public class Module{
     }
 
     /**
-     * 
+     *
      * @param e
      */
     public void ajouterResponsable(Enseignant e){
         boolean estResponsable = false;
-        
+
         if (e != null){
             //check if already in the list
             for (Enseignant ens : responsables){
-                
+
                 if (ens == e){
                     estResponsable = true;
                 }
@@ -123,12 +123,12 @@ public class Module{
 
         else {
             System.out.println("Ens null");
-        }  
+        }
     }
 
 
     /**
-     * 
+     *
      * @param e
      */
     public void retirerResponsable(Enseignant e){
@@ -137,7 +137,7 @@ public class Module{
         if (e != null){
             //check if already in the list
             for (Enseignant ens : responsables){
-                
+
                 if (ens == e){
                     estResponsable = true;
                 }
@@ -155,17 +155,17 @@ public class Module{
 
 
     /**
-     * 
+     *
      * @param e
      */
     public void ajouterEvaluation(Evaluation e){
         boolean estEval = false;
-        
+
         //if not null
         if (e != null){
             //check if already in the list
             for (Evaluation eval : listeEval){
-                
+
                 if (eval == e){
                     estEval = true;
                 }
@@ -178,22 +178,22 @@ public class Module{
 
         else {
             System.out.println("Eval null");
-        }  
+        }
     }
 
 
     /**
-     * 
+     *
      * @param e
      */
     public void retirerEvaluation(Evaluation e){
         boolean estEval = false;
-        
+
         //if not null
         if (e != null){
             //check if already in the list
             for (Evaluation eval : listeEval){
-                
+
                 if (eval == e){
                     estEval = true;
                 }
@@ -206,16 +206,16 @@ public class Module{
 
         else {
             System.out.println("Eval null");
-        }  
+        }
     }
 
-    
+
     /**
-     * 
+     *
      * @return
      */
     public double calculerMoyenne(){
-        
+
         double sommeMoyenne = 0;
         double sommeCoeff = 0;
 
@@ -255,7 +255,7 @@ public class Module{
     // --- GETTER / SETTER ---
 
     /**
-     * 
+     *
      * @return
      */
     public String getCode(){
@@ -263,7 +263,7 @@ public class Module{
     }
 
     /**
-     * 
+     *
      * @return
      */
     public String getIntitule(){
@@ -271,7 +271,7 @@ public class Module{
     }
 
     /**
-     * 
+     *
      * @return
      */
     public EnumModule getType(){
@@ -280,7 +280,7 @@ public class Module{
 
 
     /**
-     * 
+     *
      * @param newCode
      */
     public void setCode(String newCode){
@@ -291,7 +291,7 @@ public class Module{
 
 
     /**
-     * 
+     *
      * @param newIntitule
      */
     public void setIntitule(String newIntitule){
