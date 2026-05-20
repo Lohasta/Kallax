@@ -40,11 +40,24 @@ public class Module{
      * @param intitule Module title
      * @param type Module type
      * @param promo Promotion that has courses on the module
+     * @throws IllegalArgumentException if any of the arguments is invalid
      */
     public Module(String code, String intitule, EnumModule type, Promotion promo) throws IllegalArgumentException{
 
-        if (code == null || intitule == null || type == null || promo == null){
-            throw new IllegalArgumentException("Argument(s) invalide(s) dans le constructeur de Module");
+        if (code == null || code.isEmpty() ){
+            throw new IllegalArgumentException("Constructeur de Module : code incorrect.");
+        }
+
+        if (intitule == null || intitule.isEmpty() ){
+            throw new IllegalArgumentException("Constructeur de Module : intitule incorrect.");
+        }
+        
+        if (type == null){
+            throw new IllegalArgumentException("Constructeur de Module : type incorrect.");
+        }
+
+        if (promo == null){
+            throw new IllegalArgumentException("Constructeur de Module : promo incorrect.");
         }
 
         else{
@@ -355,7 +368,7 @@ public class Module{
      * @param newListeEval the new list of evaluations for the module
      */
     public void setListeEval(ArrayList<Evaluation> newListeEval){
-        this.listeEval = newListeEval;
+        this.listeEval = new ArrayList<>(newListeEval);
     }
 
     /**
@@ -363,7 +376,7 @@ public class Module{
      * @param newResponsables the new list of responsible teachers for the module
      */
     public void setResponsables(ArrayList<Enseignant> newResponsables){
-        this.responsables = newResponsables;
+        this.responsables = new ArrayList<>(newResponsables);
     }
 
     /**
@@ -379,7 +392,7 @@ public class Module{
      * @param newSeances the new list of sessions for the module
      */
     public void setSeance(ArrayList<Seance> newSeances){
-        this.seances = newSeances;
+        this.seances = new ArrayList<>(newSeances);
     }
 
 }
