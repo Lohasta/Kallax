@@ -67,6 +67,19 @@ public class Etudiant extends Utilisateur{
     }
 
     /**
+    * Changes the Student's group
+    * @param nvGr the new group of the Student
+    */
+    public void setGroupe(GroupeTD nvGr){
+        if(nvGr != null){
+            this.groupe = nvGr;
+        } else{
+            System.out.println("Erreur : GroupeTD est null");
+        }
+
+    }
+
+    /**
     * Calculates the Student's average on a Module.
     * @param m the Module to calculate the average on
     * @return the average, or -1 if m is null
