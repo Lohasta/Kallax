@@ -83,7 +83,7 @@ public class DirecteurEtudes extends Enseignant{
      * @param m the module
      * @param e the teacher
      */
-    public void definirReponsable(Module m, Enseignant e){
+    public void definirResponsable(Module m, Enseignant e){
         m.ajouterResponsable(e);
     }
 
