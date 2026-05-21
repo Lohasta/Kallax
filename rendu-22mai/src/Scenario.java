@@ -369,6 +369,29 @@ public class Scenario{
         System.out.println(grD);
 
         System.out.println("\n- Méthode definirResponsable() :");
+        u5.definirResponsable(S205, ln);
+        System.out.println(S205.getResponsables());  // Should show Lucie Naert as responsible.
+
+        System.out.println("\n- Méthode ajouteEtudiantGroupe() :");
+        u5.ajouteEtudiantGroupe(grD, ih);
+        System.out.println(ih.getGroupe());
+
+        System.out.println("\n- Méthode calculerMoyenneEtudiant()");
+        System.out.println(u5.calculerMoyenneEtudiant(u1)); // Should be the same result Etudiant.calculerMoyenneGenerale, so 13.8125.
+
+        System.out.println("\n- Méthode deliberer()");
+        System.out.println(u5.deliberer(u1)); // Should return true, as his average >= 10.
+        ih.setGroupe(grD);
+        TPnote.ajouterNote(ih, 3);
+        CT.ajouterNote(ih, 7);
+        Diag.ajouterNote(ih, 6);
+        System.out.println(ih.calculerMoyenneGenerale()); // Should be equal to 5.5
+        System.out.println(u5.deliberer(ih)); // Should return false, as his average <= 10.
+
+
+
+
+
 
         System.out.println("\n----- GroupeTD : -----");
 
@@ -419,7 +442,7 @@ public class Scenario{
         System.out.println(grA);
         System.out.println(grc);
 
-        System.out.println("\n- Méthode getModulesSuivis() :");        
+        System.out.println("\n- Méthode getModulesSuivis() :");
         System.out.println(grA.getModulesSuivis());// Should get 3 Modules
         System.out.println(grc.getModulesSuivis());// Sould not get Modules
 
@@ -429,7 +452,7 @@ public class Scenario{
         System.out.println(grA);
         System.out.println(grc);
 
-        System.out.println("\n- Méthode getEtudiants() :");        
+        System.out.println("\n- Méthode getEtudiants() :");
         System.out.println(grA.getModulesSuivis());// Should get 3 students
         System.out.println(grc.getModulesSuivis());// Should not get student
     }
