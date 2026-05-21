@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 /**
  * Student with an id (numEtudiant) and a group (groupe).
+ * Can calculate his average on a Module and on all Modules,
+ * check if he participates in a Module, get his presence
+ * on a Module and get the Seance he was present in.
  * Inherits from Utilisateur attributes
  *
  * @author Team KALLAX
