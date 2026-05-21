@@ -1,8 +1,7 @@
-import java.lang.Exception;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.time.LocalTime;
 
 /**
  * Testing class for each class of the app.
@@ -18,6 +17,8 @@ public class Scenario{
         // Prerequisites for the tests :
         Etudiant u1 = null;
         Etudiant u2 = null;
+        Etudiant eF = null;
+        Etudiant eM = null;
         Enseignant u3 = null;
         Enseignant u4 = null;
         DirecteurEtudes u5 = null;
@@ -28,10 +29,17 @@ public class Scenario{
         GroupeTD grB = null;
         Module m1 = null;
         Module m2 = null;
+        Module m3 = null;
+        Module m4 = null;
         Seance s1 = null;
         Seance s2 = null;
         Evaluation ev1 = null;
         Evaluation ev2 = null;
+        ArrayList<Module> listM = null;
+        ArrayList<Module> listMarchePas = null;
+        ArrayList<Etudiant> listE = null;
+        ArrayList<Etudiant> listEBenNon = null;
+
 
         System.out.println("*** Scénario de tests de l'application Scodoc : ***");
 
@@ -47,6 +55,8 @@ public class Scenario{
         try{
             u1 = new Etudiant("Lohan", "Kerrault", "lk@ubs.fr", "1234lol", 1);
             u2 = new Etudiant(null, null, null, null, 0);
+            eF = new Etudiant("Fabien", "Madotto", "fm@ubs.fr", "5678mdr", 67);
+            eM = new Etudiant("Maël", "Leroux", "ml@ubs.fr", "LeagueOfLegendsForever", 01141010114);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -92,6 +102,8 @@ public class Scenario{
         try{
             m1 = new Module("R2.01", "Développement Orienté Objets", EnumModule.RESSOURCE, p1);
             m2 = new Module(null, null, null, null);
+            m3 = new Module("R2.02", "IHM", EnumModule.RESSOURCE, p1);
+            m4 = new Module("R2.03", "Qualité de développement", EnumModule.RESSOURCE, p2);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -137,6 +149,14 @@ public class Scenario{
         Evaluation Diag = new Evaluation("Diagramme de classes", 1.0, S201);
         Diag.ajouterNote(u1, 13.0);
         S201.ajouterEvaluation(Diag);
+        listM = new ArrayList<>();
+        listM.add(m1);
+        listM.add(m3);
+        listM.add(m4);
+        listE = new ArrayList<>();
+        listE.add(u1);
+        listE.add(eF);
+        listE.add(eM);
 
         Promotion BUT226 = new Promotion(EnumPromo.BUT2);
         Module R301 = new Module("JSP", "TEST", EnumModule.RESSOURCE, BUT226);
@@ -320,6 +340,68 @@ public class Scenario{
         p1.ajouterModule(R202);
         System.out.println(p1.getModules());
         p1.ajouterModule(null); // Prints an error message
+        System.out.println("\n----- GroupeTD : -----");
+
+        System.out.println("\n- Méthode toString() :");
+        System.out.println(grA);
+        System.out.println(grB);
+        System.out.println(grc);
+
+        System.out.println("\n- Méthode ajouterEtudiant() :");
+        grA.ajouterEtudiant(u1);
+        grA.ajouterEtudiant(u2);
+
+        System.out.println("\n- Méthode ajouterModule() :");
+        grA.ajouterModule(m1);
+        grA.ajouterModule(m2);
+
+        System.out.println("\n- Méthode equals() :");
+        System.out.println(grA.equals(grc));// Should return false
+        System.out.println(grc.equals(grc));// Should return true
+        System.out.println(grc.equals(grB));// Should return false
+
+        System.out.println("\n- Méthode setNom() :");
+        grA.setNom("");//Should not change the name
+        grA.setNom("G");//Should change the name to G
+        grc.setNom(null);//Should not change the name
+        System.out.println(grA);
+        System.out.println(grc);
+        grA.setNom("A");
+
+        System.out.println("\n- Méthode getNom() :");
+        System.out.println(grA.getNom());
+        System.out.println(grc.getNom());
+
+        System.out.println("\n- Méthode setPromotion() :");
+        grA.setPromotion(p2);//Should not change the promotion
+        grc.setPromotion(p1);//Should change the promotion to BUT1
+        System.out.println(grA);
+        System.out.println(grc);
+        grc.setPromotion(BUT126);
+
+        System.out.println("\n- Méthode getPromotion() :");
+        System.out.println(grA.getPromotion());
+        System.out.println(grc.getPromotion());
+
+        System.out.println("\n- Méthode setModulesSuivis() :");
+        grA.setModulesSuivis(listM);//Should change list of module
+        grc.setModulesSuivis(listMarchePas);//Should not change list of module
+        System.out.println(grA);
+        System.out.println(grc);
+
+        System.out.println("\n- Méthode getModulesSuivis() :");        
+        System.out.println(grA.getModulesSuivis());// Should get 3 Modules
+        System.out.println(grc.getModulesSuivis());// Sould not get Modules
+
+        System.out.println("\n- Méthode setEtudiants() :");
+        grA.setEtudiants(listE);//Should change list of student
+        grc.setEtudiants(listEBenNon);//Should not change list of student
+        System.out.println(grA);
+        System.out.println(grc);
+
+        System.out.println("\n- Méthode getEtudiants() :");        
+        System.out.println(grA.getModulesSuivis());// Should get 3 students
+        System.out.println(grc.getModulesSuivis());// Should not get student
     }
 
 }
