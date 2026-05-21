@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 /**
  * Student with an id (numEtudiant) and a group (groupe).
+ * Can calculate his average on a Module and on all Modules,
+ * check if he participates in a Module, get his presence
+ * on a Module and get the Seance he was present in.
  * Inherits from Utilisateur attributes
  *
  * @author Team KALLAX
@@ -64,6 +67,19 @@ public class Etudiant extends Utilisateur{
     */
     public GroupeTD getGroupe(){
         return this.groupe;
+    }
+
+    /**
+    * Changes the Student's group
+    * @param nvGr the new group of the Student
+    */
+    public void setGroupe(GroupeTD nvGr){
+        if(nvGr != null){
+            this.groupe = nvGr;
+        } else{
+            System.out.println("Erreur : GroupeTD est null");
+        }
+
     }
 
     /**

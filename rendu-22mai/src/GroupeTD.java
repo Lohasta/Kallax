@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 
 /**
- * Can define GroupeTD
+ * GroupeTD with a name, a Promotion, a list of Module and
+ * a list of Etudiant.
+ * Can add a Student to it's list, a Module to it's list and
+ * compare two GroupeTD to check if they are equal.
  * @author G.REBECHE
  */
 public class GroupeTD {
-    
+
     private String nom;
     private Promotion promotion;
     private ArrayList<Module> modulesSuivis;
@@ -77,7 +80,7 @@ public class GroupeTD {
 
 
     /**
-     * Get the name of currant GroupeTD 
+     * Get the name of currant GroupeTD
      * @return the name
      */
     public String getNom(){
@@ -85,17 +88,17 @@ public class GroupeTD {
     }
 
     /**
-     * Set the name of currant GroupeTD 
+     * Set the name of currant GroupeTD
      * @param n the name
      */
     public void setNom(String n){
        if (n!=null && n!=""){
             this.nom = n;
-        } 
+        }
     }
 
     /**
-     * Get the promotion of currant GroupeTD 
+     * Get the promotion of currant GroupeTD
      * @return the promotion
      */
     public Promotion getPromotion(){
@@ -103,7 +106,7 @@ public class GroupeTD {
     }
 
     /**
-     * Set the promotion of currant GroupeTD 
+     * Set the promotion of currant GroupeTD
      * @param promo the promotion
      */
     public void setPromotion(Promotion promo){
@@ -113,7 +116,7 @@ public class GroupeTD {
     }
 
     /**
-     * Get modulesSuivis of currant GroupeTD 
+     * Get modulesSuivis of currant GroupeTD
      * @return modulesSuivis
      */
     public ArrayList<Module> getModulesSuivis(){
@@ -121,7 +124,7 @@ public class GroupeTD {
     }
 
     /**
-     * Set modulesSuivis of currant GroupeTD 
+     * Set modulesSuivis of currant GroupeTD
      * @param m modulesSuivis
      */
     public void setModulesSuivis(ArrayList<Module> m){
@@ -131,7 +134,7 @@ public class GroupeTD {
     }
 
     /**
-     * Get etudiants of currant GroupeTD 
+     * Get etudiants of currant GroupeTD
      * @return etudiants
      */
     public ArrayList<Etudiant> getEtudiants(){
@@ -139,7 +142,7 @@ public class GroupeTD {
     }
 
     /**
-     * Set etudiants of currant GroupeTD 
+     * Set etudiants of currant GroupeTD
      * @param n etudiants
      */
     public void setEtudiants(ArrayList<Etudiant> e){
