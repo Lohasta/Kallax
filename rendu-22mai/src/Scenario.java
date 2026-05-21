@@ -27,18 +27,23 @@ public class Scenario{
         Promotion p2 = null;
         GroupeTD grA = null;
         GroupeTD grB = null;
+        GroupeTD grZ = null;
         Module m1 = null;
         Module m2 = null;
         Module m3 = null;
         Module m4 = null;
         Seance s1 = null;
         Seance s2 = null;
+        Seance s3 = null;
         Evaluation ev1 = null;
         Evaluation ev2 = null;
         ArrayList<Module> listM = null;
         ArrayList<Module> listMarchePas = null;
         ArrayList<Etudiant> listE = null;
         ArrayList<Etudiant> listEBenNon = null;
+        ArrayList<Evaluation> listEvals = null;
+        ArrayList<Enseignant> listResp = null;
+        ArrayList<Seance> listSeances = null;
 
 
         System.out.println("*** Scénario de tests de l'application Scodoc : ***");
@@ -161,8 +166,8 @@ public class Scenario{
         Promotion BUT226 = new Promotion(EnumPromo.BUT2);
         Module R301 = new Module("JSP", "TEST", EnumModule.RESSOURCE, BUT226);
 
-        Seance s3 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), R202, grc);
-        s3.ajouterPresence(u1, EnumPresence.PRESENT);
+        Seance s7 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), R202, grc);
+        s7.ajouterPresence(u1, EnumPresence.PRESENT);
         ArrayList<Seance> seances = new ArrayList<>();
         seances.add(s3);
         R202.setSeance(seances);
@@ -451,6 +456,89 @@ public class Scenario{
 
 
         System.out.println("\n----- Module : -----");
+
+            System.out.println("\n- Méthode toString() :");
+                System.out.println(m1);
+                System.out.println(m2);
+
+            System.out.println("\n- Getters :");
+                System.out.println(m1.getCode()); // Should return R2.01
+                System.out.println(m1.getIntitule()); // Should return Développement Orienté Objets
+                System.out.println(m1.getType()); // Should return RESSOURCE
+                System.out.println(m1.getListeEval()); // Should return []
+                System.out.println(m1.getResponsables()); // Should return []
+                System.out.println(m1.getPromo()); // Should print the Promotion's toString()
+                System.out.println(m1.getSeance()); // Should print []
+
+            System.out.println("\n- Setters :");
+                Seance s11 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), m1, grc);
+                listEvals = new ArrayList<>();
+                listEvals.add(TPnote);
+                listResp = new ArrayList<>();
+                listResp.add(u3);
+                listSeances = new ArrayList<>();
+                listSeances.add(s1);
+
+                m1.setCode("S2.02");
+                m1.setCode(null); // Prints an error message
+                m1.setIntitule("PRNG");
+                m1.setIntitule(null); // Prints an error message
+                m1.setType(EnumModule.SAE);
+                m1.setType(null); // Prints an error message
+                m1.setListeEval(listEvals);
+                m1.setListeEval(null); // Prints an error message
+                m1.setResponsables(listResp);
+                m1.setResponsables(null); // Prints an error message
+                m1.setPromotion(BUT126);
+                m1.setPromotion(null); // Prints an error message
+                m1.setSeance(listSeances);
+                m1.setSeance(null); // Prints an error message
+                System.out.println(m1); // Checking changes
+
+            System.out.println("\n- Méthode ajouterSeance() :");
+                grc.ajouterModule(m1);
+                grZ = new GroupeTD("Groupe Z", BUT326);
+                m1.ajouterSeance(new Date(), LocalTime.now(), LocalTime.now(), grc); // Should work fine
+                m1.ajouterSeance(new Date(), LocalTime.now(), LocalTime.now(), grZ); // Prints an error message
+                System.out.println(m1.getSeance()); // Should print s4
+
+            System.out.println("\n- Méthode ajouterResponsable() :");
+                m1.ajouterResponsable(ln);
+                m1.ajouterResponsable(ln); // Doing it twice won't work
+                m1.ajouterResponsable(null); // Prints an error message
+                System.out.println(m1.getResponsables());
+
+            System.out.println("\n- Méthode retirerResponsable() :");
+                m1.retirerResponsable(ln);
+                m1.retirerResponsable(ln); // Won't work, as this teacher isn't in the list anymore
+                m1.retirerResponsable(null); // Prints an error message
+                System.out.println(m1.getResponsables());
+
+            System.out.println("\n- Méthode ajouterEvaluation() :");
+                m1.ajouterEvaluation(CT);
+                m1.ajouterEvaluation(CT); // Doing it twice won't work
+                m1.ajouterEvaluation(null); // Prints an error message
+                System.out.println(m1.getListeEval());
+
+            System.out.println("\n- Méthode retirerEvaluation() :");
+                m1.retirerEvaluation(CT);
+                m1.retirerEvaluation(CT); // Won't work, as this evaluation isn't in the list anymore
+                m1.retirerEvaluation(null); // Prints an error message
+                System.out.println(m1.getListeEval());
+
+            System.out.println("\n- Méthode calculerMoyenne() :");
+                System.out.println(m1.calculerMoyenne()); // Should print 8.5 (m1's Evaluation(TPnote) has two grades : 3 and 14.)
+
+            System.out.println("\n- Méthode chercherModuleParCode()");
+                Module rech1 = m1.chercherModuleParCode("R2.03", listM);
+                System.out.println(rech1);
+                Module rech2 = m1.chercherModuleParCode("Truc", listM); // Prints an error message
+                m1.chercherModuleParCode(null, listM); // Prints an error message
+                m1.chercherModuleParCode("S2.02", null); // Prints an error message
+
+
+        System.out.println("\n----- Seance : -----");
+
     }
 
 }
