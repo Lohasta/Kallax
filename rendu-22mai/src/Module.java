@@ -256,19 +256,25 @@ public class Module{
         int i = 0;
         Module moduleCherche = null;
 
-        while (i < liste.size()){
+        if(code != null && liste != null){
+            while (i < liste.size()){
 
-            //if the Module at the index i has the same code has the one in arg
-            if (liste.get(i).getCode().equals(code)){
-                moduleCherche = liste.get(i);
-                i = liste.size();
+                //if the Module at the index i has the same code has the one in arg
+                if (liste.get(i).getCode().equals(code)){
+                    moduleCherche = liste.get(i);
+                    i = liste.size();
+                }
+
+                i++;
             }
 
-            i++;
-        }
-
-        if (moduleCherche == null){
-            System.out.println("Pas de module avec ce code");
+            if (moduleCherche == null){
+                System.out.println("Pas de module avec ce code");
+            }
+        } else if(code == null){
+            System.out.println("Erreur : code null");
+        } else if(liste == null){
+            System.out.println("Erreur : liste null");
         }
 
         return moduleCherche;
