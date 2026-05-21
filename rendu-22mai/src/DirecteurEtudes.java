@@ -99,7 +99,7 @@ public class DirecteurEtudes extends Enseignant{
      * @return the general average of the student
      */
     public double calculerMoyenneEtudiant(Etudiant e){
-        return e.calculerMoyennGenerale();
+        return e.calculerMoyenneGenerale();
     }
 
     /**
