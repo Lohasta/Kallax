@@ -1,11 +1,25 @@
 import java.util.HashMap;
 
+/**
+ * Evaluation with an type, a coefficient, 
+ * a HashMap linking student Objects with marks
+ * and a Module
+ *
+ * @author Team KALLAX
+ */
 public class Evaluation {
     private String ident;
     private double coeff;
     private HashMap<Etudiant, Double> notes;
     private Module module;
     
+    /**
+     * Constructor : Initializes a Evaluation object with its parameters.
+     * @param type the Evaluation's type
+     * @param coeff the Evaluation's coefficient
+     * @param m the Evaluation's module
+     * @throws IllegalArgumentException ff one of the arguments is invalid
+     */
     public Evaluation(String type, double coeff, Module m) throws IllegalArgumentException {
         if (type != null && !type.equals("")) {
             this.ident = type;
@@ -28,6 +42,9 @@ public class Evaluation {
         this.notes = new HashMap<>();
     }
 
+    /**
+     * Displays the Evaluation's infos.
+     */
     public String toString() {
         String ret = "";
         ret += "Ident : " + this.ident + "\n";
@@ -40,20 +57,34 @@ public class Evaluation {
         return ret;
     }
 
+    /**
+     * Adds a new mark for this Evaluation to a student
+     * @param e the student to link the mark with
+     * @param valeur the score the student got
+     */
     public void ajouterNote(Etudiant e, double valeur) {
         if (e != null) {
             this.notes.put(e, valeur);
         }
     }
 
+    /**
+     * Gets the mark a specific student got
+     * @param e the student
+     * @return the score the student got (-1 if he hasn't got one)
+     */
     public Double getNote(Etudiant e) {
-        double note = 0.0d;
+        double note = -1.0d;
         if (e != null) {
             note = this.notes.get(e);
         }
         return note;
     }
 
+    /**
+     * Compute the average score of this Evaluation
+     * @return the computed average
+     */
     public double calculerMoyenne() {
         double mean = 0;
         double sum = 0;
@@ -68,42 +99,74 @@ public class Evaluation {
         return mean;
     }
 
+    /**
+     * Getter for the ident attribute
+     * @return ident attribute
+     */
     public String getIdent() {
         return this.ident;
     }
 
+    /**
+     * Getter for the coeff attribute
+     * @return coeff attribute
+     */
     public double getCoeff() {
         return this.coeff;
     }
 
+    /**
+     * Getter for the notes attribute
+     * @return shallow copy of the notes attribute
+     */
     public HashMap<Etudiant, Double> getNotes() {
         HashMap<Etudiant, Double> ret = new HashMap<>();
         ret.putAll(this.notes);
         return ret;
     }
 
+    /**
+     * Getter for the module attribute
+     * @return module attribute
+     */
     public Module getModule() {
         return this.module;
     }
 
+    /**
+     * Setter for the ident attribute
+     * @param type the type to set
+     */
     public void setIdent(String type) {
         if (type != null && !type.equals("")) {
             this.ident = type;
         }
     }
 
+    /**
+     * Setter for the coeff attribute
+     * @param coeff the coeff to set
+     */
     public void setCoeff(double coeff) {
         if (coeff > 0) {
             this.coeff = coeff;
         }
     }
 
+    /**
+     * Setter for the notes attribute
+     * @param notes the notes hashmap to set
+     */
     public void setNotes(HashMap<Etudiant, Double> notes) {
         if (notes != null) {
             this.notes = notes;
         }
     } 
 
+    /**
+     * Setter for the module attribute
+     * @param m the module to set
+     */
     public void setModule(Module m) {
         if (m != null) {
             this.module = m;
