@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Module identified by a code, a title and a type.
  * A module contains evaluations, responsible teachers and sessions.
- * A promotion is associated with the module. 
+ * A promotion is associated with the module.
  * @author TEAM KALLAX
  * @version 1.0
  */
@@ -51,7 +51,7 @@ public class Module{
         if (intitule == null || intitule.isEmpty() ){
             throw new IllegalArgumentException("Constructeur de Module : intitule incorrect.");
         }
-        
+
         if (type == null){
             throw new IllegalArgumentException("Constructeur de Module : type incorrect.");
         }
@@ -103,7 +103,7 @@ public class Module{
      * @param heureDeb start time of the session
      * @param heureFin end time of the session
      * @param gr group of students attending the session
-     */ 
+     */
     public void ajouterSeance(Date date, LocalTime heureDeb, LocalTime heureFin, GroupeTD gr){
 
         for (GroupeTD groupe : promo.getGroupes()){
@@ -286,7 +286,7 @@ public class Module{
     }
 
     /**
-     * Intitule getter 
+     * Intitule getter
      * @return the title of the module
      */
     public String getIntitule(){
@@ -341,6 +341,8 @@ public class Module{
     public void setCode(String newCode){
         if (newCode != null){
             this.code = newCode;
+        } else{
+            System.out.println("Erreur : Code null");
         }
     }
 
@@ -352,6 +354,8 @@ public class Module{
     public void setIntitule(String newIntitule){
         if (newIntitule != null){
             this.intitule = newIntitule;
+        } else{
+            System.out.println("Erreur : Intitule null");
         }
     }
 
@@ -360,7 +364,12 @@ public class Module{
      * @param newType the new type for the module
      */
     public void setType(EnumModule newType){
-        this.type = newType;
+        if(newType != null){
+            this.type = newType;
+        } else{
+            System.out.println("Erreur : EnumModule null");
+        }
+
     }
 
     /**
@@ -368,7 +377,12 @@ public class Module{
      * @param newListeEval the new list of evaluations for the module
      */
     public void setListeEval(ArrayList<Evaluation> newListeEval){
-        this.listeEval = new ArrayList<>(newListeEval);
+        if(newListeEval != null){
+            this.listeEval = new ArrayList<>(newListeEval);
+        } else{
+            System.out.println("Erreur : Liste d'Evaluations null");
+        }
+
     }
 
     /**
@@ -376,7 +390,12 @@ public class Module{
      * @param newResponsables the new list of responsible teachers for the module
      */
     public void setResponsables(ArrayList<Enseignant> newResponsables){
-        this.responsables = new ArrayList<>(newResponsables);
+        if(newResponsables != null){
+            this.responsables = new ArrayList<>(newResponsables);
+        } else{
+            System.out.println("Erreur : Liste de Responsables null");
+        }
+
     }
 
     /**
@@ -384,7 +403,12 @@ public class Module{
      * @param newPromo the new promotion that has courses on the module
      */
     public void setPromotion(Promotion newPromo){
-        this.promo = newPromo;
+        if(newPromo != null){
+            this.promo = newPromo;
+        } else{
+            System.out.println("Erreur : Promotion null");
+        }
+
     }
 
     /**
@@ -392,7 +416,12 @@ public class Module{
      * @param newSeances the new list of sessions for the module
      */
     public void setSeance(ArrayList<Seance> newSeances){
-        this.seances = new ArrayList<>(newSeances);
+        if(newSeances != null){
+            this.seances = new ArrayList<>(newSeances);
+        } else{
+            System.out.println("Erreur : Liste de Sceances null");
+        }
+
     }
 
 }
