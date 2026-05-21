@@ -121,6 +121,7 @@ public class Scenario{
 
         Promotion BUT126 = new Promotion(EnumPromo.BUT1);
         Module R202 = new Module("R2.02", "IHM", EnumModule.RESSOURCE, BUT126);
+        R202.ajouterResponsable(u3);
         Evaluation TPnote = new Evaluation("TP Noté", 0.75, R202);
         Evaluation CT = new Evaluation("Controle terminal", 2.0, R202);
         TPnote.ajouterNote(u1, 14.0);
@@ -203,6 +204,46 @@ public class Scenario{
         System.out.println(u3);
         System.out.println(u4);
 
+        System.out.println("\n- Méthode ajouterModule() :");
+        u3.ajouterModule(S201);
+        u3.ajouterModule(R202);
+        System.out.println(u3); // Should have two extra module (S201, R202)
+        
+        System.out.println("\n- Méthode retirerModule() :");
+        u3.retirerModule(S201);
+        System.out.println(u3); // Should have one fewer module (S201)
+        
+        System.out.println("\n- Méthode creerEval() :");
+        System.out.println(u3.creerEval(R202.getCode(), "QCM 3", 1)); // Should return an Evaluation (if null -> bad)
+        System.out.println(u3.creerEval(R202.getCode(), "QCM 4", 1)); // Should return an Evaluation (if null -> bad)
+        System.out.println(u3.creerEval(S201.getCode(), "QCM 13", 2)); // Should return null since u3 does not have S201
+        System.out.println(u3.creerEval(R202.getCode(), "", 4)); // Should return null since typeEval is invalid
+        System.out.println(u3.creerEval(R202.getCode(), "QCM 99", 0)); // Should return null since coeffEval is invalid
+
+        System.out.println("\n- Méthode chercherEval() :");
+        System.out.println(u3.chercherEval(R202.getCode(), "QCM 3")); // Should return the correct eval that we created previously
+        System.out.println(u3.chercherEval(S201.getCode(), "QCM 3")); // Should return null
+
+        System.out.println("\n- Méthode supprimerEval() :");
+        u3.supprimerEval(u3.chercherEval(R202.getCode(), "QCM 4")); // Should remove the QCM from the list of Evaluations for R202
+        u3.supprimerEval(u3.chercherEval(R202.getCode(), "QCM 4")); // Should do nothing since it has already been removed
+
+        System.out.println("\n- Méthode modifierTypeEval() :");
+        Evaluation eval = u3.chercherEval(R202.getCode(), "QCM 3");
+        u3.modifierTypeEval(eval, "TP 3"); // Should change the type (since u3 is a "responsable" of R202)
+        u3.modifierTypeEval(u3.chercherEval(R202.getCode(), "QCM 3"), "TP 4"); // Should not change the type since it doesn't exist anymore with this type
+        System.out.println(eval); // Should have a type of "TP 3" and not "QCM 3"
+
+        System.out.println("\n- Méthode modifierCoeffEval() :");
+        u3.modifierCoeffEval(eval, 10); // Should change the coefficient from 1 to 10
+        System.out.println(eval); // Should have the changed coefficient (10 not 1)
+
+        System.out.println("\n- Méthode saisirNote() :");
+        u3.saisirNote(eval, u1, 14); // Should add an entry to the notes HashMap attribute of the Evaluation for the student with the specified note
+        
+        
+
+
 
         System.out.println("\n----- Evaluation : -----");
 
@@ -222,14 +263,14 @@ public class Scenario{
 
         System.out.println("\n- Méthode setIdent() :");
         ev1.setIdent("QCM 2"); // Should set ev1's ident attribute to "QCM 2"
-        ev1.setIdent(""); // Should not set ev1's ident attribute since it is note valid
+        ev1.setIdent(""); // Should not set ev1's ident attribute since it is not valid
 
         System.out.println("\n- Méthode getIdent() :");
         System.out.println(ev1.getIdent()); // Should return "QCM 2"
 
         System.out.println("\n- Méthode setCoeff() :");
         ev1.setCoeff(2); // Should set ev1's coeff attribute to 2
-        ev1.setCoeff(-2); // Should not set ev1's coeff attribute since it is note valid
+        ev1.setCoeff(-2); // Should not set ev1's coeff attribute since it is not valid
 
         System.out.println("\n- Méthode getCoeff() :");
         System.out.println(ev1.getCoeff()); // Should return 2
@@ -238,7 +279,7 @@ public class Scenario{
         HashMap<Etudiant, Double> testNotes = new HashMap<>();
         testNotes.put(u1, ev1.getNote(u1));
         ev1.setNotes(testNotes); // Should set ev1's notes attribute to a HashMap with a single mark (only the first one from the old HashMap)
-        ev1.setNotes(null); // Should not set ev1's notes attribute since it is note valid
+        ev1.setNotes(null); // Should not set ev1's notes attribute since it is not valid
 
         System.out.println("\n- Méthode getNotes() :");
         System.out.println(ev1.getNotes()); // Should return a HashMap with one entry : {u1, 19.0}
