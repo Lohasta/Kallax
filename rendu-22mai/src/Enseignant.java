@@ -299,7 +299,7 @@ public class Enseignant extends Utilisateur{
                     for (Seance s : this.modules.get(i).getSeance()) {
                        for (Etudiant appel : s.getAppel().keySet() ) {
                             msg+= "Etudiant : "+appel.getNum()+" EnumPresence : "+s.getAppel().get(appel)+"\n";
-                        } 
+                        }
                     }
                 }
                 i++;
@@ -317,7 +317,14 @@ public class Enseignant extends Utilisateur{
      */
     @Override
     public String toString(){
-        return ("\n*** Enseignant ***\n" + super.toString() + "\nID : " + this.getIdent() + "\nModules : "+this.modules+"\n");
+        String ret = "";
+        if(this instanceof Enseignant){
+            ret += ("\n*** Enseignant ***\n" + super.toString() + "\nID : " + this.getIdent() + "\nModules : "+this.modules+"\n");
+        } else if(this instanceof DirecteurEtudes){
+            ret += ("\n*** DirecteurEtudes ***\n" + super.toString() + "\nID : " + this.getIdent() + "\nModules : "+this.modules+"\n");
+        }
+
+        return ret;
     }
 
     /**
