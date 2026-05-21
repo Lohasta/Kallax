@@ -1,10 +1,13 @@
 /**
- * DirecteurEtudes who can create teachers, students, promotions, modules and groups, assign teachers to modules and students to groups, calculate the average grade of a student and decide if the student has passed or not.
+ * DirecteurEtudes who can create teachers, students, promotions, modules and groups,
+ * assign teachers to modules and students to groups,
+ * calculate the average grade of a student and
+ * decide if the student has passed or not.
+ *
  * @author TEAM KALLAX
  * @version 1.0
  */
 public class DirecteurEtudes extends Enseignant{
-    
     /**
      * Constructor of DirecteurEtudes
      * @param nom name
@@ -113,7 +116,7 @@ public class DirecteurEtudes extends Enseignant{
         if (calculerMoyenneEtudiant(e) >= 10){
             rep = true;
         }
-        
+
         return rep;
     }
 
