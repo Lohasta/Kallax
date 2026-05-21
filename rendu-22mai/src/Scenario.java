@@ -1,6 +1,7 @@
 import java.lang.Exception;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.time.LocalTime;
 
 /**
@@ -31,36 +32,6 @@ public class Scenario{
         Seance s2 = null;
         Evaluation ev1 = null;
         Evaluation ev2 = null;
-
-        Promotion BUT126 = new Promotion(EnumPromo.BUT1);
-        Module R202 = new Module("R2.02", "IHM", EnumModule.RESSOURCE, BUT126);
-        Evaluation TPnote = new Evaluation("TP Noté", 0.75, R202);
-        Evaluation CT = new Evaluation("Controle terminal", 2.0, R202);
-        TPnote.ajouterNote(u1, 14.0);
-        CT.ajouterNote(u1, 15.25);
-        R202.ajouterEvaluation(TPnote);
-        R202.ajouterEvaluation(CT);
-
-        GroupeTD grc = new GroupeTD("Groupe C", BUT126);
-        u1.setGroupe(grc);
-        Module S201 = new Module("S2.01", "Scodoc", EnumModule.SAE, BUT126);
-        BUT126.ajouterModule(R202);
-        BUT126.ajouterModule(S201);
-        Evaluation Diag = new Evaluation("Diagramme de classes", 1.0, S201);
-        Diag.ajouterNote(u1, 13.0);
-        S201.ajouterEvaluation(Diag);
-
-        Promotion BUT226 = new Promotion(EnumPromo.BUT2);
-        Module R301 = new Module("JSP", "TEST", EnumModule.RESSOURCE, BUT226);
-
-        Seance s3 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), R202, grc);
-        s3.ajouterPresence(u1, EnumPresence.PRESENT);
-        ArrayList<Seance> seances = new ArrayList<>();
-        seances.add(s3);
-        R202.setSeance(seances);
-        BUT126.ajouterGroupe(grc);
-        System.out.println(u1.recupererPresence(R202));
-
 
         System.out.println("*** Scénario de tests de l'application Scodoc : ***");
 
@@ -137,11 +108,46 @@ public class Scenario{
 
         System.out.println("\nEvaluation :");
         try{
-            ev1 = new Evaluation("Test", 1.0, m1);
+            ev1 = new Evaluation("QCM 1", 1.0, m1);
             ev2 = new Evaluation(null, 0.0, null);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
+
+
+
+
+        System.out.println("*** Création et mise en place de variables préparatoires pour la suite du scénario : ***");
+
+        Promotion BUT126 = new Promotion(EnumPromo.BUT1);
+        Module R202 = new Module("R2.02", "IHM", EnumModule.RESSOURCE, BUT126);
+        Evaluation TPnote = new Evaluation("TP Noté", 0.75, R202);
+        Evaluation CT = new Evaluation("Controle terminal", 2.0, R202);
+        TPnote.ajouterNote(u1, 14.0);
+        CT.ajouterNote(u1, 15.25);
+        R202.ajouterEvaluation(TPnote);
+        R202.ajouterEvaluation(CT);
+
+        GroupeTD grc = new GroupeTD("Groupe C", BUT126);
+        u1.setGroupe(grc);
+        Module S201 = new Module("S2.01", "Scodoc", EnumModule.SAE, BUT126);
+        BUT126.ajouterModule(R202);
+        BUT126.ajouterModule(S201);
+        Evaluation Diag = new Evaluation("Diagramme de classes", 1.0, S201);
+        Diag.ajouterNote(u1, 13.0);
+        S201.ajouterEvaluation(Diag);
+
+        Promotion BUT226 = new Promotion(EnumPromo.BUT2);
+        Module R301 = new Module("JSP", "TEST", EnumModule.RESSOURCE, BUT226);
+
+        Seance s3 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), R202, grc);
+        s3.ajouterPresence(u1, EnumPresence.PRESENT);
+        ArrayList<Seance> seances = new ArrayList<>();
+        seances.add(s3);
+        R202.setSeance(seances);
+        BUT126.ajouterGroupe(grc);
+        System.out.println(u1.recupererPresence(R202));
+
 
 
 
@@ -196,6 +202,55 @@ public class Scenario{
         System.out.println("Méthode toString()");
         System.out.println(u3);
         System.out.println(u4);
+
+
+        System.out.println("\n----- Evaluation : -----");
+
+        System.out.println("\n- Méthode toString() :");
+        System.out.println(ev1);
+        System.out.println(ev2);
+
+        System.out.println("\n- Méthode ajouterNote() :");
+        ev1.ajouterNote(u1, 19.0);
+        ev1.ajouterNote(new Etudiant("Temp", "Temp", "bonsoir", "salut", 420), 15.0);
+
+        System.out.println("\n- Méthode getNote() :");
+        System.out.println(ev1.getNote(u1)); // Should return 19
+
+        System.out.println("\n- Méthode calculerMoyenne() :");
+        System.out.println(ev1.calculerMoyenne()); // Should return 17
+
+        System.out.println("\n- Méthode setIdent() :");
+        ev1.setIdent("QCM 2"); // Should set ev1's ident attribute to "QCM 2"
+        ev1.setIdent(""); // Should not set ev1's ident attribute since it is note valid
+
+        System.out.println("\n- Méthode getIdent() :");
+        System.out.println(ev1.getIdent()); // Should return "QCM 2"
+
+        System.out.println("\n- Méthode setCoeff() :");
+        ev1.setCoeff(2); // Should set ev1's coeff attribute to 2
+        ev1.setCoeff(-2); // Should not set ev1's coeff attribute since it is note valid
+
+        System.out.println("\n- Méthode getCoeff() :");
+        System.out.println(ev1.getCoeff()); // Should return 2
+
+        System.out.println("\n- Méthode setNotes() :");
+        HashMap<Etudiant, Double> testNotes = new HashMap<>();
+        testNotes.put(u1, ev1.getNote(u1));
+        ev1.setNotes(testNotes); // Should set ev1's notes attribute to a HashMap with a single mark (only the first one from the old HashMap)
+        ev1.setNotes(null); // Should not set ev1's notes attribute since it is note valid
+
+        System.out.println("\n- Méthode getNotes() :");
+        System.out.println(ev1.getNotes()); // Should return a HashMap with one entry : {u1, 19.0}
+
+        System.out.println("\n- Méthode setModule() :");
+        ev1.setModule(R202); // Should set ev1's module attribute to the R202 module
+        ev1.setModule(null); // Should not set ev1's module attribute since it is note valid
+
+        System.out.println("\n- Méthode getModule() :");
+        System.out.println(ev1.getModule()); // Should return the R202 module
+
+
     }
 
 }
