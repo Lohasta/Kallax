@@ -147,7 +147,6 @@ public class Scenario{
         seances.add(s3);
         R202.setSeance(seances);
         BUT126.ajouterGroupe(grc);
-        System.out.println(u1.recupererPresence(R202));
 
 
 
@@ -182,17 +181,21 @@ public class Scenario{
         System.out.println(u1);
 
         System.out.println("\n- Méthode calculerMoyenne() :");
-        System.out.println(u1.calculerMoyenne(R202)); //Should return 14.625
+        System.out.println(u1.calculerMoyenne(R202)); // Should return 14.625
+        System.out.println(u1.calculerMoyenne(null)); // Should return -1
 
         System.out.println("\n- Méthode calculerMoyenneGenerale() :");
-        System.out.println(u1.calculerMoyenneGenerale()); //Should return 13.8125
+        System.out.println(u1.calculerMoyenneGenerale()); // Should return 13.8125
 
         System.out.println("\n- Méthode moduleValide() :");
-        System.out.println(u1.moduleValide(R202)); //Should return true
-        System.out.println(u1.moduleValide(R301)); //Should return false
+        System.out.println(u1.moduleValide(R202)); // Should return true
+        System.out.println(u1.moduleValide(R301)); // Should return false
+        System.out.println(u1.moduleValide(null)); // Should say that the parameter is null
 
         System.out.println("\n- Méthode recupererPresence() :");
-        // Prerequisites :
+        System.out.println(u1.recupererPresence(R202));
+        System.out.println(u1.recupererPresence(R301)); // Should say that R301 isn't a valid Module
+        System.out.println(u1.recupererPresence(null)); // Should say that the parameter is null
 
         System.out.println("\n- Méthode seancesSuivies()");
         System.out.println(u1.seancesSuivies());
@@ -292,6 +295,31 @@ public class Scenario{
         System.out.println(ev1.getModule()); // Should return the R202 module
 
 
+        System.out.println("\n----- Promotion : -----");
+
+        System.out.println("\n- Méthode toString() :");
+        System.out.println(p1);
+        System.out.println(p2);
+
+        System.out.println("\n- Getters :");
+        System.out.println(p1.getNomPromo());
+        System.out.println(p1.getModules());
+        System.out.println(p1.getGroupes());
+
+        System.out.println("\n- Setters :");
+        p1.setNomPromo(EnumPromo.BUT2);
+        System.out.println(p1.getNomPromo()); // Should print BUT2
+        p1.setNomPromo(EnumPromo.BUT1); // Putting it back
+
+        System.out.println("\n- Méthode ajouterGroupe() :");
+        p1.ajouterGroupe(grc);
+        System.out.println(p1.getGroupes()); // Should print grc's infos.
+        p1.ajouterGroupe(null); // Prints an error message
+
+        System.out.println("\n- Méthode ajouterModule() :");
+        p1.ajouterModule(R202);
+        System.out.println(p1.getModules());
+        p1.ajouterModule(null); // Prints an error message
     }
 
 }

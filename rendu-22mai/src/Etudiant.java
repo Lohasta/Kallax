@@ -133,6 +133,8 @@ public class Etudiant extends Utilisateur{
         boolean ret = false;
         if(m != null && this.groupe.getPromotion().getModules().contains(m)){
             ret = true;
+        } else if(m == null){
+            System.out.println("Erreur : le Module est null.");
         }
 
         return ret;
@@ -147,7 +149,7 @@ public class Etudiant extends Utilisateur{
     public HashMap<Seance, EnumPresence> recupererPresence(Module m){
         HashMap<Seance, EnumPresence> ret = new HashMap<>();
 
-        if(m != null){
+        if(m != null && moduleValide(m)){
             ArrayList<Seance> seances = m.getSeance();
 
             for(Seance s : seances){
@@ -157,6 +159,10 @@ public class Etudiant extends Utilisateur{
                     ret.put(s, presence);
                 }
             }
+        } else if(m == null){
+            System.out.println("Erreur : Le module est null");
+        } else{
+            System.out.println("Erreur : Le module n'est pas valide.");
         }
         return ret;
     }
