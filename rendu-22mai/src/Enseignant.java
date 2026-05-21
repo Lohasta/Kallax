@@ -5,14 +5,27 @@ import java.util.Date;
 import java.util.HashMap;
 
 /**
- * @author G.REBECHE, L.KERRAULT
+ * Enseignant who can add and delete modules, create, search, and delete tests, change tests type and coefficient, add grades, calculate averages, add session, add student presence and display it
+ * @author TEAM KALLAX
+ * @version 1.0
  */
 public class Enseignant extends Utilisateur{
     
+    /** Teachers ID */
     private String ident;
 
+    /** List of modules */
     private ArrayList<Module> modules;
 
+    /**
+     * Constructor of Enseignant
+     * @param nom name of the teacher
+     * @param prenom first name of the teacher
+     * @param email email address of the teacher
+     * @param mdp password of the teacher
+     * @param ident identifiant of the teacher
+     * @throws IllegalArgumentException if an argument is invalid
+     */
     public Enseignant(String nom, String prenom, String email, String mdp, String ident) throws IllegalArgumentException{
         super(nom, prenom, email, mdp);
 
@@ -25,19 +38,33 @@ public class Enseignant extends Utilisateur{
 
     }
 
-
+    /**
+     * Method to add module in modules
+     * @param m module to add
+     */
     public void ajouterModule(Module m){
         if(m != null && !this.modules.contains(m)){
             this.modules.add(m);
         }
     }
 
+    /**
+     * Method to delete module in modules
+     * @param m modules to delete
+     */
     public void retirerModule(Module m){
         if(m != null && !this.modules.contains(m)){
             this.modules.remove(m);
         }
     }
 
+    /**
+     * Method to create tests
+     * @param codeModule module ID
+     * @param typeEval tests type 
+     * @param coeffEval tests coefficient 
+     * @return a new test
+     */
     public Evaluation creerEval(String codeModule, String typeEval, double coeffEval){
         Evaluation eval = null;
         boolean verif = true;
@@ -68,6 +95,12 @@ public class Enseignant extends Utilisateur{
         return eval;
     }
 
+    /**
+     * Search test in a list of tests grouped by module
+     * @param codeModule module ID
+     * @param identEval test ID
+     * @return test of type Evaluation 
+     */
     public Evaluation chercherEval(String codeModule, String identEval){
         int i = 0;
         boolean verif = true;
@@ -98,103 +131,232 @@ public class Enseignant extends Utilisateur{
         return eval;
     }
 
+    /**
+     * Method to delete test from the list
+     * @param e test to delete
+     */
     public void supprimerEval(Evaluation e){
-        int i = 0;
+        int k = 0;
         boolean verif = true;
-        if(this.modules.getResponsables().contains(this)){
+        if(e != null){
             while(verif){
-                int j = 0;
-                while(verif){
-                    if(this.modules.get(i).getListeEval().get(j)==e){
-                        this.modules.get(i).retirerEvaluation(e);
-                        verif = false;
+                if(this.modules.get(k).getResponsables().contains(this)){
+                    int i = 0;
+                    while(verif){
+                        int j = 0;
+                        while(verif){
+                            if(this.modules.get(i).getListeEval().get(j)==e){
+                                this.modules.get(i).retirerEvaluation(e);
+                                verif = false;
+                            }
+                        }
+                    i++; 
                     }
                 }
-               i++; 
+                k++;
             }
+        }else{
+            System.out.println("Evaluation incorrecte");
         }
-        else{
+        
+    }
+
+    /**
+     * Method to change type of test
+     * @param e test to change type
+     * @param nvType new type 
+     */
+    public void modifierTypeEval(Evaluation e, String nvType){
+        boolean verif = true;
+        int i = 0;
+        if(e != null){
+            while(verif){
+                if(this.modules.get(i).getResponsables().contains(this)){
+                    e.setIdent(nvType);
+                    verif = false;
+                }
+                else{
+                    System.out.println("L'enseignant n'est pas responsable");
+                }
+                i++;
+            }
+        }else{
             System.out.println("Evaluation incorrecte");
         }
     }
 
-    public void modifierTypeEval(Evaluation e, String nvType){
-        if(this.modules.getResponsables().contains(this)){
-            e.setIdent(nvType);
-        }
-        else{
-            System.out.println("L'enseignant n'est pas responsable");
-        }
-    }
-
+    /**
+     * Method to change coefficient of test
+     * @param e test to change coefficient
+     * @param nvCoeff new coefficient 
+     */
     public void modifierCoeffEval(Evaluation e, double nvCoeff){
-        if(this.modules.getResponsables().contains(this)){
-            e.setCoeff(nvCoeff);
+        boolean verif = true;
+        int i = 0;
+        if(e != null){
+            while(verif){
+                if(this.modules.get(i).getResponsables().contains(this)){
+                    e.setCoeff(nvCoeff);
+                    verif = false;
+                }
+                i++;
+            }
+        }else{
+            System.out.println("Evaluation incorrecte");
         }
-        else{
-            System.out.println("L'enseignant n'est pas responsable");
-        }
+    
     }
 
+    /**
+     * Method to add garde to a student on a test
+     * @param e the test
+     * @param etud the Student
+     * @param valeur The students grade for the test
+     */
     public void saisirNote(Evaluation e, Etudiant etud, double valeur){
-        if(this.modules.getResponsables().contains(this)){
-            e.ajouterNote(etud, valeur);
-        }
-        else{
-            System.out.println("L'enseignant n'est pas responsable");
+        boolean verif = true;
+        int i = 0;
+        if(e != null){
+            while(verif){
+                if(this.modules.get(i).getResponsables().contains(this)){
+                    e.ajouterNote(etud, valeur);
+                    verif = false;
+                }
+                else{
+                    System.out.println("L'enseignant n'est pas responsable");
+                }
+                i++;
+            }
+        }else{
+            System.out.println("Evaluation incorrecte");
         }
     }
 
+    /**
+     * Method to calculate average of the module
+     * @param m the module
+     * @return modules average
+     */
     public double calculerMoyenne(Module m){
        return m.calculerMoyenne();
     }
 
+    /**
+     * Method to add session to a module list
+     * @param m the module to add session
+     * @param date date of the session
+     * @param heureDeb start time 
+     * @param heureFin end time
+     * @param gr TD group
+     */
     public void ajouterSeance(Module m, Date date,LocalTime heureDeb, LocalTime heureFin, GroupeTD gr){
-        if(this.modules.getResponsables().contains(this)){
-            new Seance(date, heureDeb, heureFin, m, gr);
-        }
-        else{
-            System.out.println("L'enseignant n'est pas responsable");
+        boolean verif = true;
+        int i = 0;
+        while(verif){
+            if(this.modules.get(i).getResponsables().contains(this)){
+                new Seance(date, heureDeb, heureFin, m, gr);
+                verif = false;
+            }
+            else{
+                System.out.println("L'enseignant n'est pas responsable");
+            }
+            i++;
         }
     }
 
+    /**
+     * Method to mark presences of students in session
+     * @param e student to mark
+     * @param s session
+     * @param pres status of student
+     */
     public void marquerPresence(Etudiant e, Seance s, EnumPresence pres){
-        s.ajouterPresence(e, pres);
-    }
-
-    public void tousPresents(Seance s){
-        for (HashMap.Entry appel : s.getAppel().entrySet() ) {
-            s.ajouterPresence((Etudiant)appel.getKey(),EnumPresence.PRESENT);
+        if(s != null){
+            s.ajouterPresence(e, pres);
+        }else{
+            System.out.println("Seance incorrecte");
         }
     }
 
+    /**
+     * Method to mark all students of a TD group present on a session
+     * @param s the session
+     */
+    public void tousPresents(Seance s){
+        if(s != null){
+            for (HashMap.Entry appel : s.getAppel().entrySet() ) {
+                s.ajouterPresence((Etudiant)appel.getKey(),EnumPresence.PRESENT);
+            }
+        }else{
+            System.out.println("Seance incorrecte");
+        }
+    }
+
+    /**
+     * Method to display student datas and his presence status for each session of a type of module
+     * @param codeModule module ID
+     */
     public void afficherPresenceModule(String codeModule){
+        String msg = "";
+        boolean verif = true;
+        int i = 0;
         if (codeModule != null && codeModule != ""){
-            
+            while(verif){
+                if(this.modules.get(i).getIntitule().equals(codeModule)){
+                    for (Seance s : this.modules.get(i).getSeance()) {
+                       for (HashMap.Entry appel : s.getAppel().entrySet() ) {
+                            msg+= "Etudiant : "+appel.getKey()+" EnumPresence : "+appel.getValue()+"\n";
+                        } 
+                    }
+                }
+                i++;
+            }
+            System.out.println(msg);
         }
         else{
-            System.out.println("Code module incorrecte");
+            System.out.println("Code module incorrect");
         }
     }
 
 
+    /**
+     * The toString
+     */
     @Override
     public String toString(){
-        return ("\n*** Enseignant ***\n" + super.toString() + "\nID : " + this.getIdent());
+        return ("\n*** Enseignant ***\n" + super.toString() + "\nID : " + this.getIdent() + "\nModules : "+this.modules+"\n");
     }
 
+    /**
+     * get ID of currant teacher
+     * @return teachers ID
+     */
     public String getIdent(){
         return this.ident;
     }
 
+    /**
+     * set ID of currant teacher
+     * @param nvIdent new ID
+     */
     public void setIdent(String nvIdent){
-        this.ident = nvIdent;
+        if(nvIdent != null && nvIdent != ""){
+            this.ident = nvIdent;
+        }
     }
 
+    /**
+     * get modules of currant teacher
+     * @return list of modules
+     */
     public ArrayList<Module> getModules(){
         return new ArrayList<>(this.modules);
     }
 
+    /**
+     * set modules of currant teacher
+     * @param m new list of modules
+     */
     public void setModules(ArrayList<Module> m){
         if(m != null){
             this.modules = m;
