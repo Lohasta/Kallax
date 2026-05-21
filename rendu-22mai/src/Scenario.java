@@ -211,11 +211,11 @@ public class Scenario{
         u3.ajouterModule(S201);
         u3.ajouterModule(R202);
         System.out.println(u3); // Should have two extra module (S201, R202)
-        
+
         System.out.println("\n- Méthode retirerModule() :");
         u3.retirerModule(S201);
         System.out.println(u3); // Should have one fewer module (S201)
-        
+
         System.out.println("\n- Méthode creerEval() :");
         System.out.println(u3.creerEval(R202.getCode(), "QCM 3", 1)); // Should return an Evaluation (if null -> bad)
         System.out.println(u3.creerEval(R202.getCode(), "QCM 4", 1)); // Should return an Evaluation (if null -> bad)
@@ -243,8 +243,8 @@ public class Scenario{
 
         System.out.println("\n- Méthode saisirNote() :");
         u3.saisirNote(eval, u1, 14); // Should add an entry to the notes HashMap attribute of the Evaluation for the student with the specified note
-        
-        
+
+
 
 
 
@@ -320,6 +320,36 @@ public class Scenario{
         p1.ajouterModule(R202);
         System.out.println(p1.getModules());
         p1.ajouterModule(null); // Prints an error message
+
+
+        System.out.println("\n----- DirecteurEtudes : -----");
+
+        System.out.println("\n- Méthode toString() :");
+        System.out.println(u5);
+        System.out.println(u6);
+
+        System.out.println("\n- Méthode creerEnseignant() :");
+        Enseignant ln = u5.creerEnseignant("Naert", "Lucie", "lnaert@ubs.fr", "treaN", "LN");
+        System.out.println(ln);
+
+        System.out.println("\n- Méthode creerEtudiant() :");
+        Etudiant ih = u5.creerEtudiant("Hadjar", "Isack", "ihadjar@rbracing.com", "nooIDestroyedTheCar", "6");
+        System.out.println(ih);
+
+        System.out.println("\n- Méthode creerPromotion() :");
+        Promotion BUT326 = u5.creerPromotion(EnumPromo.BUT3);
+        System.out.println(BUT326);
+
+        System.out.println("\n- Méthode creerModule() :");
+        Module S205 = u5.creerModule("S2.05", "Projet Citoyen", EnumModule.SAE, BUT126);
+        System.out.println(S205);
+
+        System.out.println("\n- Méthode creerGroupeTD() :");
+        GroupeTD grD = u5.creerGroupeTD("Groupe D", BUT126);
+        System.out.println(grD);
+
+        System.out.println("\n- Méthode definirResponsable() :");
+
     }
 
 }
