@@ -250,7 +250,7 @@ public class Module{
      * Static method to search for a module in a list of modules by its code
      * @param code code of the module to search for
      * @param liste list of modules to search in
-     * @return the module with the code, or null fi not found
+     * @return the module with the code, or null if not found
      */
     public static Module chercherModuleParCode(String code, ArrayList<Module> liste){
         int i = 0;
