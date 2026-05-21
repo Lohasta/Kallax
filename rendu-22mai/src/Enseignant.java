@@ -78,7 +78,7 @@ public class Enseignant extends Utilisateur{
                     if(this.modules.get(i).getIntitule().equals(codeModule)){
                         int j = 0;
                         while(verif){
-                            if(this.modules.get(i).getListeEval().get(j).getIndent.equals(codeModule)){
+                            if(this.modules.get(i).getListeEval().get(j).getIdent().equals(codeModule)){
                                 eval=this.modules.get(i).getListeEval().get(j);
                                 verif = false;
                             }

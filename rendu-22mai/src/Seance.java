@@ -101,7 +101,7 @@ public class Seance {
 
 
 
-    /** --- GETTERS / SETTERS --- */
+    /* --- GETTERS / SETTERS --- */
 
     /**
      * Date getter

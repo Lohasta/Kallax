@@ -35,34 +35,69 @@ public abstract class Utilisateur{
         return ("Nom : " + this.getNom() + "\nPrenom : " + this.getPrenom() + "\nE-Mail : " + this.getEmail() + "\nMot de Passe : " + this.getMdp());
     }
 
+
+    /* --- GETTERS / SETTERS */
+
+    /**
+     * Name getter  
+     * @return name
+     */
     public String getNom(){
         return this.nom;
     }
 
+    /**
+     * Name setter
+     * @param nvNom new name
+     */
     public void setNom(String nvNom){
         this.nom = nvNom;
     }
 
+    /**
+     * First name getter
+     * @return first name
+     */
     public String getPrenom(){
         return this.prenom;
     }
 
+    /**
+     * First name setter
+     * @param nvPrenom new first name
+     */
     public void setPrenom(String nvPrenom){
         this.prenom = nvPrenom;
     }
 
+    /**
+     * Email getter
+     * @return email
+     */
     public String getEmail(){
         return this.email;
     }
 
+    /**
+     * Email setter
+     * @param nvEmail new email
+     */
     public void setEmail(String nvEmail){
         this.email = nvEmail;
     }
 
+    /**
+     * Password getter
+     * @return password
+     */
     public String getMdp(){
         return this.mdp;
     }
 
+    /**
+     * Password setter
+     * @param nvMdp new password
+     */
     public void setMdp(String nvMdp){
         this.mdp = nvMdp;
     }
