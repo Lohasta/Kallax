@@ -2,7 +2,6 @@
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 
 /**
  * Enseignant who can add and delete modules, create, search, and delete tests, change tests type and coefficient, add grades, calculate averages, add session, add student presence and display it
@@ -72,7 +71,7 @@ public class Enseignant extends Utilisateur{
         if (codeModule != null && codeModule != ""){
             if(typeEval != null && typeEval != ""){
                 if(coeffEval >= 0){
-                    while(verif) {
+                    while(verif && i<this.modules.size()) {
                         if(this.modules.get(i).getIntitule().equals(codeModule)){
                             eval=new Evaluation(typeEval, coeffEval, this.modules.get(i));
                             this.modules.get(i).ajouterEvaluation(eval);
@@ -107,10 +106,10 @@ public class Enseignant extends Utilisateur{
         Evaluation eval = null;
         if (codeModule != null && codeModule != ""){
             if(identEval != null && identEval != ""){
-                while(verif){
+                while(verif && i<this.modules.size()){
                     if(this.modules.get(i).getIntitule().equals(codeModule)){
                         int j = 0;
-                        while(verif){
+                        while(verif && j<this.modules.get(i).getListeEval().size()){
                             if(this.modules.get(i).getListeEval().get(j).getIdent().equals(codeModule)){
                                 eval=this.modules.get(i).getListeEval().get(j);
                                 verif = false;
@@ -139,18 +138,15 @@ public class Enseignant extends Utilisateur{
         int k = 0;
         boolean verif = true;
         if(e != null){
-            while(verif){
+            while(verif && k<this.modules.size()){
                 if(this.modules.get(k).getResponsables().contains(this)){
                     int i = 0;
                     while(verif){
-                        int j = 0;
-                        while(verif){
-                            if(this.modules.get(i).getListeEval().get(j)==e){
-                                this.modules.get(i).retirerEvaluation(e);
-                                verif = false;
-                            }
+                        if(this.modules.get(k).getListeEval().get(i)==e){
+                            this.modules.get(k).retirerEvaluation(e);
+                            verif = false;
                         }
-                    i++; 
+                        i++;
                     }
                 }
                 k++;
@@ -170,13 +166,10 @@ public class Enseignant extends Utilisateur{
         boolean verif = true;
         int i = 0;
         if(e != null){
-            while(verif){
+            while(verif && i<this.modules.size()){
                 if(this.modules.get(i).getResponsables().contains(this)){
                     e.setIdent(nvType);
                     verif = false;
-                }
-                else{
-                    System.out.println("L'enseignant n'est pas responsable");
                 }
                 i++;
             }
@@ -194,7 +187,7 @@ public class Enseignant extends Utilisateur{
         boolean verif = true;
         int i = 0;
         if(e != null){
-            while(verif){
+            while(verif && i<this.modules.size()){
                 if(this.modules.get(i).getResponsables().contains(this)){
                     e.setCoeff(nvCoeff);
                     verif = false;
@@ -217,13 +210,10 @@ public class Enseignant extends Utilisateur{
         boolean verif = true;
         int i = 0;
         if(e != null){
-            while(verif){
+            while(verif && i<this.modules.size()){
                 if(this.modules.get(i).getResponsables().contains(this)){
                     e.ajouterNote(etud, valeur);
                     verif = false;
-                }
-                else{
-                    System.out.println("L'enseignant n'est pas responsable");
                 }
                 i++;
             }
@@ -252,7 +242,7 @@ public class Enseignant extends Utilisateur{
     public void ajouterSeance(Module m, Date date,LocalTime heureDeb, LocalTime heureFin, GroupeTD gr){
         boolean verif = true;
         int i = 0;
-        while(verif){
+        while(verif && i<this.modules.size()){
             if(this.modules.get(i).getResponsables().contains(this)){
                 new Seance(date, heureDeb, heureFin, m, gr);
                 verif = false;
@@ -284,8 +274,8 @@ public class Enseignant extends Utilisateur{
      */
     public void tousPresents(Seance s){
         if(s != null){
-            for (HashMap.Entry appel : s.getAppel().entrySet() ) {
-                s.ajouterPresence((Etudiant)appel.getKey(),EnumPresence.PRESENT);
+            for (Etudiant appel : s.getAppel().keySet() ) {
+                s.ajouterPresence(appel,EnumPresence.PRESENT);
             }
         }else{
             System.out.println("Seance incorrecte");
@@ -301,11 +291,11 @@ public class Enseignant extends Utilisateur{
         boolean verif = true;
         int i = 0;
         if (codeModule != null && codeModule != ""){
-            while(verif){
+            while(verif && i<this.modules.size()){
                 if(this.modules.get(i).getIntitule().equals(codeModule)){
                     for (Seance s : this.modules.get(i).getSeance()) {
-                       for (HashMap.Entry appel : s.getAppel().entrySet() ) {
-                            msg+= "Etudiant : "+appel.getKey()+" EnumPresence : "+appel.getValue()+"\n";
+                       for (Etudiant appel : s.getAppel().keySet() ) {
+                            msg+= "Etudiant : "+appel.getNum()+" EnumPresence : "+s.getAppel().get(appel)+"\n";
                         } 
                     }
                 }
