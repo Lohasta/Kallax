@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Enseignant who can add and delete modules, create, search, and delete tests, change tests type and coefficient, add grades, calculate averages, add session, add student presence and display it
+ * Enseignant who can add and delete modules, create, search, and delete tests,
+ * change tests type and coefficient, add grades, calculate averages,
+ * add session, add student presence and display it
+ *
  * @author TEAM KALLAX
  * @version 1.0
  */
 public class Enseignant extends Utilisateur{
-    
+
     /** Teachers ID */
     private String ident;
 
@@ -60,8 +63,8 @@ public class Enseignant extends Utilisateur{
     /**
      * Method to create tests
      * @param codeModule module ID
-     * @param typeEval tests type 
-     * @param coeffEval tests coefficient 
+     * @param typeEval tests type
+     * @param coeffEval tests coefficient
      * @return a new test
      */
     public Evaluation creerEval(String codeModule, String typeEval, double coeffEval){
@@ -78,7 +81,7 @@ public class Enseignant extends Utilisateur{
                             verif = false;
                         }
                         i++;
-                    } 
+                    }
                 }
                 else{
                     System.out.println("Coefficient inférieur ou égale à 0");
@@ -98,7 +101,7 @@ public class Enseignant extends Utilisateur{
      * Search test in a list of tests grouped by module
      * @param codeModule module ID
      * @param identEval test ID
-     * @return test of type Evaluation 
+     * @return test of type Evaluation
      */
     public Evaluation chercherEval(String codeModule, String identEval){
         int i = 0;
@@ -154,13 +157,13 @@ public class Enseignant extends Utilisateur{
         }else{
             System.out.println("Evaluation incorrecte");
         }
-        
+
     }
 
     /**
      * Method to change type of test
      * @param e test to change type
-     * @param nvType new type 
+     * @param nvType new type
      */
     public void modifierTypeEval(Evaluation e, String nvType){
         boolean verif = true;
@@ -181,7 +184,7 @@ public class Enseignant extends Utilisateur{
     /**
      * Method to change coefficient of test
      * @param e test to change coefficient
-     * @param nvCoeff new coefficient 
+     * @param nvCoeff new coefficient
      */
     public void modifierCoeffEval(Evaluation e, double nvCoeff){
         boolean verif = true;
@@ -197,7 +200,7 @@ public class Enseignant extends Utilisateur{
         }else{
             System.out.println("Evaluation incorrecte");
         }
-    
+
     }
 
     /**
@@ -235,7 +238,7 @@ public class Enseignant extends Utilisateur{
      * Method to add session to a module list
      * @param m the module to add session
      * @param date date of the session
-     * @param heureDeb start time 
+     * @param heureDeb start time
      * @param heureFin end time
      * @param gr TD group
      */
