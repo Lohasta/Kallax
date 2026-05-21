@@ -416,7 +416,7 @@ public class Module{
      * @param newSeances the new list of sessions for the module
      */
     public void setSeance(ArrayList<Seance> newSeances){
-        if(newSceance != null){
+        if(newSeances != null){
             this.seances = new ArrayList<>(newSeances);
         } else{
             System.out.println("Erreur : Liste de Sceances null");
