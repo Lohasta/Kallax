@@ -150,7 +150,7 @@ public class Etudiant extends Utilisateur{
         HashMap<Seance, EnumPresence> ret = new HashMap<>();
 
         if(m != null && moduleValide(m)){
-            ArrayList<Seance> seances = m.getSeance();
+            ArrayList<Seance> seances = m.getSeances();
 
             for(Seance s : seances){
                 HashMap<Etudiant, EnumPresence> appel = s.getAppel();
@@ -177,7 +177,7 @@ public class Etudiant extends Utilisateur{
         ArrayList<Module> modules = this.groupe.getPromotion().getModules();
 
         for(Module m : modules){
-            ArrayList<Seance> seances = m.getSeance();
+            ArrayList<Seance> seances = m.getSeances();
 
             if(seances != null){
                 for(Seance s : seances){

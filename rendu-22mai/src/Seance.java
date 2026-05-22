@@ -159,7 +159,9 @@ public class Seance {
      * @param newDate the new date of the session
      */
     public void setDate(Date newDate){
-        this.date = newDate;
+        if (newDate != null){
+            this.date = newDate;
+        }
     }
 
     /**
@@ -167,8 +169,11 @@ public class Seance {
      * @param newHeureDeb the new start time of the session
      */
     public void setHeureDeb(LocalTime newHeureDeb){
-        this.heureDeb = newHeureDeb;
+        if (newHeureDeb != null){
+            this.heureDeb = newHeureDeb;
+        }
     }
+    
 
 
     /**
@@ -176,7 +181,9 @@ public class Seance {
      * @param newHeureFin the new end time of the session
      */
     public void setHeureFin(LocalTime newHeureFin){
-        this.heureFin = newHeureFin;
+        if (newHeureFin != null){
+            this.heureFin = newHeureFin;
+        }
     }
 
 
@@ -185,7 +192,9 @@ public class Seance {
      * @param newModule the new module of the session
      */
     public void setModule(Module newModule){
-        this.module = newModule;
+        if (newModule != null){
+            this.module = newModule;
+        }
     }
 
     /**
@@ -193,7 +202,9 @@ public class Seance {
      * @param newGroupe the new group of the session
      */
     public void setGroupe(GroupeTD newGroupe){
-        this.groupe = newGroupe;
+        if (newGroupe != null){
+            this.groupe = newGroupe;
+        }
     }
 
     /**
@@ -201,6 +212,8 @@ public class Seance {
      * @param newAppel the new presence dictionary of the session
      */
     public void setAppel(HashMap<Etudiant, EnumPresence> newAppel){
-        this.appel = new HashMap<Etudiant, EnumPresence>(newAppel);
+        if (newAppel != null){
+            this.appel = new HashMap<Etudiant, EnumPresence>(newAppel);
+        }
     }
 }
