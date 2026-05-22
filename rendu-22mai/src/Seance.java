@@ -120,7 +120,7 @@ public class Seance {
     public LocalTime getHeureDeb(){
         return this.heureDeb;
     }
-    
+
 
     /**
      * End time getter
@@ -162,6 +162,8 @@ public class Seance {
     public void setDate(Date newDate){
         if (newDate != null){
             this.date = newDate;
+        } else{
+            System.out.printl("Erreur : Date null.");
         }
     }
 
@@ -172,9 +174,11 @@ public class Seance {
     public void setHeureDeb(LocalTime newHeureDeb){
         if (newHeureDeb != null){
             this.heureDeb = newHeureDeb;
+        } else{
+            System.out.println("Erreur : Heure de début null.");
         }
     }
-    
+
 
 
     /**
@@ -184,6 +188,8 @@ public class Seance {
     public void setHeureFin(LocalTime newHeureFin){
         if (newHeureFin != null){
             this.heureFin = newHeureFin;
+        } else{
+            System.out.println("Erreur : Heure de fin null.");
         }
     }
 
@@ -195,6 +201,8 @@ public class Seance {
     public void setModule(Module newModule){
         if (newModule != null){
             this.module = newModule;
+        } else{
+            System.out.println("Erreur : Module null.");
         }
     }
 
@@ -205,6 +213,8 @@ public class Seance {
     public void setGroupe(GroupeTD newGroupe){
         if (newGroupe != null){
             this.groupe = newGroupe;
+        } else{
+            System.out.println("Erreur : GroupeTD null.");
         }
     }
 
@@ -215,6 +225,8 @@ public class Seance {
     public void setAppel(HashMap<Etudiant, EnumPresence> newAppel){
         if (newAppel != null){
             this.appel = new HashMap<Etudiant, EnumPresence>(newAppel);
+        } else{
+            System.out.println("Erreur : Dictionnaire d'appel null.");
         }
     }
 }
