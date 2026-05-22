@@ -20,7 +20,7 @@ public class GroupeTD {
      * @param promo The promotion in which the TD group will be add
      */
     public GroupeTD(String nom,Promotion promo) throws IllegalArgumentException{
-        if (nom != null && nom != ""){
+        if (nom != null && !nom.equals("")){
             this.nom = nom;
         }
         else{
@@ -77,7 +77,7 @@ public class GroupeTD {
     public boolean equals(GroupeTD grp){
         boolean res = false;
         if(grp != null){
-            if(this.nom == grp.getNom() && this.promotion == grp.getPromotion()){
+            if(this.nom.equals(grp.getNom()) && this.promotion == grp.getPromotion()){
                 res = true;
             }
         }
@@ -101,7 +101,7 @@ public class GroupeTD {
      * @param n the name
      */
     public void setNom(String n){
-       if (n!=null && n!=""){
+       if (n!=null && n.equals("")){
             this.nom = n;
         }
         else{

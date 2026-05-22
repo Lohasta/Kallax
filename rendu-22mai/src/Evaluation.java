@@ -143,6 +143,9 @@ public class Evaluation {
         if (type != null && !type.equals("")) {
             this.ident = type;
         }
+        else{
+            System.out.println("Type de l'évaluation incorrect");
+        }
     }
 
     /**
@@ -152,6 +155,9 @@ public class Evaluation {
     public void setCoeff(double coeff) {
         if (coeff > 0) {
             this.coeff = coeff;
+        }
+        else{
+            System.out.println("Coefficient incorrect");
         }
     }
 
@@ -163,6 +169,9 @@ public class Evaluation {
         if (notes != null) {
             this.notes = notes;
         }
+        else{
+            System.out.println("Liste de couple (étudiant,note) incorrecte");
+        }
     } 
 
     /**
@@ -172,6 +181,9 @@ public class Evaluation {
     public void setModule(Module m) {
         if (m != null) {
             this.module = m;
+        }
+        else{
+            System.out.println("Module incorrecte");
         }
     }
 }

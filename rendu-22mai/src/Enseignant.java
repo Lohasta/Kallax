@@ -55,8 +55,11 @@ public class Enseignant extends Utilisateur{
      * @param m modules to delete
      */
     public void retirerModule(Module m){
-        if(m != null && !this.modules.contains(m)){
+        if(m != null && this.modules.contains(m)){
             this.modules.remove(m);
+        }
+        else{
+            System.out.println("Module invalide");
         }
     }
 
@@ -75,8 +78,6 @@ public class Enseignant extends Utilisateur{
             if(typeEval != null && !typeEval.equals("")){
                 if(coeffEval > 0){
                     while(verif && i<this.modules.size()) {
-                        //System.out.println(codeModule);
-                        //System.out.print(this.modules.get(i).getCode());
                         if (this.modules.get(i).getCode().equals(codeModule)) {
                             eval = new Evaluation(typeEval, coeffEval, this.modules.get(i));
                             this.modules.get(i).ajouterEvaluation(eval);
@@ -253,7 +254,7 @@ public class Enseignant extends Utilisateur{
                 verif = false;
             }
             else{
-                System.out.println("L'enseignant n'est pas responsable");
+                System.out.println("L'enseignant n'est pas responsable du module");
             }
             i++;
         }
@@ -345,6 +346,9 @@ public class Enseignant extends Utilisateur{
         if(nvIdent != null && nvIdent != ""){
             this.ident = nvIdent;
         }
+        else{
+            System.out.println("nvIdent incorrect");
+        }
     }
 
     /**
@@ -362,6 +366,9 @@ public class Enseignant extends Utilisateur{
     public void setModules(ArrayList<Module> m){
         if(m != null){
             this.modules = m;
+        }
+        else{
+            System.out.println("Liste de Module incorrecte");
         }
     }
 }
