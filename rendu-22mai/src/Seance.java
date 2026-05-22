@@ -78,6 +78,12 @@ public class Seance {
             if (e.getGroupe().equals(groupe)){
                 appel.put(e, pres);
             }
+        } else if(e == null){
+            System.out.println("Erreur : Etudiant null");
+        } else if(pres == null){
+            System.out.println("Erreur : EnumPresence null");
+        } else if(e.getGroupe() == null){
+            System.out.println("Erreur : Le GroupeTD de l'Etudiants est null");
         }
     }
 
