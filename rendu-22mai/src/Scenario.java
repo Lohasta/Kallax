@@ -175,12 +175,13 @@ public class Scenario{
         Seance s7 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), R202, grc);
         s7.ajouterPresence(u1, EnumPresence.PRESENT);
         ArrayList<Seance> seances = new ArrayList<>();
-        seances.add(s3);
         R202.setSeances(seances);
         BUT126.ajouterGroupe(grc);
         d1 = new Date();
         hD1 = LocalTime.of(15, 00);
         hF1 = LocalTime.of(16, 30);
+        s3 = new Seance(d1, hD1, hF1, m1, grc);
+        seances.add(s3);
 
 
 

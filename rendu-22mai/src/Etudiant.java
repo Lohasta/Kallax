@@ -90,12 +90,16 @@ public class Etudiant extends Utilisateur{
     public double calculerMoyenne(Module m){
         double sum = 0.0;
         double res = 0.0;
-
+        int noMark = 0;
         if(m != null){
             for(Evaluation e : m.getListeEval()){
-                sum += e.getNote(this);
+                if (e.getNote(this) == -1.0d) {
+                    noMark++;
+                } else {
+                    sum += e.getNote(this);
+                }
             }
-            res = sum / m.getListeEval().size();
+            res = sum / (m.getListeEval().size() - noMark);
         } else{
             res = -1;
         }

@@ -76,7 +76,9 @@ public class Evaluation {
     public Double getNote(Etudiant e) {
         double note = -1.0d;
         if (e != null) {
-            note = this.notes.get(e);
+            if (this.notes.get(e) != null) {
+                note = this.notes.get(e);
+            }
         }
         return note;
     }

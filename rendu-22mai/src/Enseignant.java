@@ -71,11 +71,13 @@ public class Enseignant extends Utilisateur{
         Evaluation eval = null;
         boolean verif = true;
         int i = 0;
-        if (codeModule != null && codeModule != ""){
-            if(typeEval != null && typeEval != ""){
-                if(coeffEval >= 0){
+        if (codeModule != null && !codeModule.equals("")){
+            if(typeEval != null && !typeEval.equals("")){
+                if(coeffEval > 0){
                     while(verif && i<this.modules.size()) {
-                        if (this.modules.get(i).getIntitule().equals(codeModule)) {
+                        //System.out.println(codeModule);
+                        //System.out.print(this.modules.get(i).getCode());
+                        if (this.modules.get(i).getCode().equals(codeModule)) {
                             eval = new Evaluation(typeEval, coeffEval, this.modules.get(i));
                             this.modules.get(i).ajouterEvaluation(eval);
                             verif = false;
@@ -110,7 +112,7 @@ public class Enseignant extends Utilisateur{
         if (codeModule != null && codeModule != ""){
             if(identEval != null && identEval != ""){
                 while(verif && i<this.modules.size()){
-                    if(this.modules.get(i).getIntitule().equals(codeModule)){
+                    if(this.modules.get(i).getCode().equals(codeModule)){
                         int j = 0;
                         while(verif && j<this.modules.get(i).getListeEval().size()){
                             if(this.modules.get(i).getListeEval().get(j).getIdent().equals(identEval)){
@@ -247,7 +249,7 @@ public class Enseignant extends Utilisateur{
         int i = 0;
         while(verif && i<this.modules.size()){
             if(this.modules.get(i).getResponsables().contains(this)){
-                new Seance(date, heureDeb, heureFin, m, gr);
+                this.modules.get(i).ajouterSeance(date, heureDeb, heureFin, gr);
                 verif = false;
             }
             else{
