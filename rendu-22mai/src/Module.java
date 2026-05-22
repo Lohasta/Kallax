@@ -332,10 +332,10 @@ public class Module{
     }
 
     /**
-     * Seance getter
+     * Seances getter
      * @return a copy of the list of sessions for the module
      */
-    public ArrayList<Seance> getSeance(){
+    public ArrayList<Seance> getSeances(){
         return new ArrayList<>(this.seances);
     }
 
@@ -418,10 +418,10 @@ public class Module{
     }
 
     /**
-     * Sessions setter
+     * Seances setter
      * @param newSeances the new list of sessions for the module
      */
-    public void setSeance(ArrayList<Seance> newSeances){
+    public void setSeances(ArrayList<Seance> newSeances){
         if(newSeances != null){
             this.seances = new ArrayList<>(newSeances);
         } else{

@@ -176,7 +176,7 @@ public class Scenario{
         s7.ajouterPresence(u1, EnumPresence.PRESENT);
         ArrayList<Seance> seances = new ArrayList<>();
         seances.add(s3);
-        R202.setSeance(seances);
+        R202.setSeances(seances);
         BUT126.ajouterGroupe(grc);
         d1 = new Date();
         hD1 = LocalTime.of(15, 00);
@@ -277,6 +277,42 @@ public class Scenario{
 
             System.out.println("\n- Méthode saisirNote() :");
                 u3.saisirNote(eval, u1, 14); // Should add an entry to the notes HashMap attribute of the Evaluation for the student with the specified note
+                System.out.println(eval.getNote(u1));
+        
+            System.out.println("\n- Méthode calculerMoyenne() :");
+                System.out.println(u3.calculerMoyenne(R202)); // Should display 14 since there is only one student that has a grade
+                u3.saisirNote(eval, new Etudiant("Temp", "Temp", "bonsoir", "salut", 420), 12);
+                System.out.println(u3.calculerMoyenne(R202)); // Should display 13 
+
+            System.out.println("\n- Méthode ajouterSeance() :");
+                System.out.println(R202.getSeances()); // Should show 1 "seances"
+                u3.ajouterSeance(R202, new Date(), LocalTime.now(), LocalTime.now(), grc);
+                System.out.println(R202.getSeances()); // Should show 2 "seances"
+
+            System.out.println("\n- Méthode marquerPresence() :");
+                u3.marquerPresence(u1, R202.getSeances().get(0), EnumPresence.RETARD);
+                System.out.println(R202.getSeances()); // Should show that a Student was late for the first "seance" in the list
+
+            System.out.println("\n- Méthode tousPresents() :");
+                u3.tousPresents(R202.getSeances().get(0));
+                System.out.println(R202.getSeances()); // Should see everybody with "PRESENT"
+
+            System.out.println("\n- Méthode afficherPresenceModule() :");
+                u3.afficherPresenceModule(R202.getCode()); // Should see everybody with "PRESENT"
+
+            System.out.println("\n- Méthode setIdent() :");
+                u3.setIdent("ST"); // Should set ident to "ST"
+                u3.setIdent(""); // Should not set ident since "" is invalid for ident
+
+            System.out.println("\n- Méthode getIdent() :");
+                System.out.println(u3.getIdent()); // Should return ST
+
+            System.out.println("\n- Méthode setModules() :");
+                u3.setModules(listM); // Should the modules to listM
+                u3.setModules(listMarchePas); // Should not set anything since listMarchePas is null
+
+            System.out.println("\n- Méthode getModules() :");
+                System.out.println(u3.getModules()); // Should see the module listM
 
 
         System.out.println("\n----- Evaluation : -----");
@@ -468,7 +504,7 @@ public class Scenario{
                 System.out.println(m1.getListeEval()); // Should return []
                 System.out.println(m1.getResponsables()); // Should return []
                 System.out.println(m1.getPromo()); // Should print the Promotion's toString()
-                System.out.println(m1.getSeance()); // Should print []
+                System.out.println(m1.getSeances()); // Should print []
 
             System.out.println("\n- Setters :");
                 Seance s11 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), m1, grc);
@@ -491,8 +527,8 @@ public class Scenario{
                 m1.setResponsables(null); // Prints an error message
                 m1.setPromotion(BUT126);
                 m1.setPromotion(null); // Prints an error message
-                m1.setSeance(listSeances);
-                m1.setSeance(null); // Prints an error message
+                m1.setSeances(listSeances);
+                m1.setSeances(null); // Prints an error message
                 System.out.println(m1); // Checking changes
 
             System.out.println("\n- Méthode ajouterSeance() :");
@@ -500,7 +536,7 @@ public class Scenario{
                 grZ = new GroupeTD("Groupe Z", BUT326);
                 m1.ajouterSeance(new Date(), LocalTime.now(), LocalTime.now(), grc); // Should work fine
                 m1.ajouterSeance(new Date(), LocalTime.now(), LocalTime.now(), grZ); // Prints an error message
-                System.out.println(m1.getSeance()); // Should print s4
+                System.out.println(m1.getSeances()); // Should print s4
 
             System.out.println("\n- Méthode ajouterResponsable() :");
                 m1.ajouterResponsable(ln);

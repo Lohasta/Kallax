@@ -296,7 +296,7 @@ public class Enseignant extends Utilisateur{
         if (codeModule != null && codeModule != ""){
             while(verif && i<this.modules.size()){
                 if(this.modules.get(i).getIntitule().equals(codeModule)){
-                    for (Seance s : this.modules.get(i).getSeance()) {
+                    for (Seance s : this.modules.get(i).getSeances()) {
                        for (Etudiant appel : s.getAppel().keySet() ) {
                             msg+= "Etudiant : "+appel.getNum()+" EnumPresence : "+s.getAppel().get(appel)+"\n";
                         }
