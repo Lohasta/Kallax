@@ -101,7 +101,7 @@ public class GroupeTD {
      * @param n the name
      */
     public void setNom(String n){
-       if (n!=null && n.equals("")){
+       if (n!=null && !n.equals("")){
             this.nom = n;
         }
         else{
