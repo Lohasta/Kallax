@@ -169,7 +169,7 @@ public class Seance {
         if (newDate != null){
             this.date = newDate;
         } else{
-            System.out.printl("Erreur : Date null.");
+            System.out.println("Erreur : Date null.");
         }
     }
 
