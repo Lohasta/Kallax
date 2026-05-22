@@ -454,6 +454,7 @@ public class Scenario{
 
 
 
+
         System.out.println("\n----- Module : -----");
 
             System.out.println("\n- Méthode toString() :");
@@ -536,7 +537,6 @@ public class Scenario{
                 m1.chercherModuleParCode("S2.02", null); // Prints an error message
 
 
-
         System.out.println("\n----- Seance : -----");
 
             System.out.println("\n- Méthode toString() :");
@@ -556,7 +556,7 @@ public class Scenario{
                 System.out.println(s3.getDate());
                 s1.setDate(d1);//Should change the date
                 System.out.println(s1.getDate());
-            
+
             System.out.println("\n- Méthode setHeureDeb() :");
                 s1.setHeureDeb(hD2);//Should not change the start time of the session
                 System.out.println(s1.getHeureDeb());
@@ -568,13 +568,13 @@ public class Scenario{
                 System.out.println(s3.getHeureFin());
                 s1.setHeureFin(hF1);//Should change the start time of the session
                 System.out.println(s1.getHeureFin());
-            
+
             System.out.println("\n- Méthode setModule() :");
                 s1.setModule(m2);//Should not change the module
                 System.out.println(s1.getModule());
                 s3.setModule(m4);//Should change the module
                 System.out.println(s3.getModule());
-            
+
             System.out.println("\n- Méthode setGroupe() :");
                 s3.setGroupe(grB);//Should not change the group
                 System.out.println(s3.getGroupe());
