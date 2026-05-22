@@ -64,9 +64,11 @@ public class Scenario{
 
         System.out.println("\nEtudiant : ");
         try{
+            System.out.println("Création de 3 Etudiants corrects pas d'erreur attendue");
             u1 = new Etudiant("Lohan", "Kerrault", "lk@ubs.fr", "1234lol", 1);
             eF = new Etudiant("Fabien", "Madotto", "fm@ubs.fr", "5678mdr", 67);
             eM = new Etudiant("Maël", "Leroux", "ml@ubs.fr", "LeagueOfLegendsForever", 01141010114);
+            System.out.println("Création de 1 Etudiant 1 incorrect, erreurs attendue");
             u2 = new Etudiant(null, null, null, null, 0);
             
         } catch(Exception e){
@@ -76,7 +78,9 @@ public class Scenario{
 
         System.out.println("\nEnseignant : ");
         try{
+            System.out.println("Création de 1 Enseignant correct pas d'erreur attendue");
             u3 = new Enseignant("Sahur", "Tung", "tsahur@ubs.fr", "5678mdr", "TS");
+            System.out.println("Création de 1 Enseignant incorrect erreurs attendue");
             u4 = new Enseignant(null, null, null, null, null);
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -85,7 +89,9 @@ public class Scenario{
 
         System.out.println("\nDirecteurEtudes : ");
         try{
+            System.out.println("Création de 1 DirecteurEtudes correct pas d'erreur attendue");
             u5 = new DirecteurEtudes("Crocodillo", "Bombardillo", "bcrocs@ubs.fr", "9009jsp", "BC");
+            System.out.println("Création de 1 DirecteurEtudes incorrect erreurs attendue");
             u6 = new DirecteurEtudes(null, null, null, null, null);
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -94,7 +100,9 @@ public class Scenario{
 
         System.out.println("\nPromotion : ");
         try{
+            System.out.println("Création de 1 Promotion correcte pas d'erreur attendue");
             p1 = new Promotion(EnumPromo.BUT1);
+            System.out.println("Création de 1 Promotion incorrecte une erreur attendue");
             p2 = new Promotion(null);
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -103,7 +111,9 @@ public class Scenario{
 
         System.out.println("\nGroupeTD :");
         try{
+            System.out.println("Création de 1 GroupeTD correct pas d'erreur attendue");
             grA = new GroupeTD("A", p1);
+            System.out.println("Création de 1 GroupeTD incorrect une erreur attendue");
             grB = new GroupeTD(null, p2);
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -112,9 +122,11 @@ public class Scenario{
 
         System.out.println("\nModule :");
         try{
+            System.out.println("Création de 3 Module corrects pas d'erreur attendue");
             m1 = new Module("R2.01", "Développement Orienté Objets", EnumModule.RESSOURCE, p1);
             m3 = new Module("R2.02", "IHM", EnumModule.RESSOURCE, p1);
             m4 = new Module("R2.03", "Qualité de développement", EnumModule.RESSOURCE, p1);
+            System.out.println("Création de 1 Module incorrect une erreur attendue");
             m2 = new Module(null, null, null, null);
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -123,7 +135,9 @@ public class Scenario{
 
         System.out.println("\nSeance :");
         try{
+            System.out.println("Création de 1 Senace correcte pas d'erreur attendue");
             s1 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), m1, grA);
+            System.out.println("Création de 1 Seance incorrecte une erreur attendue");
             s2 = new Seance(null, null, null, null, null);
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -132,7 +146,9 @@ public class Scenario{
 
         System.out.println("\nEvaluation :");
         try{
+            System.out.println("Création de 1 Evaluation correcte pas d'erreur attendue");
             ev1 = new Evaluation("QCM 1", 1.0, m1);
+            System.out.println("Création de 1 Evaluation incorrecte une erreur attendue");
             ev2 = new Evaluation(null, 0.0, null);
         } catch(Exception e){
             System.out.println(e.getMessage());
@@ -155,6 +171,8 @@ public class Scenario{
 
         GroupeTD grc = new GroupeTD("Groupe C", BUT126);
         u1.setGroupe(grc);
+        eM.setGroupe(grc);
+        eF.setGroupe(grc);
         Module S201 = new Module("S2.01", "Scodoc", EnumModule.SAE, BUT126);
         BUT126.ajouterModule(R202);
         BUT126.ajouterModule(S201);
@@ -176,13 +194,15 @@ public class Scenario{
         Seance s7 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), R202, grc);
         s7.ajouterPresence(u1, EnumPresence.PRESENT);
         ArrayList<Seance> seances = new ArrayList<>();
-        R202.setSeances(seances);
-        BUT126.ajouterGroupe(grc);
         d1 = new Date();
         hD1 = LocalTime.of(15, 00);
         hF1 = LocalTime.of(16, 30);
         s3 = new Seance(d1, hD1, hF1, m1, grc);
+        s3.ajouterPresence(u1, EnumPresence.RETARD);
         seances.add(s3);
+        R202.setSeances(seances);
+        BUT126.ajouterGroupe(grc);
+        
 
 
 
@@ -198,14 +218,22 @@ public class Scenario{
         System.out.println("\n----- Etudiant : -----");
 
             System.out.println("\n- Méthode toString() :");
+                System.out.println("Affichage d'un étudiant et de ses attributs attendu : ");
                 System.out.println(u1);
+                System.out.println("Affichage de null car l'étudiant n'avait pas des valeurs correctes dans le constructeur : ");
                 System.out.println(u2);
 
             System.out.println("\n- Getters :");
+                System.out.println("Affichage des infos de l'étudiants correct précédent une par une avec les getters : ");
+                System.out.println("Nom : ");
                 System.out.println(u1.getNom());
+                System.out.println("Prénom : ");
                 System.out.println(u1.getPrenom());
+                System.out.println("Email : ");
                 System.out.println(u1.getEmail());
+                System.out.println("Mot de passe : ");
                 System.out.println(u1.getMdp());
+                System.out.println("Numéro étudiant : ");
                 System.out.println(u1.getNum());
 
             System.out.println("\n- Setters :");
@@ -214,103 +242,146 @@ public class Scenario{
                 u1.setEmail("gr@ubs.fr");
                 u1.setMdp("test34");
                 u1.setNum(2);
+                System.out.println("Affichage du même étudiant avec toutes ses valeurs différentes (modifié par setter) : ");
                 System.out.println(u1);
 
             System.out.println("\n- Méthode calculerMoyenne() :");
+                System.out.println("Affichage de la moyenne de l'étudiant u1 pour R202, devrait afficher 14.625 : ");
                 System.out.println(u1.calculerMoyenne(R202)); // Should return 14.625
+                System.out.println("Affichage de la moyenne de l'étudiant u1 pour 'null', devrait afficher -1 car invalide : ");
                 System.out.println(u1.calculerMoyenne(null)); // Should return -1
 
             System.out.println("\n- Méthode calculerMoyenneGenerale() :");
+                System.out.println("Affichage de la moyenne générale de l'étudiant u1, devrait afficher 13.8125 : ");
                 System.out.println(u1.calculerMoyenneGenerale()); // Should return 13.8125
 
             System.out.println("\n- Méthode moduleValide() :");
+                System.out.println("Affichage de la validité du module R202, devrait afficher true : ");
                 System.out.println(u1.moduleValide(R202)); // Should return true
+                System.out.println("Affichage de la validité du module R301, devrait afficher false : ");
                 System.out.println(u1.moduleValide(R301)); // Should return false
+                System.out.println("Affichage de la validité du module 'null', devrait afficher une erreur : ");
                 System.out.println(u1.moduleValide(null)); // Should say that the parameter is null
 
             System.out.println("\n- Méthode recupererPresence() :");
+                System.out.println("Affichage de l'HashMap retourné par la méthode, affichage du toString de la méthode avec un étudiant en retard : ");
                 System.out.println(u1.recupererPresence(R202));
+                System.out.println("\nAffichage de la présence au module R301, devrait dire que le module n'est pas valide");
                 System.out.println(u1.recupererPresence(R301)); // Should say that R301 isn't a valid Module
+                System.out.println("\nAffichage de la présence au module 'null', devrait dire que le module est null");
                 System.out.println(u1.recupererPresence(null)); // Should say that the parameter is null
 
             System.out.println("\n- Méthode seancesSuivies()");
+                System.out.println("Affiche les séances suivies par le groupe TD de u1\n");
                 System.out.println(u1.seancesSuivies());
 
 
         System.out.println("\n----- Enseignant : -----");
 
             System.out.println("Méthode toString()");
+                System.out.println("Doit afficher les informations de u3\n");
                 System.out.println(u3);
+                System.out.println("Ne Doit pas afficher les informations de u4\n");
                 System.out.println(u4);
 
             System.out.println("\n- Méthode ajouterModule() :");
                 u3.ajouterModule(S201);
                 u3.ajouterModule(R202);
+                System.out.println("Doit ajouter les modules S201 et R202 à u3\n");
                 System.out.println(u3); // Should have two extra module (S201, R202)
 
             System.out.println("\n- Méthode retirerModule() :");
                 u3.retirerModule(S201);
+                System.out.println("Doit retirer le module S201 de u3\n");
                 System.out.println(u3); // Should have one fewer module (S201)
 
             System.out.println("\n- Méthode creerEval() :");
+                System.out.println("Doit créer et retourner l'évaluation QCM 3\n");
                 System.out.println(u3.creerEval(R202.getCode(), "QCM 3", 1)); // Should return an Evaluation (if null -> bad)
+                System.out.println("Doit créer et retourner l'évaluation QCM 4\n");
                 System.out.println(u3.creerEval(R202.getCode(), "QCM 4", 1)); // Should return an Evaluation (if null -> bad)
+                System.out.println("Doit retourner null car u3 n'est pas enseignant de S201\n");
                 System.out.println(u3.creerEval(S201.getCode(), "QCM 13", 2)); // Should return null since u3 does not have S201
+                System.out.println("Doit retourner null\n");
                 System.out.println(u3.creerEval(R202.getCode(), "", 4)); // Should return null since typeEval is invalid
+                System.out.println("Doit retourner null\n");
                 System.out.println(u3.creerEval(R202.getCode(), "QCM 99", 0)); // Should return null since coeffEval is invalid
 
             System.out.println("\n- Méthode chercherEval() :");
+                System.out.println("Doit retourner lévaluation QCM 3\n");
                 System.out.println(u3.chercherEval(R202.getCode(), "QCM 3")); // Should return the correct eval that we created previously
+                System.out.println("Doit retourner null car u3 n'est pas enseignant de S201\n");
                 System.out.println(u3.chercherEval(S201.getCode(), "QCM 3")); // Should return null
 
             System.out.println("\n- Méthode supprimerEval() :");
+                System.out.println("Doit supprimer QCM 4 de la liste d'évaluations de R202\n");
                 u3.supprimerEval(u3.chercherEval(R202.getCode(), "QCM 4")); // Should remove the QCM from the list of Evaluations for R202
+                System.out.println("Ne Doit rien supprimer car QCM 4 a déjà été supprimé\n");
                 u3.supprimerEval(u3.chercherEval(R202.getCode(), "QCM 4")); // Should do nothing since it has already been removed
 
             System.out.println("\n- Méthode modifierTypeEval() :");
                 Evaluation eval = u3.chercherEval(R202.getCode(), "QCM 3");
+                System.out.println("Doit changer le type de l'evaluation (si u3 est 'responsable'de R202)\n");
                 u3.modifierTypeEval(eval, "TP 3"); // Should change the type (since u3 is a "responsable" of R202)
+                System.out.println("Ne doit pas changer le type de l'evaluation car le type QCM 3 a déjà été changé précédemment\n");
                 u3.modifierTypeEval(u3.chercherEval(R202.getCode(), "QCM 3"), "TP 4"); // Should not change the type since it doesn't exist anymore with this type
+                System.out.println("Affiche l'évaluation avec le nouveau type\n");
                 System.out.println(eval); // Should have a type of "TP 3" and not "QCM 3"
 
             System.out.println("\n- Méthode modifierCoeffEval() :");
+                System.out.println("Doit changer le coefficient de 1 à 10 de l'evaluation (si u3 est 'responsable'de R202)\n");
                 u3.modifierCoeffEval(eval, 10); // Should change the coefficient from 1 to 10
+                System.out.println("Affiche l'évaluation avec le nouveau coefficient\n");
                 System.out.println(eval); // Should have the changed coefficient (10 not 1)
 
             System.out.println("\n- Méthode saisirNote() :");
+                System.out.println("Doit ajouter la note de 14 de l'étudiant u1 pour cette évaluation\n");
                 u3.saisirNote(eval, u1, 14); // Should add an entry to the notes HashMap attribute of the Evaluation for the student with the specified note
+                System.out.println("Affiche la note de l'étudiant u1 a l'évaluation\n");
                 System.out.println(eval.getNote(u1));
         
             System.out.println("\n- Méthode calculerMoyenne() :");
+                System.out.println("Doit afficher 14 parce qu'il n'y a qu'un seul étudiant ayant une note\n");
                 System.out.println(u3.calculerMoyenne(R202)); // Should display 14 since there is only one student that has a grade
                 u3.saisirNote(eval, new Etudiant("Temp", "Temp", "bonsoir", "salut", 420), 12);
+                System.out.println("Doit afficher 13\n");
                 System.out.println(u3.calculerMoyenne(R202)); // Should display 13 
 
             System.out.println("\n- Méthode ajouterSeance() :");
+                System.out.println("Doit afficher 1 séance\n");
                 System.out.println(R202.getSeances()); // Should show 1 "seances"
                 u3.ajouterSeance(R202, new Date(), LocalTime.now(), LocalTime.now(), grc);
+                System.out.println("Doit afficher 2 séances\n");
                 System.out.println(R202.getSeances()); // Should show 2 "seances"
 
             System.out.println("\n- Méthode marquerPresence() :");
                 u3.marquerPresence(u1, R202.getSeances().get(0), EnumPresence.RETARD);
+                System.out.println("Doit afficher que l'étudiant était en retard à la première séance de la liste\n");
                 System.out.println(R202.getSeances()); // Should show that a Student was late for the first "seance" in the list
 
             System.out.println("\n- Méthode tousPresents() :");
                 u3.tousPresents(R202.getSeances().get(0));
+                System.out.println("Doit afficher que tout les étudiant sont marqués présent\n");
                 System.out.println(R202.getSeances()); // Should see everybody with "PRESENT"
 
             System.out.println("\n- Méthode afficherPresenceModule() :");
+                System.out.println("Doit afficher que tout les étudiant sont marqués présent\n");
                 u3.afficherPresenceModule(R202.getCode()); // Should see everybody with "PRESENT"
 
             System.out.println("\n- Méthode setIdent() :");
+                System.out.println("Doit modifier la valeur de l'ID de u3 à ST\n");
                 u3.setIdent("ST"); // Should set ident to "ST"
+                System.out.println("Ne doit pas modifier la valeur de l'ID de u3\n");
                 u3.setIdent(""); // Should not set ident since "" is invalid for ident
 
             System.out.println("\n- Méthode getIdent() :");
+                System.out.println("Doit retourner ST\n");
                 System.out.println(u3.getIdent()); // Should return ST
 
             System.out.println("\n- Méthode setModules() :");
+                System.out.println("Doit modifier la la liste de modules\n");
                 u3.setModules(listM); // Should the modules to listM
+                System.out.println("Ne doit modifier la la liste de modules\n");
                 u3.setModules(listMarchePas); // Should not set anything since listMarchePas is null
 
             System.out.println("\n- Méthode getModules() :");
@@ -320,127 +391,159 @@ public class Scenario{
         System.out.println("\n----- Evaluation : -----");
 
             System.out.println("\n- Méthode toString() :");
+                System.out.println("Doit afficher les informations de ev1\n");
                 System.out.println(ev1);
+                System.out.println("Ne doit pas afficher les informations de ev2\n");
                 System.out.println(ev2);
 
             System.out.println("\n- Méthode ajouterNote() :");
+                System.out.println("Doit ajouter la note de 19 a u1 pour ev1\n");
                 ev1.ajouterNote(u1, 19.0);
+                System.out.println("Doit ajouter la note de 15 a l'étudiant temporaire pour ev1\n");
                 ev1.ajouterNote(new Etudiant("Temp", "Temp", "bonsoir", "salut", 420), 15.0);
 
             System.out.println("\n- Méthode getNote() :");
+                System.out.println("Doit retourner 19");
                 System.out.println(ev1.getNote(u1)); // Should return 19
 
             System.out.println("\n- Méthode calculerMoyenne() :");
+                System.out.println("Doit retourner 17\n");
                 System.out.println(ev1.calculerMoyenne()); // Should return 17
 
             System.out.println("\n- Méthode setIdent() :");
+                System.out.println("Doit modifier l'ident de ev1 par QCM 2\n");
                 ev1.setIdent("QCM 2"); // Should set ev1's ident attribute to "QCM 2"
+                System.out.println("Ne doit pas modifier le type de ev1\n");
                 ev1.setIdent(""); // Should not set ev1's ident attribute since it is not valid
 
             System.out.println("\n- Méthode getIdent() :");
+                System.out.println("Doit retourner QCM 2\n");
                 System.out.println(ev1.getIdent()); // Should return "QCM 2"
 
             System.out.println("\n- Méthode setCoeff() :");
+                System.out.println("Doit modifier le coefficient de ev1 à la valeur 2\n");
                 ev1.setCoeff(2); // Should set ev1's coeff attribute to 2
+                System.out.println("Ne doit pas modifier le coefficient de ev1\n");
                 ev1.setCoeff(-2); // Should not set ev1's coeff attribute since it is not valid
 
             System.out.println("\n- Méthode getCoeff() :");
+                System.out.println("Doit retourner 2\n");
                 System.out.println(ev1.getCoeff()); // Should return 2
 
             System.out.println("\n- Méthode setNotes() :");
                 HashMap<Etudiant, Double> testNotes = new HashMap<>();
                 testNotes.put(u1, ev1.getNote(u1));
+                System.out.println("Doit mettre une seule note dans la HashMap de notes de ev1 (seulement la première note de l'ancienne HashMap)\n");
                 ev1.setNotes(testNotes); // Should set ev1's notes attribute to a HashMap with a single mark (only the first one from the old HashMap)
+                System.out.println("Ne doit pas modifier la HashMap de notes de ev1\n");
                 ev1.setNotes(null); // Should not set ev1's notes attribute since it is not valid
 
             System.out.println("\n- Méthode getNotes() :");
+                System.out.println("Doit retourner une HashMap avec une entrée : {u1, 19.0}\n");
                 System.out.println(ev1.getNotes()); // Should return a HashMap with one entry : {u1, 19.0}
 
             System.out.println("\n- Méthode setModule() :");
+                System.out.println("Doit modifier le module de ev1 pour R202\n");
                 ev1.setModule(R202); // Should set ev1's module attribute to the R202 module
+                System.out.println("Ne doit pas modifier le module de ev1\n");
                 ev1.setModule(null); // Should not set ev1's module attribute since it is note valid
 
             System.out.println("\n- Méthode getModule() :");
+                System.out.println("Doit retourner le module R202\n");
                 System.out.println(ev1.getModule()); // Should return the R202 module
 
 
         System.out.println("\n----- Promotion : -----");
 
-            System.out.println("\n- Méthode toString() :");
-                System.out.println(p1);
-                System.out.println(p2);
+            System.out.println("\n- Methode toString() :");
+                System.out.println("test affichage promotion normale : " + p1);
+                System.out.println("cas d'erreur : " + p2);
 
             System.out.println("\n- Getters :");
-                System.out.println(p1.getNomPromo());
-                System.out.println(p1.getModules());
-                System.out.println(p1.getGroupes());
+                System.out.println("Test Getter nom promo: " + p1.getNomPromo());
+                System.out.println("Test Getter modules (normal vide car pas defini): " + p1.getModules());
+                System.out.println("Test Getter groupes (normal vide car pas defini): " + p1.getGroupes());
 
             System.out.println("\n- Setters :");
                 p1.setNomPromo(EnumPromo.BUT2);
-                System.out.println(p1.getNomPromo()); // Should print BUT2
+                System.out.println("Test Setter nom promo (on change BUT1 en BUT2): " + p1.getNomPromo()); // Should print BUT2
                 p1.setNomPromo(EnumPromo.BUT1); // Putting it back
 
             System.out.println("\n- Méthode ajouterGroupe() :");
                 p1.ajouterGroupe(grc);
-                System.out.println(p1.getGroupes()); // Should print grc's infos.
+                System.out.println("Test d'affichage du groupe pour verifier l'ajout: " + p1.getGroupes()); // Should print grc's infos.
+                System.out.println("Test cas d'erreur: ");
                 p1.ajouterGroupe(null); // Prints an error message
 
             System.out.println("\n- Méthode ajouterModule() :");
                 p1.ajouterModule(R202);
-                System.out.println(p1.getModules());
+                System.out.println("Cas normal: " + p1.getModules());
+                System.out.println("Cas d'erreur: ");
                 p1.ajouterModule(null); // Prints an error message
 
 
         System.out.println("\n----- DirecteurEtudes : -----");
 
             System.out.println("\n- Méthode toString() :");
-                System.out.println(u5);
-                System.out.println(u6);
+                System.out.println("Test affichage directeur etudes: " + u5);
+                System.out.println("Test cas d'erreur: " + u6);
 
             System.out.println("\n- Méthode creerEnseignant() :");
+                System.out.println("Test cas normal : ");
                 Enseignant ln = u5.creerEnseignant("Naert", "Lucie", "lnaert@ubs.fr", "treaN", "LN");
                 System.out.println(ln);
 
             System.out.println("\n- Méthode creerEtudiant() :");
+                System.out.println("Test cas normal : ");
                 Etudiant ih = u5.creerEtudiant("Hadjar", "Isack", "ihadjar@rbracing.com", "nooIDestroyedTheCar", "6");
                 System.out.println(ih);
 
             System.out.println("\n- Méthode creerPromotion() :");
+                System.out.println("Test cas normal : ");
                 Promotion BUT326 = u5.creerPromotion(EnumPromo.BUT3);
                 System.out.println(BUT326);
 
             System.out.println("\n- Méthode creerModule() :");
+                System.out.println("Test cas normal : ");
                 Module S205 = u5.creerModule("S2.05", "Projet Citoyen", EnumModule.SAE, BUT126);
                 System.out.println(S205);
 
             System.out.println("\n- Méthode creerGroupeTD() :");
+                System.out.println("Test cas normal : ");
                 GroupeTD grD = u5.creerGroupeTD("Groupe D", BUT126);
                 System.out.println(grD);
 
             System.out.println("\n- Méthode definirResponsable() :");
+                System.out.println("Test cas normal (doit montrer Lucie Naert en responsable): ");
                 u5.definirResponsable(S205, ln);
                 System.out.println(S205.getResponsables());  // Should show Lucie Naert as responsible.
 
             System.out.println("\n- Méthode ajouteEtudiantGroupe() :");
+                System.out.println("Test cas normal (on ajoute Isack au groupe D): ");
                 u5.ajouteEtudiantGroupe(grD, ih);
                 System.out.println(ih.getGroupe());
 
             System.out.println("\n- Méthode calculerMoyenneEtudiant()");
+                System.out.println("Test cas normal (on attend la moyenne de Lohan): ");
                 System.out.println(u5.calculerMoyenneEtudiant(u1)); // Should be the same result Etudiant.calculerMoyenneGenerale, so 13.8125.
 
             System.out.println("\n- Méthode deliberer()");
+                System.out.println("Test cas normal (Lohan a plus que 10, donc renvoie true) : ");
                 System.out.println(u5.deliberer(u1)); // Should return true, as his average >= 10.
                 ih.setGroupe(grD);
                 TPnote.ajouterNote(ih, 3);
                 CT.ajouterNote(ih, 7);
                 Diag.ajouterNote(ih, 6);
+                System.out.println("Test cas normal (on attend la moyenne de Isack a 5.5): ");
                 System.out.println(ih.calculerMoyenneGenerale()); // Should be equal to 5.5
+                System.out.println("Test cas normal (Isack a moins que 10, donc renvoie false) : ");
                 System.out.println(u5.deliberer(ih)); // Should return false, as his average <= 10.
 
 
         System.out.println("\n----- GroupeTD : -----");
 
             System.out.println("\n- Méthode toString() :");
+                System.out.println("Test cas normal : ");
                 System.out.println(grA);
                 System.out.println(grB);
                 System.out.println(grc);
@@ -448,46 +551,62 @@ public class Scenario{
             System.out.println("\n- Méthode ajouterEtudiant() :");
                 grA.ajouterEtudiant(u1);//Should add a student
                 grc.ajouterEtudiant(u2);//Should not add a student
+                System.out.println("Test cas normal (on ajoute Lohan au groupe A): ");
                 System.out.println(grA.getEtudiants());
+                System.out.println("Test cas erreur : ");
                 System.out.println(grc.getEtudiants());
 
             System.out.println("\n- Méthode ajouterModule() :");
                 grA.ajouterModule(m1);//Should add a module
                 grc.ajouterModule(m2);//Should not add a module
+                System.out.println("Test cas normal (on ajoute le module dev au groupe A): ");
                 System.out.println(grA.getModulesSuivis());
+                System.out.println("Test cas erreur : ");
                 System.out.println(grc.getModulesSuivis());
 
             System.out.println("\n- Méthode equals() :");
+                System.out.println("Test cas normal (grA et grc ont des noms differents, donc false) : ");
                 System.out.println(grA.equals(grc));// Should return false
+                System.out.println("Test cas normal (grc et grc sont les memes, true) : ");
                 System.out.println(grc.equals(grc));// Should return true
+                System.out.println("Test cas normal (grA et grB ont des noms differents, donc false) : ");
                 System.out.println(grc.equals(grB));// Should return false
 
             System.out.println("\n- Méthode setNom() :");
                 grA.setNom("");//Should not change the name
                 grA.setNom("G");//Should change the name to G
                 grc.setNom(null);//Should not change the name
+                System.out.println("Test cas normal (on change le nom du groupe A en G): ");
                 System.out.println(grA.getNom());
+                System.out.println("Test cas erreur (on essaye de changer groupe C par une chaine vide): ");
                 System.out.println(grc.getNom());
+                
                 grA.setNom("A");
 
             System.out.println("\n- Méthode setPromotion() :");
                 grA.setPromotion(p2);//Should not change the promotion
                 grc.setPromotion(p1);//Should change the promotion to BUT1
+                System.out.println("Test cas normal (on change la promo du groupe C en BUT1): ");
                 System.out.println(grA.getPromotion());
+                System.out.println("Test cas erreur (on tente d echanger la promo du groupe A en une promo null): ");
                 System.out.println(grc.getPromotion());
                 grc.setPromotion(BUT126);
 
             System.out.println("\n- Méthode setModulesSuivis() :");
                 grA.setModulesSuivis(listM);//Should change list of module
                 grc.setModulesSuivis(listMarchePas);//Should not change list of module
+                System.out.println("Test cas normal (on change la liste des modules du groupe A): ");
                 System.out.println(grA.getModulesSuivis());
+                System.out.println("Test cas erreur (on tente d echanger la liste des modules du groupe C en une liste null): ");
                 System.out.println(grc.getModulesSuivis());
 
 
             System.out.println("\n- Méthode setEtudiants() :");
                 grA.setEtudiants(listE);//Should change list of student
                 grc.setEtudiants(listEBenNon);//Should not change list of student
+                System.out.println("Test cas normal (on change la liste des etudiants du groupe A): ");
                 System.out.println(grA.getEtudiants());
+                System.out.println("Test cas erreur (on tente d echanger la liste des etudiants du groupe C en une liste null): ");
                 System.out.println(grc.getEtudiants());
 
 
@@ -496,17 +615,19 @@ public class Scenario{
         System.out.println("\n----- Module : -----");
 
             System.out.println("\n- Méthode toString() :");
+                System.out.println("Affichage des informations du Module m1 :");
                 System.out.println(m1);
+                System.out.println("Affichage des informations du Module m2 :");
                 System.out.println(m2);
 
             System.out.println("\n- Getters :");
-                System.out.println(m1.getCode()); // Should return R2.01
-                System.out.println(m1.getIntitule()); // Should return Développement Orienté Objets
-                System.out.println(m1.getType()); // Should return RESSOURCE
-                System.out.println(m1.getListeEval()); // Should return []
-                System.out.println(m1.getResponsables()); // Should return []
-                System.out.println(m1.getPromo()); // Should print the Promotion's toString()
-                System.out.println(m1.getSeances()); // Should print []
+                System.out.println("Code du module : " + m1.getCode()); // Should return R2.01
+                System.out.println("Intitule du module : " + m1.getIntitule()); // Should return Développement Orienté Objets
+                System.out.println("Type du module : " + m1.getType()); // Should return RESSOURCE
+                System.out.println("Liste d'évaluations : " + m1.getListeEval()); // Should return []
+                System.out.println("Responsables du module : " + m1.getResponsables()); // Should return []
+                System.out.println("Promotion du module : " + m1.getPromo()); // Should print the Promotion's toString()
+                System.out.println("Liste de séances : " + m1.getSeances()); // Should print []
 
             System.out.println("\n- Setters :");
                 Seance s11 = new Seance(new Date(), LocalTime.now(), LocalTime.now(), m1, grc);
@@ -517,60 +638,85 @@ public class Scenario{
                 listSeances = new ArrayList<>();
                 listSeances.add(s1);
 
+                System.out.println("Modification du code de m1...");
                 m1.setCode("S2.02");
                 m1.setCode(null); // Prints an error message
+                System.out.println("Modification de l'intitulé de m1...");
                 m1.setIntitule("PRNG");
                 m1.setIntitule(null); // Prints an error message
+                System.out.println("Modification du type de m1...");
                 m1.setType(EnumModule.SAE);
                 m1.setType(null); // Prints an error message
+                System.out.println("Modification de la liste d'Evaluations de m1...");
                 m1.setListeEval(listEvals);
                 m1.setListeEval(null); // Prints an error message
+                System.out.println("Modification des resposables de m1...");
                 m1.setResponsables(listResp);
                 m1.setResponsables(null); // Prints an error message
+                System.out.println("Modification de la Promotion de m1...");
                 m1.setPromotion(BUT126);
                 m1.setPromotion(null); // Prints an error message
+                System.out.println("Modification de la liste de Seances de m1...");
                 m1.setSeances(listSeances);
                 m1.setSeances(null); // Prints an error message
+
+                System.out.println("Après les modifications : ");
                 System.out.println(m1); // Checking changes
 
             System.out.println("\n- Méthode ajouterSeance() :");
                 grc.ajouterModule(m1);
                 grZ = new GroupeTD("Groupe Z", BUT326);
+                System.out.println("Ajout d'une Séance à la liste de m1...");
                 m1.ajouterSeance(new Date(), LocalTime.now(), LocalTime.now(), grc); // Should work fine
                 m1.ajouterSeance(new Date(), LocalTime.now(), LocalTime.now(), grZ); // Prints an error message
+                System.out.println("Vérification : ");
                 System.out.println(m1.getSeances()); // Should print s4
 
             System.out.println("\n- Méthode ajouterResponsable() :");
+                System.out.println("Ajout de Lucie Naert en tant que responsable de m1...");
                 m1.ajouterResponsable(ln);
                 m1.ajouterResponsable(ln); // Doing it twice won't work
                 m1.ajouterResponsable(null); // Prints an error message
+                System.out.println("Vérification : ");
                 System.out.println(m1.getResponsables());
 
             System.out.println("\n- Méthode retirerResponsable() :");
+                System.out.println("Suppression de Lucie Naert de la liste de responsables...");
                 m1.retirerResponsable(ln);
                 m1.retirerResponsable(ln); // Won't work, as this teacher isn't in the list anymore
                 m1.retirerResponsable(null); // Prints an error message
+                System.out.println("Vérification : ");
                 System.out.println(m1.getResponsables());
 
             System.out.println("\n- Méthode ajouterEvaluation() :");
+                System.out.println("Ajout d'une Evaluation dans la liste de m1...");
                 m1.ajouterEvaluation(CT);
                 m1.ajouterEvaluation(CT); // Doing it twice won't work
                 m1.ajouterEvaluation(null); // Prints an error message
+                System.out.println("Vérification : ");
                 System.out.println(m1.getListeEval());
 
             System.out.println("\n- Méthode retirerEvaluation() :");
+                System.out.println("Suppression de l'Evaluation de la liste...");
                 m1.retirerEvaluation(CT);
                 m1.retirerEvaluation(CT); // Won't work, as this evaluation isn't in the list anymore
                 m1.retirerEvaluation(null); // Prints an error message
+                System.out.println("Vérification : ");
                 System.out.println(m1.getListeEval());
 
             System.out.println("\n- Méthode calculerMoyenne() :");
+                System.out.println("Calcul de la moyennne de m1...");
+                System.out.println("m1 possède une Evaluation, dont 2 notes : 3/20 et 14/20.");
                 System.out.println(m1.calculerMoyenne()); // Should print 8.5 (m1's Evaluation(TPnote) has two grades : 3 and 14.)
 
             System.out.println("\n- Méthode chercherModuleParCode()");
+                System.out.println("Affichage de la liste de Modules :");
                 System.out.println(listM);
+                System.out.println("Recherche d'un Module dans la liste...");
                 Module rech1 = Module.chercherModuleParCode("R2.03", listM);
+                System.out.println("Affichage du module trouvé :");
                 System.out.println(rech1);
+                System.out.println("Recherche d'une chaine de caractères incorrecte...");
                 Module rech2 = Module.chercherModuleParCode("Truc", listM); // Prints an error message
                 Module.chercherModuleParCode(null, listM); // Prints an error message
                 Module.chercherModuleParCode("S2.02", null); // Prints an error message
@@ -579,45 +725,71 @@ public class Scenario{
         System.out.println("\n----- Seance : -----");
 
             System.out.println("\n- Méthode toString() :");
+                System.out.println("Affichage des informations de la Seance s1 :");
                 System.out.println(s1);
+                System.out.println("Affichage des informations de la Seance s2 :");
                 System.out.println(s2);
 
             System.out.println("\n- Méthode ajouterPresence() :");
+                System.out.println("Tentative de mettre une présence null à l'Etudiant eM -> Ne fonctionne pas.");
                 s1.ajouterPresence(eM, null);//Should not change presence status for eM
+                System.out.println("On met l'Etudiant u1 absent sur la Seance s1...");
                 s3.ajouterPresence(u1, EnumPresence.ABSENT);//Should change presence status for u1
+                System.out.println("On met l'Etudiant eF présent sur la Seance s1...");
                 s1.ajouterPresence(eF, EnumPresence.PRESENT);//Should change presence status for eF
-                System.out.println(eM);
-                System.out.println(u1);
-                System.out.println(eF);
+                System.out.println("Vérification :");
+                System.out.println("Etudiant eM : " + eM.seancesSuivies());
+                System.out.println("Etudiant u1 : " + u1.seancesSuivies());
+                System.out.println("Etudiant eF : " + eF.seancesSuivies());
 
             System.out.println("\n- Méthode setDate() :");
+                System.out.println("Tentative de modifier la date de s3...");
                 s3.setDate(d2);//Should not change the date
+                System.out.println("Vérification : ");
                 System.out.println(s3.getDate());
+                System.out.println("Changement de la date de s1...");
                 s1.setDate(d1);//Should change the date
+                System.out.println("Vérification : ");
                 System.out.println(s1.getDate());
 
             System.out.println("\n- Méthode setHeureDeb() :");
+                System.out.println("Tentative de modifier l'heure de début de s1...");
                 s1.setHeureDeb(hD2);//Should not change the start time of the session
+                System.out.println("Vérification : ");
                 System.out.println(s1.getHeureDeb());
+                System.out.println("Changement de l'heure de début de s3...");
                 s3.setHeureDeb(hD1);//Should change the start time of the session
+                System.out.println("Vérification : ");
                 System.out.println(s3.getHeureDeb());
 
             System.out.println("\n- Méthode setHeureFin() :");
+                System.out.println("Tentative de modifier l'heure de fin de s3...");
                 s3.setHeureFin(hF2);//Should not change the end time of the session
+                System.out.println("Vérification : ");
                 System.out.println(s3.getHeureFin());
+                System.out.println("Changement de l'heure de fin de s1...");
                 s1.setHeureFin(hF1);//Should change the start time of the session
+                System.out.println("Vérification : ");
                 System.out.println(s1.getHeureFin());
 
             System.out.println("\n- Méthode setModule() :");
+                System.out.println("Tentative de modifier le Module de s1...");
                 s1.setModule(m2);//Should not change the module
+                System.out.println("Vérification : ");
                 System.out.println(s1.getModule());
+                System.out.println("Changement du Module de s3");
                 s3.setModule(m4);//Should change the module
+                System.out.println("Vérification : ");
                 System.out.println(s3.getModule());
 
             System.out.println("\n- Méthode setGroupe() :");
+                System.out.println("Tentative de modifier le Groupe TD de s3...");
                 s3.setGroupe(grB);//Should not change the group
+                System.out.println("Vérification : ");
                 System.out.println(s3.getGroupe());
+                System.out.println("Changement du Groupe TD de s1");
                 s1.setGroupe(grc);//Should change the group
+                System.out.println("Vérification : ");
                 System.out.println(s1.getGroupe());
 
     }
