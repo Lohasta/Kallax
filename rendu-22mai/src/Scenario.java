@@ -65,9 +65,10 @@ public class Scenario{
         System.out.println("\nEtudiant : ");
         try{
             u1 = new Etudiant("Lohan", "Kerrault", "lk@ubs.fr", "1234lol", 1);
-            u2 = new Etudiant(null, null, null, null, 0);
             eF = new Etudiant("Fabien", "Madotto", "fm@ubs.fr", "5678mdr", 67);
             eM = new Etudiant("Maël", "Leroux", "ml@ubs.fr", "LeagueOfLegendsForever", 01141010114);
+            u2 = new Etudiant(null, null, null, null, 0);
+            
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -112,9 +113,9 @@ public class Scenario{
         System.out.println("\nModule :");
         try{
             m1 = new Module("R2.01", "Développement Orienté Objets", EnumModule.RESSOURCE, p1);
-            m2 = new Module(null, null, null, null);
             m3 = new Module("R2.02", "IHM", EnumModule.RESSOURCE, p1);
-            m4 = new Module("R2.03", "Qualité de développement", EnumModule.RESSOURCE, p2);
+            m4 = new Module("R2.03", "Qualité de développement", EnumModule.RESSOURCE, p1);
+            m2 = new Module(null, null, null, null);
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -567,11 +568,12 @@ public class Scenario{
                 System.out.println(m1.calculerMoyenne()); // Should print 8.5 (m1's Evaluation(TPnote) has two grades : 3 and 14.)
 
             System.out.println("\n- Méthode chercherModuleParCode()");
-                Module rech1 = m1.chercherModuleParCode("R2.03", listM);
+                System.out.println(listM);
+                Module rech1 = Module.chercherModuleParCode("R2.03", listM);
                 System.out.println(rech1);
-                Module rech2 = m1.chercherModuleParCode("Truc", listM); // Prints an error message
-                m1.chercherModuleParCode(null, listM); // Prints an error message
-                m1.chercherModuleParCode("S2.02", null); // Prints an error message
+                Module rech2 = Module.chercherModuleParCode("Truc", listM); // Prints an error message
+                Module.chercherModuleParCode(null, listM); // Prints an error message
+                Module.chercherModuleParCode("S2.02", null); // Prints an error message
 
 
         System.out.println("\n----- Seance : -----");

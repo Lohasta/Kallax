@@ -50,9 +50,13 @@ public class GroupeTD {
      * @param e the student to add
      */
     public void ajouterEtudiant(Etudiant e){
-        if(this.etudiants.size() <= 28 && this.etudiants != null){
-            this.etudiants.add(e);
+        if (e != null) {
+            if(this.etudiants.size() <= 28 && this.etudiants != null){
+                this.etudiants.add(e);
+                e.setGroupe(this);
+            }
         }
+        
     }
 
     /**

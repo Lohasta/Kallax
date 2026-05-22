@@ -74,9 +74,10 @@ public class Seance {
      * @param pres presence status of the student
      */
     public void ajouterPresence(Etudiant e, EnumPresence pres){
-
-        if (e.getGroupe().equals(groupe)){
-            appel.put(e, pres);
+        if(e != null && pres != null && e.getGroupe() != null){
+            if (e.getGroupe().equals(groupe)){
+                appel.put(e, pres);
+            }
         }
     }
 
