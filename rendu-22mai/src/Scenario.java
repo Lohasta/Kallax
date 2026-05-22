@@ -70,7 +70,7 @@ public class Scenario{
             eM = new Etudiant("Maël", "Leroux", "ml@ubs.fr", "LeagueOfLegendsForever", 01141010114);
             System.out.println("Création de 1 Etudiant 1 incorrect, erreurs attendue");
             u2 = new Etudiant(null, null, null, null, 0);
-            
+
         } catch(Exception e){
             System.out.println(e.getMessage());
         }
@@ -202,7 +202,7 @@ public class Scenario{
         seances.add(s3);
         R202.setSeances(seances);
         BUT126.ajouterGroupe(grc);
-        
+
 
 
 
@@ -339,13 +339,13 @@ public class Scenario{
                 u3.saisirNote(eval, u1, 14); // Should add an entry to the notes HashMap attribute of the Evaluation for the student with the specified note
                 System.out.println("Affiche la note de l'étudiant u1 a l'évaluation\n");
                 System.out.println(eval.getNote(u1));
-        
+
             System.out.println("\n- Méthode calculerMoyenne() :");
                 System.out.println("Doit afficher 14 parce qu'il n'y a qu'un seul étudiant ayant une note\n");
                 System.out.println(u3.calculerMoyenne(R202)); // Should display 14 since there is only one student that has a grade
                 u3.saisirNote(eval, new Etudiant("Temp", "Temp", "bonsoir", "salut", 420), 12);
                 System.out.println("Doit afficher 13\n");
-                System.out.println(u3.calculerMoyenne(R202)); // Should display 13 
+                System.out.println(u3.calculerMoyenne(R202)); // Should display 13
 
             System.out.println("\n- Méthode ajouterSeance() :");
                 System.out.println("Doit afficher 1 séance\n");
@@ -580,7 +580,7 @@ public class Scenario{
                 System.out.println(grA.getNom());
                 System.out.println("Test cas erreur (on essaye de changer groupe C par une chaine vide): ");
                 System.out.println(grc.getNom());
-                
+
                 grA.setNom("A");
 
             System.out.println("\n- Méthode setPromotion() :");
@@ -638,26 +638,33 @@ public class Scenario{
                 listSeances = new ArrayList<>();
                 listSeances.add(s1);
 
-                System.out.println("Modification du code de m1...");
+                System.out.println("Modification du code de m1 avec un code correct...");
                 m1.setCode("S2.02");
+                System.out.println("Message d'erreur attendu car le code est null :");
                 m1.setCode(null); // Prints an error message
-                System.out.println("Modification de l'intitulé de m1...");
+                System.out.println("Modification de l'intitulé de m1 avec un intitulé correct...");
                 m1.setIntitule("PRNG");
+                System.out.println("Message d'erreur attendu car l'intitulé est null :");
                 m1.setIntitule(null); // Prints an error message
-                System.out.println("Modification du type de m1...");
+                System.out.println("Modification du type de m1 avec un type correct...");
                 m1.setType(EnumModule.SAE);
+                System.out.println("Message d'erreur attendu car l'EnumModule est null :");
                 m1.setType(null); // Prints an error message
-                System.out.println("Modification de la liste d'Evaluations de m1...");
+                System.out.println("Modification de la liste d'Evaluations de m1 avec une liste correcte...");
                 m1.setListeEval(listEvals);
+                System.out.println("Message d'erreur attendu car la liste d'Evaluations est null :");
                 m1.setListeEval(null); // Prints an error message
-                System.out.println("Modification des resposables de m1...");
+                System.out.println("Modification des resposables de m1 avec une liste correcte...");
                 m1.setResponsables(listResp);
+                System.out.println("Message d'erreur attendu car la liste de responsables est null :");
                 m1.setResponsables(null); // Prints an error message
-                System.out.println("Modification de la Promotion de m1...");
+                System.out.println("Modification de la Promotion de m1 avec une Promotion correcte...");
                 m1.setPromotion(BUT126);
+                System.out.println("Message d'erreur attendu car la Promotion est null :");
                 m1.setPromotion(null); // Prints an error message
-                System.out.println("Modification de la liste de Seances de m1...");
+                System.out.println("Modification de la liste de Seances de m1 avec une liste correcte...");
                 m1.setSeances(listSeances);
+                System.out.println("Message d'erreur attendu car la liste de Seances est null :");
                 m1.setSeances(null); // Prints an error message
 
                 System.out.println("Après les modifications : ");
@@ -666,8 +673,9 @@ public class Scenario{
             System.out.println("\n- Méthode ajouterSeance() :");
                 grc.ajouterModule(m1);
                 grZ = new GroupeTD("Groupe Z", BUT326);
-                System.out.println("Ajout d'une Séance à la liste de m1...");
+                System.out.println("Ajout d'une Séance correcte à la liste de m1...");
                 m1.ajouterSeance(new Date(), LocalTime.now(), LocalTime.now(), grc); // Should work fine
+                System.out.println("Message d'erreur attendu car le GroupeTD n'a pas cours avec ce Module :");
                 m1.ajouterSeance(new Date(), LocalTime.now(), LocalTime.now(), grZ); // Prints an error message
                 System.out.println("Vérification : ");
                 System.out.println(m1.getSeances()); // Should print s4
@@ -676,6 +684,7 @@ public class Scenario{
                 System.out.println("Ajout de Lucie Naert en tant que responsable de m1...");
                 m1.ajouterResponsable(ln);
                 m1.ajouterResponsable(ln); // Doing it twice won't work
+                System.out.println("Message d'erreur attendu car l'Enseignant est null :");
                 m1.ajouterResponsable(null); // Prints an error message
                 System.out.println("Vérification : ");
                 System.out.println(m1.getResponsables());
@@ -684,14 +693,16 @@ public class Scenario{
                 System.out.println("Suppression de Lucie Naert de la liste de responsables...");
                 m1.retirerResponsable(ln);
                 m1.retirerResponsable(ln); // Won't work, as this teacher isn't in the list anymore
+                System.out.println("Message d'erreur attendu car l'Enseignant est null :");
                 m1.retirerResponsable(null); // Prints an error message
                 System.out.println("Vérification : ");
                 System.out.println(m1.getResponsables());
 
             System.out.println("\n- Méthode ajouterEvaluation() :");
-                System.out.println("Ajout d'une Evaluation dans la liste de m1...");
+                System.out.println("Ajout d'une Evaluation correcte dans la liste de m1...");
                 m1.ajouterEvaluation(CT);
                 m1.ajouterEvaluation(CT); // Doing it twice won't work
+                System.out.println("Message d'erreur attendu car l'Evaluation est null :");
                 m1.ajouterEvaluation(null); // Prints an error message
                 System.out.println("Vérification : ");
                 System.out.println(m1.getListeEval());
@@ -700,6 +711,7 @@ public class Scenario{
                 System.out.println("Suppression de l'Evaluation de la liste...");
                 m1.retirerEvaluation(CT);
                 m1.retirerEvaluation(CT); // Won't work, as this evaluation isn't in the list anymore
+                System.out.println("Message d'erreur attendu car l'Evaluation est null :");
                 m1.retirerEvaluation(null); // Prints an error message
                 System.out.println("Vérification : ");
                 System.out.println(m1.getListeEval());
@@ -707,6 +719,7 @@ public class Scenario{
             System.out.println("\n- Méthode calculerMoyenne() :");
                 System.out.println("Calcul de la moyennne de m1...");
                 System.out.println("m1 possède une Evaluation, dont 2 notes : 3/20 et 14/20.");
+                System.out.println("Sa moyenne sera donc de 8.5/20");
                 System.out.println(m1.calculerMoyenne()); // Should print 8.5 (m1's Evaluation(TPnote) has two grades : 3 and 14.)
 
             System.out.println("\n- Méthode chercherModuleParCode()");
@@ -718,7 +731,9 @@ public class Scenario{
                 System.out.println(rech1);
                 System.out.println("Recherche d'une chaine de caractères incorrecte...");
                 Module rech2 = Module.chercherModuleParCode("Truc", listM); // Prints an error message
+                System.out.println("Message d'erreur attendu car le Module est null :");
                 Module.chercherModuleParCode(null, listM); // Prints an error message
+                System.out.println("Message d'erreur attendu car la liste de Modules est null :");
                 Module.chercherModuleParCode("S2.02", null); // Prints an error message
 
 
@@ -743,51 +758,61 @@ public class Scenario{
                 System.out.println("Etudiant eF : " + eF.seancesSuivies());
 
             System.out.println("\n- Méthode setDate() :");
-                System.out.println("Tentative de modifier la date de s3...");
+                System.out.println("Avant la modification :");
+                System.out.println(s1.getDate());
+                System.out.println("Tentative de modifier la date de s3 avec une date incorrecte...");
                 s3.setDate(d2);//Should not change the date
                 System.out.println("Vérification : ");
                 System.out.println(s3.getDate());
-                System.out.println("Changement de la date de s1...");
+                System.out.println("Changement de la date de s1 avec une date correcte...");
                 s1.setDate(d1);//Should change the date
                 System.out.println("Vérification : ");
                 System.out.println(s1.getDate());
 
             System.out.println("\n- Méthode setHeureDeb() :");
-                System.out.println("Tentative de modifier l'heure de début de s1...");
+                System.out.println("Avant la modification :");
+                System.out.println(s1.getHeureDeb());
+                System.out.println("Tentative de modifier l'heure de début de s1 avec une heure de début incorrecte...");
                 s1.setHeureDeb(hD2);//Should not change the start time of the session
                 System.out.println("Vérification : ");
                 System.out.println(s1.getHeureDeb());
-                System.out.println("Changement de l'heure de début de s3...");
+                System.out.println("Changement de l'heure de début de s3 avec une heure de début correcte...");
                 s3.setHeureDeb(hD1);//Should change the start time of the session
                 System.out.println("Vérification : ");
                 System.out.println(s3.getHeureDeb());
 
             System.out.println("\n- Méthode setHeureFin() :");
-                System.out.println("Tentative de modifier l'heure de fin de s3...");
+                System.out.println("Avant la modification :");
+                System.out.println(s1.getHeureFin());
+                System.out.println("Tentative de modifier l'heure de fin de s3 avec une heure de fin incorrecte...");
                 s3.setHeureFin(hF2);//Should not change the end time of the session
                 System.out.println("Vérification : ");
                 System.out.println(s3.getHeureFin());
-                System.out.println("Changement de l'heure de fin de s1...");
+                System.out.println("Changement de l'heure de fin de s1 avec une heure de fin correcte...");
                 s1.setHeureFin(hF1);//Should change the start time of the session
                 System.out.println("Vérification : ");
                 System.out.println(s1.getHeureFin());
 
             System.out.println("\n- Méthode setModule() :");
-                System.out.println("Tentative de modifier le Module de s1...");
+                System.out.println("Avant la modification :");
+                System.out.println(s1.getModule());
+                System.out.println("Tentative de modifier le Module de s1 avec un Module incorrect...");
                 s1.setModule(m2);//Should not change the module
                 System.out.println("Vérification : ");
                 System.out.println(s1.getModule());
-                System.out.println("Changement du Module de s3");
+                System.out.println("Changement du Module de s3 avec un module correct");
                 s3.setModule(m4);//Should change the module
                 System.out.println("Vérification : ");
                 System.out.println(s3.getModule());
 
             System.out.println("\n- Méthode setGroupe() :");
-                System.out.println("Tentative de modifier le Groupe TD de s3...");
+                System.out.println("Avant la modification :");
+                System.out.println(s1.getGroupe());
+                System.out.println("Tentative de modifier le Groupe TD de s3 avec un GroupeTD incorrect");
                 s3.setGroupe(grB);//Should not change the group
                 System.out.println("Vérification : ");
                 System.out.println(s3.getGroupe());
-                System.out.println("Changement du Groupe TD de s1");
+                System.out.println("Changement du Groupe TD de s1 avec un GroupeTD correct...");
                 s1.setGroupe(grc);//Should change the group
                 System.out.println("Vérification : ");
                 System.out.println(s1.getGroupe());
