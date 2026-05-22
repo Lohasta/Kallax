@@ -77,6 +77,9 @@ public class GroupeTD {
                 res = true;
             }
         }
+        else{
+            System.out.println("Groupe incorrect");
+        }
         return res;
     }
 
@@ -97,6 +100,9 @@ public class GroupeTD {
        if (n!=null && n!=""){
             this.nom = n;
         }
+        else{
+            System.out.println("Nom incorrect");
+        }
     }
 
     /**
@@ -114,6 +120,9 @@ public class GroupeTD {
     public void setPromotion(Promotion promo){
         if(promo!=null){
             this.promotion = promo;
+        }
+        else{
+            System.out.println("Promotion incorrecte");
         }
     }
 
@@ -133,6 +142,9 @@ public class GroupeTD {
         if(m != null){
             this.modulesSuivis = m;
         }
+        else{
+            System.out.println("ModulesSuivis incorrect");
+        }
     }
 
     /**
@@ -150,6 +162,9 @@ public class GroupeTD {
     public void setEtudiants(ArrayList<Etudiant> e){
         if(e != null && e.size() <= 28){
             this.etudiants = e;
+        }
+        else{
+            System.out.println("Etudiants incorrect");
         }
     }
 }

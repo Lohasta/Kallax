@@ -39,6 +39,12 @@ public class Scenario{
         ArrayList<Module> listMarchePas = null;
         ArrayList<Etudiant> listE = null;
         ArrayList<Etudiant> listEBenNon = null;
+        Date d1 = null;
+        Date d2 = null;
+        LocalTime hD1 = null;
+        LocalTime hD2 = null;
+        LocalTime hF1 = null;
+        LocalTime hF2 = null;
 
 
         System.out.println("*** Scénario de tests de l'application Scodoc : ***");
@@ -167,6 +173,9 @@ public class Scenario{
         seances.add(s3);
         R202.setSeance(seances);
         BUT126.ajouterGroupe(grc);
+        d1 = new Date();
+        hD1 = LocalTime.of(15, 00);
+        hF1 = LocalTime.of(16, 30);
 
 
 
@@ -394,12 +403,16 @@ public class Scenario{
                 System.out.println(grc);
 
             System.out.println("\n- Méthode ajouterEtudiant() :");
-                grA.ajouterEtudiant(u1);
-                grA.ajouterEtudiant(u2);
+                grA.ajouterEtudiant(u1);//Should add a student
+                grc.ajouterEtudiant(u2);//Should not add a student
+                System.out.println(grA.getEtudiants());
+                System.out.println(grc.getEtudiants());
 
             System.out.println("\n- Méthode ajouterModule() :");
-                grA.ajouterModule(m1);
-                grA.ajouterModule(m2);
+                grA.ajouterModule(m1);//Should add a module
+                grc.ajouterModule(m2);//Should not add a module
+                System.out.println(grA.getModulesSuivis());
+                System.out.println(grc.getModulesSuivis());
 
             System.out.println("\n- Méthode equals() :");
                 System.out.println(grA.equals(grc));// Should return false
@@ -410,47 +423,79 @@ public class Scenario{
                 grA.setNom("");//Should not change the name
                 grA.setNom("G");//Should change the name to G
                 grc.setNom(null);//Should not change the name
-                System.out.println(grA);
-                System.out.println(grc);
-                grA.setNom("A");
-
-            System.out.println("\n- Méthode getNom() :");
                 System.out.println(grA.getNom());
                 System.out.println(grc.getNom());
+                grA.setNom("A");
 
             System.out.println("\n- Méthode setPromotion() :");
                 grA.setPromotion(p2);//Should not change the promotion
                 grc.setPromotion(p1);//Should change the promotion to BUT1
-                System.out.println(grA);
-                System.out.println(grc);
-                grc.setPromotion(BUT126);
-
-            System.out.println("\n- Méthode getPromotion() :");
                 System.out.println(grA.getPromotion());
                 System.out.println(grc.getPromotion());
+                grc.setPromotion(BUT126);
 
             System.out.println("\n- Méthode setModulesSuivis() :");
                 grA.setModulesSuivis(listM);//Should change list of module
                 grc.setModulesSuivis(listMarchePas);//Should not change list of module
-                System.out.println(grA);
-                System.out.println(grc);
+                System.out.println(grA.getModulesSuivis());
+                System.out.println(grc.getModulesSuivis());
 
-            System.out.println("\n- Méthode getModulesSuivis() :");
-                System.out.println(grA.getModulesSuivis());// Should get 3 Modules
-                System.out.println(grc.getModulesSuivis());// Sould not get Modules
 
             System.out.println("\n- Méthode setEtudiants() :");
                 grA.setEtudiants(listE);//Should change list of student
                 grc.setEtudiants(listEBenNon);//Should not change list of student
-                System.out.println(grA);
-                System.out.println(grc);
+                System.out.println(grA.getEtudiants());
+                System.out.println(grc.getEtudiants());
 
-            System.out.println("\n- Méthode getEtudiants() :");
-                System.out.println(grA.getModulesSuivis());// Should get 3 students
-                System.out.println(grc.getModulesSuivis());// Should not get student
 
 
         System.out.println("\n----- Module : -----");
+
+
+        System.out.println("\n----- Seance : -----");
+
+            System.out.println("\n- Méthode toString() :");
+                System.out.println(s1);
+                System.out.println(s2);
+
+            System.out.println("\n- Méthode ajouterPresence() :");
+                s1.ajouterPresence(eM, null);//Should not change presence status for eM
+                s3.ajouterPresence(u1, EnumPresence.ABSENT);//Should change presence status for u1
+                s1.ajouterPresence(eF, EnumPresence.PRESENT);//Should change presence status for eF
+                System.out.println(eM);
+                System.out.println(u1);
+                System.out.println(eF);
+
+            System.out.println("\n- Méthode setDate() :");
+                s3.setDate(d2);//Should not change the date
+                System.out.println(s3.getDate());
+                s1.setDate(d1);//Should change the date
+                System.out.println(s1.getDate());
+            
+            System.out.println("\n- Méthode setHeureDeb() :");
+                s1.setHeureDeb(hD2);//Should not change the start time of the session
+                System.out.println(s1.getHeureDeb());
+                s3.setHeureDeb(hD1);//Should change the start time of the session
+                System.out.println(s3.getHeureDeb());
+
+            System.out.println("\n- Méthode setHeureFin() :");
+                s3.setHeureFin(hF2);//Should not change the end time of the session
+                System.out.println(s3.getHeureFin());
+                s1.setHeureFin(hF1);//Should change the start time of the session
+                System.out.println(s1.getHeureFin());
+            
+            System.out.println("\n- Méthode setModule() :");
+                s1.setModule(m2);//Should not change the module
+                System.out.println(s1.getModule());
+                s3.setModule(m4);//Should change the module
+                System.out.println(s3.getModule());
+            
+            System.out.println("\n- Méthode setGroupe() :");
+                s3.setGroupe(grB);//Should not change the group
+                System.out.println(s3.getGroupe());
+                s1.setGroupe(grc);//Should change the group
+                System.out.println(s1.getGroupe());
+
     }
 
 }

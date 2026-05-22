@@ -76,10 +76,10 @@ public class Enseignant extends Utilisateur{
                 if(coeffEval >= 0){
                     while(verif && i<this.modules.size()) {
                         if (this.modules.get(i).getIntitule().equals(codeModule)) {
-                        eval = new Evaluation(typeEval, coeffEval, this.modules.get(i));
-                        this.modules.get(i).ajouterEvaluation(eval);
-                        verif = true;
-                }
+                            eval = new Evaluation(typeEval, coeffEval, this.modules.get(i));
+                            this.modules.get(i).ajouterEvaluation(eval);
+                            verif = false;
+                        }
                         i++;
                     }
                 }
