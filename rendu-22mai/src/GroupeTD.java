@@ -72,8 +72,10 @@ public class GroupeTD {
      */
     public boolean equals(GroupeTD grp){
         boolean res = false;
-        if(this.nom == grp.getNom() && this.promotion == grp.getPromotion()){
-            res = true;
+        if(grp != null){
+            if(this.nom == grp.getNom() && this.promotion == grp.getPromotion()){
+                res = true;
+            }
         }
         return res;
     }

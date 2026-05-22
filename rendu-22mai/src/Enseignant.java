@@ -75,11 +75,11 @@ public class Enseignant extends Utilisateur{
             if(typeEval != null && typeEval != ""){
                 if(coeffEval >= 0){
                     while(verif && i<this.modules.size()) {
-                        if(this.modules.get(i).getIntitule().equals(codeModule)){
-                            eval=new Evaluation(typeEval, coeffEval, this.modules.get(i));
-                            this.modules.get(i).ajouterEvaluation(eval);
-                            verif = false;
-                        }
+                        if (this.modules.get(i).getIntitule().equals(codeModule)) {
+                        eval = new Evaluation(typeEval, coeffEval, this.modules.get(i));
+                        this.modules.get(i).ajouterEvaluation(eval);
+                        verif = true;
+                }
                         i++;
                     }
                 }
@@ -113,14 +113,14 @@ public class Enseignant extends Utilisateur{
                     if(this.modules.get(i).getIntitule().equals(codeModule)){
                         int j = 0;
                         while(verif && j<this.modules.get(i).getListeEval().size()){
-                            if(this.modules.get(i).getListeEval().get(j).getIdent().equals(codeModule)){
+                            if(this.modules.get(i).getListeEval().get(j).getIdent().equals(identEval)){
                                 eval=this.modules.get(i).getListeEval().get(j);
                                 verif = false;
                             }
                             j++;
                         }
-                        i++;
                     }
+                    i++;
                 }
             }
             else{
@@ -144,7 +144,7 @@ public class Enseignant extends Utilisateur{
             while(verif && k<this.modules.size()){
                 if(this.modules.get(k).getResponsables().contains(this)){
                     int i = 0;
-                    while(verif){
+                    while(verif && i<this.modules.get(k).getListeEval().size()){
                         if(this.modules.get(k).getListeEval().get(i)==e){
                             this.modules.get(k).retirerEvaluation(e);
                             verif = false;
