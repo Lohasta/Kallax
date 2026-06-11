@@ -1,19 +1,20 @@
+package model;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-
-import entity.DirecteurEtudes;
-import entity.Enseignant;
-import entity.EnumModule;
-import entity.EnumPresence;
-import entity.EnumPromo;
-import entity.Etudiant;
-import entity.Evaluation;
-import entity.GroupeTD;
-import entity.Module;
-import entity.Promotion;
-import entity.Seance;
+import model.entity.DirecteurEtudes;
+import model.entity.Enseignant;
+import model.entity.EnumModule;
+import model.entity.EnumPresence;
+import model.entity.EnumPromo;
+import model.entity.Etudiant;
+import model.entity.Evaluation;
+import model.entity.GroupeTD;
+import model.entity.Module;
+import model.entity.Promotion;
+import model.entity.Seance;
 
 /**
  * Testing class for each class of the app.
