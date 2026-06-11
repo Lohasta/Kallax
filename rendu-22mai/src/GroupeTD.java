@@ -56,7 +56,7 @@ public class GroupeTD {
                 e.setGroupe(this);
             }
         }
-        
+
     }
 
     /**
@@ -161,7 +161,7 @@ public class GroupeTD {
 
     /**
      * Set etudiants of currant GroupeTD
-     * @param n etudiants
+     * @param e etudiants
      */
     public void setEtudiants(ArrayList<Etudiant> e){
         if(e != null && e.size() <= 28){
