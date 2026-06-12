@@ -280,13 +280,5 @@ public class StudentController{
             
         }
     }
-
-    public void setEmailCo(String email){
-        this.mailUsr=email;
-        UtilisateurDAO dao= new UtilisateurDAO();
-        String nom = dao.findNomByID(email);
-        nomEtudiant.setText(nom);
-    }
-    
-            
+             
 }
