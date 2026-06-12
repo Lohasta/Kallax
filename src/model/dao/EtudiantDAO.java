@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
-
 import model.entity.Etudiant;
 import model.entity.Promotion;
 
@@ -139,5 +138,23 @@ public class EtudiantDAO extends DAO<Etudiant, Integer> {
             ex.printStackTrace();
             return -1;
         }
+    }
+
+    public int findIDByMail(String mail){
+        try (Connection con = getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT numero FROM Etudiant WHERE userEtud= ?")) {
+            st.setString(1, mail);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    int numEtud = rs.getInt("numero");
+                    return numEtud;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return -1;
     }
 }

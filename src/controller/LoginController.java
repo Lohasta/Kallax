@@ -38,6 +38,8 @@ public class LoginController{
         loginButton.disableProperty().bind(
                 usernameField.textProperty().isEmpty()
                         .or(passwordField.textProperty().isEmpty()));
+        String email= usernameField.getText();
+        model.MailUser.setEmail(email);
     }
 
     @FXML

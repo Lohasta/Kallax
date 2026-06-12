@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
-
 import model.entity.Utilisateur;
 
 public class UtilisateurDAO extends DAO<Utilisateur, String> {
@@ -102,5 +101,26 @@ public class UtilisateurDAO extends DAO<Utilisateur, String> {
             ex.printStackTrace();
             return -1;
         }
+    }
+
+    public String findNomByID(String email) {
+        String res="";
+        try (Connection con = getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT * FROM Utilisateur WHERE email= ?")) {
+            st.setString(1, email);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    String nom = rs.getString("nom");
+                    String prenom = rs.getString("prenom");
+                    res += prenom+" "+nom;
+                    return res;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

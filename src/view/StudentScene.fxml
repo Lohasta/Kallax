@@ -73,16 +73,44 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT">
                                        <children>
-                                          <Label text="UE 1.1" textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                          <Label fx:id="ueNb1" text="UE 1.1" textFill="#333333"><font><Font size="18.0" /></font></Label>
                                           <Region HBox.hgrow="ALWAYS" />
-                                          <Label text="Moyenne : " textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                          <Label fx:id="moyUE1" text="Moyenne : " textFill="#333333"><font><Font size="18.0" /></font></Label>
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT">
                                        <children>
-                                          <Label text="UE 1.2" textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                          <Label fx:id="ueNb2" text="UE 1.2" textFill="#333333"><font><Font size="18.0" /></font></Label>
                                           <Region HBox.hgrow="ALWAYS" />
-                                          <Label text="Moyenne : " textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                          <Label fx:id="moyUE2" text="Moyenne : " textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label fx:id="ueNb3" text="UE 1.3" textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="moyUE3" text="Moyenne : " textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label fx:id="ueNb4" text="UE 1.4" textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="moyUE4" text="Moyenne : " textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label fx:id="ueNb5" text="UE 1.5" textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="moyUE5" text="Moyenne : " textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT">
+                                       <children>
+                                          <Label fx:id="ueNb6" text="UE 1.6" textFill="#333333"><font><Font size="18.0" /></font></Label>
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Label fx:id="moyUE6" text="Moyenne : " textFill="#333333"><font><Font size="18.0" /></font></Label>
                                        </children>
                                     </HBox>
                                     </children>
@@ -92,7 +120,7 @@
 
                               <HBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Voir plus ..." textFill="#555555" />
+                                    <Button fx:id="voirPlusNotes" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Voir plus ..." textFill="#555555" />
                                  </children>
                               </HBox>
                            </children>
@@ -112,13 +140,13 @@
 
                               <VBox spacing="15.0">
                                  <children>
-                                    <Label text="Absences justifiées : " textFill="#333333">
+                                    <Label fx:id="absJust" text="Absences justifiées : " textFill="#333333">
                                        <font><Font size="18.0" /></font>
                                     </Label>
-                                    <Label text="Absences non justifiées : " textFill="#333333">
+                                    <Label fx:id="absNonJust" text="Absences non justifiées : " textFill="#333333">
                                        <font><Font size="18.0" /></font>
                                     </Label>
-                                    <Label text="Nombre de retards : " textFill="#333333">
+                                    <Label fx:id="nbRetards" text="Nombre de retards : " textFill="#333333">
                                        <font><Font size="18.0" /></font>
                                     </Label>
                                  </children>
@@ -128,7 +156,7 @@
 
                               <HBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Voir plus ..." textFill="#555555" />
+                                    <Button fx:id="voirPlusAbsences" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Voir plus ..." textFill="#555555" />
                                  </children>
                               </HBox>
                            </children>
