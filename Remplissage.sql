@@ -45,11 +45,11 @@ INSERT INTO GroupeTD (sigle, promo) VALUES
 -- ETUDIANTS
 -- ========================
 INSERT INTO Etudiant (numero, parcours, userEtud, groupeTD, promo) VALUES
-('E001', NULL, 'alice@example.com', 'A', 'BUT1'),
-('E002', 'B', 'bob@example.com', 'B', 'BUT2'),
-('E003', NULL, 'charlie@example.com', 'D', 'BUT1'),
-('E004', NULL, 'david@example.com', 'B', 'BUT1'),
-('E005', 'B', 'eva@example.com', 'A', 'BUT2');
+(1, NULL, 'alice@example.com', 'A', 'BUT1'),
+(2, 'B', 'bob@example.com', 'B', 'BUT2'),
+(3, NULL, 'charlie@example.com', 'D', 'BUT1'),
+(4, NULL, 'david@example.com', 'B', 'BUT1'),
+(5, 'B', 'eva@example.com', 'A', 'BUT2');
 
 -- ========================
 -- MODULES
