@@ -102,7 +102,7 @@ CREATE TABLE Responsable(
 );
 
 CREATE TABLE Seance (
-    etudiant VARCHAR(50),
+    etudiant INT(50),
     module VARCHAR(10),
     statut ENUM("PRESENT","RETARD","ABSENT"),
     dateSeance DATE,
@@ -127,7 +127,7 @@ CREATE TABLE Evaluation (
 );
 
 CREATE TABLE Note (
-    etudiant VARCHAR(50),
+    etudiant INT(50),
     eval INT,
     valeur DECIMAL(4,2),
     statut ENUM('OK', 'ABS', 'EXC', 'ATT') DEFAULT 'OK',

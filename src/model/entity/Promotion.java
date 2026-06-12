@@ -8,6 +8,9 @@ import java.util.ArrayList;
  * @author Team KALLAX
  */
 public class Promotion{
+
+    private static ArrayList<Promotion> promotions;
+
     private EnumPromo nomPromo;
     private ArrayList<GroupeTD> groupes;
     private ArrayList<Module> modules;
@@ -21,6 +24,53 @@ public class Promotion{
 
         this.groupes = new ArrayList<>();
         this.modules = new ArrayList<>();
+        if (promotions == null) {
+            promotions = new ArrayList<>();
+        }
+        promotions.add(this);
+    }
+
+    public static Promotion getPromotionByName(String name) {
+        if (promotions == null) {
+            promotions = new ArrayList<>();
+        }
+        boolean found = false;
+        int i = 0;
+        Promotion promo = null;
+        while (!found && i < promotions.size()) {
+            promo = promotions.get(i);
+
+            if (promo.getNomPromo().toString().equals(name)) {
+                found = true;
+            }
+            i++;
+        }
+
+        if (!found) {
+            promo = new Promotion(EnumPromo.valueOf(name));
+            promotions.add(promo);
+        }
+        return promo;
+    }
+
+    public GroupeTD getGroupeByName(String name) {
+        boolean found = false;
+        int i = 0;
+        GroupeTD groupe = null;
+        while (!found && i < groupes.size()) {
+            groupe = groupes.get(i);
+
+            if (groupe.getNom().equals(name)) {
+                found = true;
+            }
+            i++;
+        }
+
+        if (!found) {
+            groupe = new GroupeTD(name, this);
+            this.ajouterGroupe(groupe);
+        }
+        return groupe;
     }
 
     public String toString(){
