@@ -8,6 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import model.dao.EnseignantDAO;
+import model.dao.PromotionDAO;
+import model.dao.UtilisateurDAO;
+import model.entity.Enseignant;
+import model.entity.EnumPromo;
+import model.entity.Promotion;
 import model.entity.Utilisateur;
 
 public class SkodocMain extends Application{
@@ -18,7 +24,30 @@ public class SkodocMain extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
+        //UtilisateurDAO testDao = new UtilisateurDAO();
         user = new Utilisateur();
+        /*Utilisateur test = new Utilisateur("Avril", "Pierre", "pierre@moi.com", "test");
+        testDao.delete(test);
+        System.out.println(testDao.findByID("pierre@moi.com"));
+        testDao.create(test);
+        System.out.println(testDao.findByID("pierre@moi.com"));*/
+        //EnseignantDAO testDao = new EnseignantDAO();
+        //Enseignant testEns = new Enseignant("Avril", "Pierre", "pierre@moi.com", "test", "test");
+        //testDao.create(testEns);
+        //testDao.delete(testEns);
+        //testEns.setEmail("alice@example.com");
+        //testDao.update(testEns);
+        //System.out.println(testDao.findByID("test"));
+        /*PromotionDAO testDao = new PromotionDAO();
+        Promotion testPromo = new Promotion(EnumPromo.BUT1);
+        System.out.println(testDao.findAll());
+        System.out.println(testDao.findByID(EnumPromo.BUT1.toString()));
+        testDao.delete(testPromo);
+        System.out.println(testDao.findAll());
+        System.out.println(testDao.findByID(EnumPromo.BUT1.toString()));
+        testDao.create(testPromo);
+        System.out.println(testDao.findAll());
+        System.out.println(testDao.findByID(EnumPromo.BUT1.toString()));*/
 
         // Initiate and add the application icon
         //Image icon = new Image(getClass().getResourceAsStream("assets/logoKallax.png"));

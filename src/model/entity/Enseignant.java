@@ -324,12 +324,11 @@ public class Enseignant extends Utilisateur{
     @Override
     public String toString(){
         String ret = "";
-        if(this instanceof Enseignant){
-            ret += ("\n*** Enseignant ***\n" + super.toString() + "\nID : " + this.getIdent() + "\nModules : "+this.modules+"\n");
-        } else if(this instanceof DirecteurEtudes){
+        if(this instanceof DirecteurEtudes){
             ret += ("\n*** DirecteurEtudes ***\n" + super.toString() + "\nID : " + this.getIdent() + "\nModules : "+this.modules+"\n");
+        } else if(this instanceof Enseignant){
+            ret += ("\n*** Enseignant ***\n" + super.toString() + "\nID : " + this.getIdent() + "\nModules : "+this.modules+"\n");
         }
-
         return ret;
     }
 
