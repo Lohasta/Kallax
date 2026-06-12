@@ -1,23 +1,30 @@
+use bd_scodoc;
+
+/*-----------------------*/
+/* Insertions pour tests */
+/*   Et Scénario (Oral)  */
+/*-----------------------*/
+
+
 -- ========================
 -- UTILISATEURS
 -- ========================
 INSERT INTO Utilisateur (email, motDePasse, nom, prenom) VALUES
-('alice@example.com', 'pass123', 'Dupont', 'Alice'),
-('bob@example.com', 'pass123', 'Martin', 'Bob'),
-('charlie@example.com', 'pass123', 'Durand', 'Charlie'),
-('david@example.com', 'pass123', 'Petit', 'David'),
-('eva@example.com', 'pass123', 'Moreau', 'Eva'),
-('tonin@example.com', 'pass123', 'Tonin', 'P.'),
-('naert@example.com', 'pass123', 'Naert', 'N.'),
-('tibermacine@example.com', 'pass123', 'Tibermacine', 'C.');
+('lohan@ubs.fr', 'lohanK', 'Kerrault', 'Lohan'),
+('fabien@ubs.fr', 'fabienM', 'Madotto', 'Fabien'),
+('gatien@ubs.fr', 'gatienR', 'Rebêche', 'Gatien'),
+('mael@ubs.fr', 'maelL', 'Leroux', 'Maël'),
+('tonin@ubs.fr', 'toninP', 'Tonin', 'P.'),
+('naert@ubs.fr', 'naertL', 'Naert', 'N.'),
+('tibermacine@ubs.fr', 'TibermacineC', 'Tibermacine', 'C.');
 
 -- ========================
 -- ENSEIGNANTS
 -- ========================
 INSERT INTO Enseignant (identifiant, estDe, userEns) VALUES
-('tonin', TRUE, 'tonin@example.com'),
-('naert', FALSE, 'naert@example.com'),
-('tibermacine', FALSE, 'tibermacine@example.com');
+('tonin', TRUE, 'tonin@ubs.fr'),
+('naert', FALSE, 'naert@ubs.fr'),
+('tibermacine', FALSE, 'tibermacine@ubs.fr');
 
 -- ========================
 -- ANNEES
@@ -45,11 +52,10 @@ INSERT INTO GroupeTD (sigle, promo) VALUES
 -- ETUDIANTS
 -- ========================
 INSERT INTO Etudiant (numero, parcours, userEtud, groupeTD, promo) VALUES
-(1, NULL, 'alice@example.com', 'A', 'BUT1'),
-(2, 'B', 'bob@example.com', 'B', 'BUT2'),
-(3, NULL, 'charlie@example.com', 'D', 'BUT1'),
-(4, NULL, 'david@example.com', 'B', 'BUT1'),
-(5, 'B', 'eva@example.com', 'A', 'BUT2');
+(1, 'A', 'lohan@ubs.fr', 'A', 'BUT2'),
+(2, 'B', 'fabien@ubs.fr', 'B', 'BUT2'),
+(3, NULL, 'gatien@ubs.fr', 'C', 'BUT1'),
+(4, 'B', 'mael@ubs.fr', 'D', 'BUT3'),
 
 -- ========================
 -- MODULES
