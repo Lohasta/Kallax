@@ -63,7 +63,7 @@ CREATE TABLE GroupeTD (
 );
 
 CREATE TABLE Etudiant (
-    numero VARCHAR(50),
+    numero INT,
     parcours CHAR(1) NULL, -- Autorise le NULL par défaut
     userEtud VARCHAR(50) NOT NULL,
     groupeTD CHAR(1) NOT NULL,
