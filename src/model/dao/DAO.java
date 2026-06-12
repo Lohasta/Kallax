@@ -22,4 +22,14 @@ public abstract class DAO<T, K> {
         // Get the connection
         return DriverManager.getConnection(url, username, password);
     }
+
+    public abstract int create(T element);
+
+    public abstract List<T> findAll();
+
+    public abstract T findByID(K id);
+
+    public abstract int update(T element);
+
+    public abstract int delete(T element);
 }
