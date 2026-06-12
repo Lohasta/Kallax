@@ -9,10 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.dao.EnseignantDAO;
+import model.dao.EtudiantDAO;
 import model.dao.PromotionDAO;
 import model.dao.UtilisateurDAO;
 import model.entity.Enseignant;
 import model.entity.EnumPromo;
+import model.entity.Etudiant;
 import model.entity.Promotion;
 import model.entity.Utilisateur;
 
@@ -48,6 +50,25 @@ public class SkodocMain extends Application{
         testDao.create(testPromo);
         System.out.println(testDao.findAll());
         System.out.println(testDao.findByID(EnumPromo.BUT1.toString()));*/
+
+        /*UtilisateurDAO testDao = new UtilisateurDAO();
+        EtudiantDAO testDao2 = new EtudiantDAO();
+        Etudiant testEtudiant = new Etudiant("Pape", "Bernard", "billy@monmail.com", "salut", 897);
+        Promotion testPromo = new Promotion(EnumPromo.BUT1);
+        testPromo.getGroupeByName("A").ajouterEtudiant(testEtudiant);
+        testDao.create(testEtudiant);
+        testDao2.create(testEtudiant);
+        System.out.println(testDao2.findAll());
+        System.out.println(testDao2.findByID(testEtudiant.getNum()));
+        System.out.println(testDao2.findByID(testEtudiant.getNum()).getGroupe());
+        testEtudiant.setGroupe(testPromo.getGroupeByName("B"));
+        testDao2.update(testEtudiant);
+        System.out.println(testDao2.findByID(testEtudiant.getNum()).getGroupe());
+        testDao2.delete(testEtudiant);
+        testDao.delete(testEtudiant);
+        System.out.println(testDao2.findByID(testEtudiant.getNum()));*/
+
+
 
         // Initiate and add the application icon
         //Image icon = new Image(getClass().getResourceAsStream("assets/logoKallax.png"));
