@@ -74,13 +74,13 @@ INSERT INTO Responsable (ens, module) VALUES
 ('tibermacine', 'R3.04');
 
 -- ========================
--- CONTROLES
+-- EVALUATIONS
 -- ========================
-INSERT INTO Evaluation (coeff, duree, module) VALUES
-(20, '01:30:00', 'R2.02'),
-(1, '00:10:00', 'R2.02'),
-(2, NULL, 'S1.01'),
-(1, '00:15:00', 'R3.04');
+INSERT INTO Evaluation (id, coeff, module) VALUES
+(1, 2, 'R2.02'),
+(2, 1.5 , 'R2.02'),
+(3, 1, 'S1.01'),
+(4, 0.5, 'R3.04');
 
 -- ========================
 -- NOTES

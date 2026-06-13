@@ -12,7 +12,7 @@ Etudiant(numero(1), parcours, userEtud = @Utilisateur.email, groupeTD = @GroupeT
 Module(intitule(1), nom (NN), typeModule (NN), promo = @Promotion.code (NN))
 Responsable([module = @Module.intitule, ens = @Enseignant.identifiant](1))
 Seance([etudiant = @Etudiant.numero, module = @Module.intitule, dateSeance, horaireDebut](1), statut, horaireFin, dateSaisie)
-Evaluation(numero(1), coeff, duree, module = @Module.intitule)
+Evaluation(id(1), coeff, module = @Module.intitule)
 Note([etudiant = @Etudiant.numero, eval = @Evaluation.numero](1), valeur, statut (NN))
 
 */
@@ -102,7 +102,7 @@ CREATE TABLE Responsable(
 );
 
 CREATE TABLE Seance (
-    etudiant INT(50),
+    etudiant VARCHAR(50),
     module VARCHAR(10),
     statut ENUM("PRESENT","RETARD","ABSENT"),
     dateSeance DATE,
@@ -117,23 +117,21 @@ CREATE TABLE Seance (
 );
 
 CREATE TABLE Evaluation (
-    numero INT AUTO_INCREMENT,
-    coeff INT,
-    duree TIME,
+    id VARCHAR(50),
+    coeff DOUBLE,
     module VARCHAR(10),
-    CONSTRAINT pk_Evaluation PRIMARY KEY (numero),
-    CONSTRAINT fk_EvaluationModule FOREIGN KEY (module)
-        REFERENCES Module (intitule)
+    CONSTRAINT pk_Evaluation PRIMARY KEY (id),
+    CONSTRAINT fk_EvaluationModule FOREIGN KEY (module) REFERENCES Module(intitule)
 );
 
 CREATE TABLE Note (
-    etudiant INT(50),
-    eval INT,
+    etudiant VARCHAR(50),
+    eval VARCHAR(50),
     valeur DECIMAL(4,2),
     statut ENUM('OK', 'ABS', 'EXC', 'ATT') DEFAULT 'OK',
     CONSTRAINT pk_Note PRIMARY KEY (etudiant , eval),
     CONSTRAINT fk_NoteEtudiant FOREIGN KEY (etudiant)
         REFERENCES Etudiant (numero),
     CONSTRAINT fk_NoteModule FOREIGN KEY (eval)
-        REFERENCES Evaluation (numero)
+        REFERENCES Evaluation (id)
 );

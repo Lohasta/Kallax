@@ -83,7 +83,7 @@ public class GroupeTDDAO extends DAO<GroupeTD, String> {
 
     @Override
     public int update(GroupeTD groupe) {
-        String query = "UPDATE GroupeTD SET sigle= ?, promo= ?, WHERE sigle= ? ";
+        String query = "UPDATE GroupeTD SET sigle= ?, promo= ? WHERE sigle= ? ";
         try (Connection con = getConnection();
                 PreparedStatement st = con.prepareStatement(query)) {
             st.setString(1, groupe.getNom());
