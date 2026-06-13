@@ -21,7 +21,7 @@ public class GroupeTDDAO extends DAO<GroupeTD, String> {
         try (Connection con = getConnection();
                 PreparedStatement st = con.prepareStatement("INSERT INTO GroupeTD (sigle, promo) VALUES (?, ?)")) {
             st.setString(1, groupeTD.getNom());
-            st.setString(2, groupeTD.getPromotion().getNomPromo().toString());
+            st.setString(2, groupeTD.getPromotion().getNomPromo().name());
             try {
                 return st.executeUpdate();
             } catch (SQLException ex) {
