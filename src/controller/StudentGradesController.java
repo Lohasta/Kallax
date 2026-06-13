@@ -3,6 +3,8 @@ package controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,15 +63,20 @@ public class StudentGradesController extends StudentController{
         UtilisateurDAO dao = new UtilisateurDAO();
         String nom = dao.findNomByID(email);
         nomEtudiant.setText(nom);
-        EtudiantDAO daoEtud = new EtudiantDAO();
-        int nbEtud = daoEtud.findIDByMail(email);
-        infosEleve.setText("Étudiant n° "+nbEtud);
-        ObservableList<String> opt = FXCollections.observableArrayList("Semestre 1","Semestre 2","Semestre 3","Semestre 4","Semestre 5","Semestre 6");
-        semesterSelector.setItems(opt);
-        semesterSelector.getSelectionModel().selectFirst();
-        semesterSelector.getSelectionModel().selectedItemProperty().addListener((observable,ancienSem,sem) -> {
+        List<String> listeSemestres = new LinkedList<>();
+        listeSemestres.add("Semestre 1");
+        listeSemestres.add("Semestre 2");
+        listeSemestres.add("Semestre 3");
+        listeSemestres.add("Semestre 4");
+        listeSemestres.add("Semestre 5");
+        listeSemestres.add("Semestre 6");
+        ObservableList<String> opt = FXCollections.observableList(listeSemestres);
+        selecteurSemestre.setItems(opt);
+        selecteurSemestre.requestLayout();
+        selecteurSemestre.getSelectionModel().selectFirst();
+        selecteurSemestre.getSelectionModel().selectedItemProperty().addListener((observable,ancienSem,sem) -> {
             if(sem != null){
-                affNoteSemRess(sem);
+                affNoteSem(sem);
             }
         });
         deconnexion.setOnAction((ActionEvent e) -> logout());

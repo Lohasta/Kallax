@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:controller="controller.LoginController" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       
       <ImageView pickOnBounds="true" preserveRatio="false" StackPane.alignment="CENTER">
@@ -43,7 +43,7 @@
                </font>
             </PasswordField>
             
-            <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #E6F2F2; -fx-background-radius: 20px; -fx-text-fill: #000000; -fx-cursor: hand;" text="Se connecter">
+            <Button fx:id="loginButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" style="-fx-background-color: #E6F2F2; -fx-background-radius: 20px; -fx-text-fill: #000000; -fx-cursor: hand;" text="Se connecter" >
                <font>
                   <Font name="Arial" size="15.0" />
                </font>

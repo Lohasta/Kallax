@@ -13,6 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import model.dao.UtilisateurDAO;
+import javafx.event.ActionEvent;
+
 
 public class LoginController{
     /**Clickable button to login */
@@ -35,11 +37,14 @@ public class LoginController{
     @FXML
     public void initialize() {
         System.out.println("[ConnexionController] initialize");
-        loginButton.disableProperty().bind(
-                usernameField.textProperty().isEmpty()
-                        .or(passwordField.textProperty().isEmpty()));
-        String email= usernameField.getText();
-        model.MailUser.setEmail(email);
+        loginButton.disableProperty().bind(usernameField.textProperty().isEmpty().or(passwordField.textProperty().isEmpty()));
+        loginButton.setOnAction((ActionEvent e) -> {
+            try{
+                connect();
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }}
+        );
     }
 
     @FXML
@@ -53,11 +58,12 @@ public class LoginController{
             UtilisateurDAO uDAO = new UtilisateurDAO();
             Connection con = uDAO.isConnected();
             
-            if (con != null){
+            if (con != null && password.equals(uDAO.findMdpByID(name))){
                 System.out.println("Tentative de connection...");
                 System.out.println("Connexion reussie vers la bdd !");
                 
-                FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("student_scene");
+                model.MailUser.setEmail(name);
+                FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("StudentScene");
                 view.SkodocMain.loadFXML(fxmlLoader);
             } else{
                 //infoLabel.setText("E-mail ou mot de passe incorrect !");

@@ -69,7 +69,7 @@ public class StudentController{
 
     /**Averages of each UE */
     @FXML
-    private java.awt.Label moyUE1;
+    private Label moyUE1;
     @FXML
     private Label moyUE2;
     @FXML
@@ -103,20 +103,25 @@ public class StudentController{
         UtilisateurDAO dao = new UtilisateurDAO();
         String nom = dao.findNomByID(email);
         nomEtudiant.setText(nom);
-        EtudiantDAO daoEtud = new EtudiantDAO();
-        int nbEtud = daoEtud.findIDByMail(email);
-        infosEleve.setText("Étudiant n° "+nbEtud);
-        ObservableList<String> opt = FXCollections.observableArrayList("Semestre 1","Semestre 2","Semestre 3","Semestre 4","Semestre 5","Semestre 6");
+        deconnexion.setOnAction((ActionEvent e) -> logout());
+        voirPlusNotes.setOnAction((ActionEvent e) -> vPNotes());
+        voirPlusAbsences.setOnAction((ActionEvent e) -> vPAbs());
+        List<String> listeSemestres = new LinkedList<>();
+        listeSemestres.add("Semestre 1");
+        listeSemestres.add("Semestre 2");
+        listeSemestres.add("Semestre 3");
+        listeSemestres.add("Semestre 4");
+        listeSemestres.add("Semestre 5");
+        listeSemestres.add("Semestre 6");
+        ObservableList<String> opt = FXCollections.observableList(listeSemestres);
         selecteurSemestre.setItems(opt);
+        selecteurSemestre.requestLayout();
         selecteurSemestre.getSelectionModel().selectFirst();
         selecteurSemestre.getSelectionModel().selectedItemProperty().addListener((observable,ancienSem,sem) -> {
             if(sem != null){
                 affNoteSem(sem);
             }
         });
-        deconnexion.setOnAction((ActionEvent e) -> logout());
-        voirPlusNotes.setOnAction((ActionEvent e) -> vPNotes());
-        voirPlusAbsences.setOnAction((ActionEvent e) -> vPAbs());
     }
 
     /**
@@ -163,6 +168,7 @@ public class StudentController{
      * Initializes the attributes of the selecteurSemestre button
      * @param sem the semester
      */
+    @FXML
     public void affNoteSem(String sem){
         if(sem.equals("Semestre 1")){
             ueNb1.setText("UE 1.1");

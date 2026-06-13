@@ -106,13 +106,33 @@ public class UtilisateurDAO extends DAO<Utilisateur, String> {
     public String findNomByID(String email) {
         String res="";
         try (Connection con = getConnection();
-                PreparedStatement st = con.prepareStatement("SELECT * FROM Utilisateur WHERE email= ?")) {
+                PreparedStatement st = con.prepareStatement("SELECT nom,prenom FROM Utilisateur WHERE email= ?")) {
             st.setString(1, email);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     String nom = rs.getString("nom");
                     String prenom = rs.getString("prenom");
                     res += prenom+" "+nom;
+                    return res;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public String findMdpByID(String mail){
+        String res="";
+        try (Connection con = getConnection();
+                PreparedStatement st = con.prepareStatement("SELECT motDePasse FROM Utilisateur WHERE email= ?")) {
+            st.setString(1, mail);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    String mdp = rs.getString("motDePasse");
+                    res += mdp;
                     return res;
                 }
             } catch (SQLException ex) {
