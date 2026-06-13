@@ -4,8 +4,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
-import model.entity.Utilisateur;
-
 /**
  * Enseignant who can add and delete modules, create, search, and delete tests,
  * change tests type and coefficient, add grades, calculate averages,

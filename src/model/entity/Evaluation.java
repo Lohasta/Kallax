@@ -18,7 +18,7 @@ public class Evaluation {
      * Constructor : Initializes a Evaluation object with its parameters.
      * @param type the Evaluation's type
      * @param coeff the Evaluation's coefficient
-     * @param m the Evaluation's module
+     * @param m the Evaluation's module 
      * @throws IllegalArgumentException ff one of the arguments is invalid
      */
     public Evaluation(String type, double coeff, Module m) throws IllegalArgumentException {
