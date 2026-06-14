@@ -62,6 +62,16 @@ CREATE TABLE GroupeTD (
         REFERENCES Promotion (code)
 );
 
+CREATE TABLE Module (
+    intitule VARCHAR(10),
+    nom VARCHAR(50) NOT NULL,
+    typeModule ENUM("SAE", "RESSOURCE"),
+    promo VARCHAR(5) NOT NULL,
+    CONSTRAINT pk_Module PRIMARY KEY (intitule),
+    CONSTRAINT fk_ModulePromotion FOREIGN KEY (promo)
+        REFERENCES Promotion (code)
+);
+
 /* table d'association entre groupeTD et Module*/
 CREATE TABLE Suivre (
     sigleGroupe CHAR(1),
@@ -86,16 +96,6 @@ CREATE TABLE Etudiant (
         REFERENCES Utilisateur (email),
     CONSTRAINT fk_EtudiantGroupeTD FOREIGN KEY (groupeTD, promo)
         REFERENCES GroupeTD (sigle, promo)
-);
-
-CREATE TABLE Module (
-    intitule VARCHAR(10),
-    nom VARCHAR(50) NOT NULL,
-    typeModule ENUM("SAE", "RESSOURCE"),
-    promo VARCHAR(5) NOT NULL,
-    CONSTRAINT pk_Module PRIMARY KEY (intitule),
-    CONSTRAINT fk_ModulePromotion FOREIGN KEY (promo)
-        REFERENCES Promotion (code)
 );
 
 CREATE TABLE Responsable(
@@ -135,7 +135,7 @@ CREATE TABLE Evaluation (
 );
 
 CREATE TABLE Note (
-    etudiant VARCHAR(50),
+    etudiant INT(50),
     eval VARCHAR(50),
     valeur DECIMAL(4,2),
     statut ENUM('OK', 'ABS', 'EXC', 'ATT') DEFAULT 'OK',

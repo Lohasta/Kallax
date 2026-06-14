@@ -16,7 +16,8 @@ INSERT INTO Utilisateur (email, motDePasse, nom, prenom) VALUES
 ('mael@ubs.fr', 'maelL', 'Leroux', 'Maël'),
 ('tonin@ubs.fr', 'toninP', 'Tonin', 'P.'),
 ('naert@ubs.fr', 'naertL', 'Naert', 'L.'),
-('tibermacine@ubs.fr', 'TibermacineC', 'Tibermacine', 'C.');
+('tibermacine@ubs.fr', 'TibermacineC', 'Tibermacine', 'C.'),
+('mathis@ubs.fr', 'mathox', 'Mathis', 'ML');
 
 -- ========================
 -- ENSEIGNANTS
@@ -46,7 +47,8 @@ INSERT INTO GroupeTD (sigle, promo) VALUES
 ('B', 'BUT2'),
 ('C', 'BUT2'),
 ('A', 'BUT3'),
-('B', 'BUT3');
+('B', 'BUT3'),
+('D', 'BUT3');
 
 -- ========================
 -- ETUDIANTS
@@ -55,7 +57,8 @@ INSERT INTO Etudiant (numero, parcours, userEtud, groupeTD, promo) VALUES
 (1, 'A', 'lohan@ubs.fr', 'A', 'BUT2'),
 (2, 'B', 'fabien@ubs.fr', 'B', 'BUT2'),
 (3, NULL, 'gatien@ubs.fr', 'C', 'BUT1'),
-(4, 'B', 'mael@ubs.fr', 'D', 'BUT3');
+(4, 'B', 'mael@ubs.fr', 'D', 'BUT3'),
+(5, 'A', 'mathis@ubs.fr', 'C', 'BUT1');
 
 -- ========================
 -- MODULES
@@ -103,10 +106,10 @@ INSERT INTO Note (etudiant, eval, valeur, statut) VALUES
 -- Seances (présences)
 -- ========================
 INSERT INTO Seance (etudiant, module, statut, dateSeance, horaireDebut, horaireFin, sigleGroupe, promoGroupe) VALUES
-(1, 'R2.02', 'PRESENT', '2025-10-01', '08:00:00', '10:00:00', '2025-10-01'),
-(1, 'R2.02', 'RETARD', '2025-10-02', '10:00:00', '12:00:00', '2025-10-02'),
-(2, 'R3.04', 'ABSENT', '2025-10-01', '08:00:00', '10:00:00', '2025-10-01'),
-(2, 'R3.04', 'PRESENT', '2025-10-02', '10:00:00', '12:00:00', '2025-10-02'),
-(3, 'R2.02', 'PRESENT', '2025-10-01', '08:00:00', '10:00:00', '2025-10-01'),
-(4, 'S1.01', 'PRESENT', '2026-02-01', '09:00:00', '11:00:00', '2026-02-01'),
-(5, 'R3.04', 'ABSENT', '2025-10-02', '10:00:00', '12:00:00', '2025-10-02');
+(1, 'R2.02', 'PRESENT', '2025-10-01', '08:00:00', '10:00:00', 'A', 'BUT2'),
+(1, 'R2.02', 'RETARD', '2025-10-02', '10:00:00', '12:00:00', 'A', 'BUT2'),
+(2, 'R3.04', 'ABSENT', '2025-10-01', '08:00:00', '10:00:00', 'B', 'BUT2'),
+(2, 'R3.04', 'PRESENT', '2025-10-02', '10:00:00', '12:00:00', 'B', 'BUT2'),
+(3, 'R2.02', 'PRESENT', '2025-10-01', '08:00:00', '10:00:00', 'C', 'BUT1'),
+(4, 'S1.01', 'PRESENT', '2026-02-01', '09:00:00', '11:00:00', 'D', 'BUT3'),
+(5, 'R3.04', 'ABSENT', '2025-10-02', '10:00:00', '12:00:00', 'C', 'BUT1');
