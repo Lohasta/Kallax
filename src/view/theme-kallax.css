@@ -1,0 +1,10 @@
+.root {
+    -fx-base-color: #85ADFF;          /* Fond d'écran Bleu */
+    -fx-sidebar-color: #FFE270;       /* Menu de gauche Jaune */
+    -fx-card-color: #FFE270;          /* Boutons centraux Jaune */
+    
+    -fx-text-main-color: #1A1A1A;     /* Texte du menu (Noir) */
+    -fx-text-btn-color: #1A1A1A;      /* Texte dans les boutons (Noir) */
+    -fx-accent-color: #0051BA;        
+    -fx-border-color: #0051BA;        
+}

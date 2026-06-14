@@ -1,0 +1,10 @@
+.root {
+    -fx-base-color: #292929;          /* Fond d'écran Gris Foncé */
+    -fx-sidebar-color: #1E1E1E;       /* Menu de gauche encore plus sombre */
+    -fx-card-color: #EFEFEF;          /* Boutons centraux Gris Clair/Blanc */
+    
+    -fx-text-main-color: #FFFFFF;     /* Texte du menu devient BLANC (lisible) */
+    -fx-text-btn-color: #1A1A1A;      /* Texte des boutons reste NOIR (lisible sur fond clair) */
+    -fx-accent-color: #FF5256;        
+    -fx-border-color: #707070;        
+}
