@@ -102,13 +102,13 @@ CREATE TABLE Responsable(
 );
 
 CREATE TABLE Seance (
-    etudiant VARCHAR(50),
+    etudiant INT,
     module VARCHAR(10),
     statut ENUM("PRESENT","RETARD","ABSENT"),
     dateSeance DATE,
     horaireDebut TIME,
     horaireFin TIME,
-    dateSaisie DATE,
+    groupeTD VARCHAR(10),
     CONSTRAINT pk_Seance PRIMARY KEY (etudiant , module, dateSeance, horaireDebut),
     CONSTRAINT fk_SeanceEtudiant FOREIGN KEY (etudiant)
         REFERENCES Etudiant (numero),
