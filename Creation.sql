@@ -62,21 +62,28 @@ CREATE TABLE GroupeTD (
         REFERENCES Promotion (code)
 );
 
+/* table d'association entre groupeTD et Module*/
+CREATE TABLE Suivre (
+    sigleGroupe CHAR(1),
+    promoGroupe VARCHAR(5),
+    idModule VARCHAR(10),
+    CONSTRAINT pk_Suivre PRIMARY KEY (sigleGroupe, promoGroupe, idModule),
+    CONSTRAINT fk_Suivre_Groupe FOREIGN KEY (sigleGroupe, promoGroupe) 
+        REFERENCES GroupeTD(sigle, promo),
+    CONSTRAINT fk_Suivre_Module FOREIGN KEY (idModule) 
+        REFERENCES Module(intitule)
+);
+
 CREATE TABLE Etudiant (
     numero INT,
-    parcours CHAR(1) NULL, -- Autorise le NULL par défaut
+    parcours CHAR(1) NULL,
     userEtud VARCHAR(50) NOT NULL,
     groupeTD CHAR(1) NOT NULL,
     promo VARCHAR(5) NOT NULL,
     CONSTRAINT pk_Etudiant PRIMARY KEY (numero),
-    -- Correction du CHECK pour le parcours
     CONSTRAINT ck_parcours CHECK (parcours IN ('A' , 'B')),
-    
-    -- Contraintes FOREIGN KEY
     CONSTRAINT fk_EtudiantUtilisateur FOREIGN KEY (userEtud)
         REFERENCES Utilisateur (email),
-        
-    -- CORRECTION : Clé étrangère composite vers GroupeTD (qui lie sigle ET promo)
     CONSTRAINT fk_EtudiantGroupeTD FOREIGN KEY (groupeTD, promo)
         REFERENCES GroupeTD (sigle, promo)
 );
@@ -108,12 +115,15 @@ CREATE TABLE Seance (
     dateSeance DATE,
     horaireDebut TIME,
     horaireFin TIME,
-    groupeTD VARCHAR(10),
+    sigleGroupe VARCHAR(10),
+    promoGroupe VARCHAR(10),
     CONSTRAINT pk_Seance PRIMARY KEY (etudiant , module, dateSeance, horaireDebut),
     CONSTRAINT fk_SeanceEtudiant FOREIGN KEY (etudiant)
         REFERENCES Etudiant (numero),
     CONSTRAINT fk_SeanceModule FOREIGN KEY (module)
-        REFERENCES Module (intitule)
+        REFERENCES Module (intitule),
+    CONSTRAINT fk_SeanceGroupeTD FOREIGN KEY (sigleGroupe, promoGroupe)
+        REFERENCES GroupeTD (sigle, promo)
 );
 
 CREATE TABLE Evaluation (

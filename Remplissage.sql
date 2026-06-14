@@ -102,7 +102,7 @@ INSERT INTO Note (etudiant, eval, valeur, statut) VALUES
 -- ========================
 -- Seances (présences)
 -- ========================
-INSERT INTO Seance (etudiant, module, statut, dateSeance, horaireDebut, horaireFin, dateSaisie) VALUES
+INSERT INTO Seance (etudiant, module, statut, dateSeance, horaireDebut, horaireFin, sigleGroupe, promoGroupe) VALUES
 (1, 'R2.02', 'PRESENT', '2025-10-01', '08:00:00', '10:00:00', '2025-10-01'),
 (1, 'R2.02', 'RETARD', '2025-10-02', '10:00:00', '12:00:00', '2025-10-02'),
 (2, 'R3.04', 'ABSENT', '2025-10-01', '08:00:00', '10:00:00', '2025-10-01'),
