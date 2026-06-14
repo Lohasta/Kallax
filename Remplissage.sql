@@ -55,23 +55,23 @@ INSERT INTO Etudiant (numero, parcours, userEtud, groupeTD, promo) VALUES
 (1, 'A', 'lohan@ubs.fr', 'A', 'BUT2'),
 (2, 'B', 'fabien@ubs.fr', 'B', 'BUT2'),
 (3, NULL, 'gatien@ubs.fr', 'C', 'BUT1'),
-(4, 'B', 'mael@ubs.fr', 'D', 'BUT3'),
+(4, 'B', 'mael@ubs.fr', 'D', 'BUT3');
 
 -- ========================
 -- MODULES
 -- ========================
 INSERT INTO Module (intitule, nom, typeModule, promo) VALUES
-('R2.02', "Développement d'applications avec IHM", 'RESSOURCE', 'BUT1'),
-('S1.01', "Implémentation d'un besoin client", 'SAE', 'BUT1'),
+('R2.02', 'Développement d applications avec IHM', 'RESSOURCE', 'BUT1'),
+('S1.01', 'Implémentation d un besoin client', 'SAE', 'BUT1'),
 ('R3.04', 'Qualité de développement', 'RESSOURCE', 'BUT2');
 
 -- ========================
 -- RESPONSABLES
 -- ========================
 INSERT INTO Responsable (ens, module) VALUES
-('naert', 'R2.02'),
-('naert', 'S1.01'),
-('tibermacine', 'R3.04');
+('naert@ubs.fr', 'R2.02'),
+('naert@ubs.fr', 'S1.01'),
+('tibermacine@ubs.fr', 'R3.04');
 
 -- ========================
 -- EVALUATIONS

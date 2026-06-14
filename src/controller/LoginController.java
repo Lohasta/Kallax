@@ -58,17 +58,32 @@ public class LoginController{
             UtilisateurDAO uDAO = new UtilisateurDAO();
             Connection con = uDAO.isConnected();
             
-            if (con != null && password.equals(uDAO.findMdpByID(name))){
-                System.out.println("Tentative de connection...");
-                System.out.println("Connexion reussie vers la bdd !");
+            if (con != null) {
+                Utilisateur user = uDAO.findByID(name);
                 
-                model.MailUser.setEmail(name);
-                FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("StudentScene");
-                view.SkodocMain.loadFXML(fxmlLoader);
-            } else{
-                //infoLabel.setText("E-mail ou mot de passe incorrect !");
-                setError(usernameField);
-                setError(passwordField);
+                if (user != null && password.equals(user.getMdp())) {
+                    System.out.println("Connexion réussie pour : " + user.getEmail());
+                    
+                    model.MailUser.setEmail(name);
+
+                    String sceneName = "LoginScene";
+                    
+                    FXMLLoader fxmlLoader = null;
+
+                    if (user instanceof Enseignant) {
+                        sceneName = "EnseignantScene";
+                        fxmlLoader = view.SkodocMain.getFXMLLoader(sceneName);
+                    } else if(user instanceof Etudiant){
+                        sceneName = "StudentScene";
+                        fxmlLoader = view.SkodocMain.getFXMLLoader(sceneName);
+                    }
+                   
+                    view.SkodocMain.loadFXML(fxmlLoader);
+                    
+                } else {
+                    setError(usernameField);
+                    setError(passwordField);
+                }
             }
         }
     }
