@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
-
 import model.entity.DirecteurEtudes;
 import model.entity.Enseignant;
 
@@ -137,5 +136,23 @@ public class EnseignantDAO extends DAO<Enseignant, String> {
             ex.printStackTrace();
             return -1;
         }
+    }
+
+    public boolean estDE(String email){
+        try (Connection con = getConnection();
+            PreparedStatement st = con.prepareStatement("SELECT estDe FROM Enseignant WHERE userEns= ?")) {
+            st.setString(1, email);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    boolean estDe = rs.getBoolean("estDe");
+                    return estDe;
+                }
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }
