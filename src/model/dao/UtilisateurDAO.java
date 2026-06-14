@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+
+import model.entity.Enseignant;
+import model.entity.Etudiant;
 import model.entity.Utilisateur;
 
 public class UtilisateurDAO extends DAO<Utilisateur, String> {
@@ -54,19 +57,35 @@ public class UtilisateurDAO extends DAO<Utilisateur, String> {
     }
 
     @Override
-    public Utilisateur findByID(String email) {
+    public Utilisateur findByID(String email){
+        String query = "SELECT u.*, e.identifiant AS ens_id, et.numero AS etud_num, et.userEtud AS etud_id " +
+                    "FROM Utilisateur u " +
+                    "LEFT JOIN Enseignant e ON u.email = e.userEns " +
+                    "LEFT JOIN Etudiant et ON u.email = et.userEtud " +
+                    "WHERE u.email = ?";
+                    
         try (Connection con = getConnection();
-                PreparedStatement st = con.prepareStatement("SELECT * FROM Utilisateur WHERE email= ?")) {
+                PreparedStatement st = con.prepareStatement(query)) {
             st.setString(1, email);
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     String motDePasse = rs.getString("motDePasse");
                     String nom = rs.getString("nom");
                     String prenom = rs.getString("prenom");
-                    return new Utilisateur(nom, prenom, email, motDePasse);
+                    
+                    String ensId = rs.getString("ens_id");
+                    String etudId = rs.getString("etud_id");
+
+
+                    if (ensId != null) {
+                        return new Enseignant(nom, prenom, email, motDePasse, ensId);
+                    } else if (etudId != null) {
+                        int etudNum = rs.getInt("etud_num");
+                        return new Etudiant(nom, prenom, email, motDePasse, etudNum);
+                    } else {
+                        return new Utilisateur(nom, prenom, email, motDePasse);
+                    }
                 }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
