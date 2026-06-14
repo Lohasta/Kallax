@@ -42,7 +42,7 @@
 
                         <Region HBox.hgrow="ALWAYS" />
 
-                        <Button fx:id="deconnexion" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="Déconnexion">
+                        <Button fx:id="deconnexion" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text=" Déconnexion">
                            <font>
                               <Font name="Arial" size="22.0" />
                            </font>
