@@ -15,16 +15,16 @@ INSERT INTO Utilisateur (email, motDePasse, nom, prenom) VALUES
 ('gatien@ubs.fr', 'gatienR', 'Rebêche', 'Gatien'),
 ('mael@ubs.fr', 'maelL', 'Leroux', 'Maël'),
 ('tonin@ubs.fr', 'toninP', 'Tonin', 'P.'),
-('naert@ubs.fr', 'naertL', 'Naert', 'N.'),
+('naert@ubs.fr', 'naertL', 'Naert', 'L.'),
 ('tibermacine@ubs.fr', 'TibermacineC', 'Tibermacine', 'C.');
 
 -- ========================
 -- ENSEIGNANTS
 -- ========================
 INSERT INTO Enseignant (identifiant, estDe, userEns) VALUES
-('tonin', TRUE, 'tonin@ubs.fr'),
-('naert', FALSE, 'naert@ubs.fr'),
-('tibermacine', FALSE, 'tibermacine@ubs.fr');
+('tonin@ubs.fr', TRUE, 'tonin@ubs.fr'),
+('naert@ubs.fr', FALSE, 'naert@ubs.fr'),
+('tibermacine@ubs.fr', FALSE, 'tibermacine@ubs.fr');
 
 -- ========================
 -- ANNEES

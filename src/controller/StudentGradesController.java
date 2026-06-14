@@ -71,12 +71,12 @@ public class StudentGradesController extends StudentController{
         listeSemestres.add("Semestre 5");
         listeSemestres.add("Semestre 6");
         ObservableList<String> opt = FXCollections.observableList(listeSemestres);
-        selecteurSemestre.setItems(opt);
-        selecteurSemestre.requestLayout();
-        selecteurSemestre.getSelectionModel().selectFirst();
-        selecteurSemestre.getSelectionModel().selectedItemProperty().addListener((observable,ancienSem,sem) -> {
+        semesterSelector.setItems(opt);
+        semesterSelector.requestLayout();
+        semesterSelector.getSelectionModel().selectFirst();
+        semesterSelector.getSelectionModel().selectedItemProperty().addListener((observable,ancienSem,sem) -> {
             if(sem != null){
-                affNoteSem(sem);
+                affNoteSemRess(sem);
             }
         });
         deconnexion.setOnAction((ActionEvent e) -> logout());
@@ -159,6 +159,20 @@ public class StudentGradesController extends StudentController{
         try {
             FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("StudentScene");
             view.SkodocMain.loadFXML(fxmlLoader);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Initializes the attributes of the logout button
+     */
+    @FXML
+    public void logout(){
+        try {
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("LoginScene");
+            view.SkodocMain.loadFXML(fxmlLoader);
+            model.MailUser.clear();
         } catch (Exception e) {
             e.printStackTrace();
         }
