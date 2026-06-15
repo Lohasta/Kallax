@@ -76,6 +76,10 @@ public class DEUsersController extends EnseignantController {
     @FXML
     private TableColumn<Utilisateur, Button> discard; 
 
+
+    @FXML
+    private Button addCtrl;
+
     public void initialize(){
         String email = model.MailUser.getEmail();
         model.dao.UtilisateurDAO dao = new UtilisateurDAO();
@@ -87,6 +91,7 @@ public class DEUsersController extends EnseignantController {
         gestionEns1.setOnAction((ActionEvent e) -> gestion(email));
         paramEns1.setOnAction((ActionEvent e) -> parametre(email));
         retour.setOnAction((ActionEvent e) -> retour());
+        addCtrl.setOnAction((ActionEvent e) -> ajouterUser());
     }
 
     /** to return on the precedent page */
@@ -96,6 +101,16 @@ public class DEUsersController extends EnseignantController {
             FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEParam");
             view.SkodocMain.loadFXML(fxmlLoader);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void ajouterUser(){
+        try{
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEAddUser");
+            view.SkodocMain.loadFXML(fxmlLoader);
+        } catch(Exception e){
             e.printStackTrace();
         }
     }
