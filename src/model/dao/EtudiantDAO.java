@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 import model.entity.Etudiant;
-import model.entity.Promotion;
 import model.entity.GroupeTD;
+import model.entity.Promotion;
 
 public class EtudiantDAO extends DAO<Etudiant, Integer> {
 
@@ -36,7 +36,7 @@ public class EtudiantDAO extends DAO<Etudiant, Integer> {
         return -1;
     }
 
-    @Override
+   @Override
     public List<Etudiant> findAll() {
         List<Etudiant> etudiants = new LinkedList<>();
         try (Connection con = getConnection();
@@ -68,7 +68,20 @@ public class EtudiantDAO extends DAO<Etudiant, Integer> {
                                         oldEtud.setMdp(motDePasse);
                                         newEtud = oldEtud;
                                     }
-                                    GroupeTD.getGroupeByNomAndPromo(groupeTD, Promotion.getPromotionByName(promo)).ajouterEtudiant(newEtud);
+                                    
+                                    try {
+                                        Promotion p = Promotion.getPromotionByName(promo);
+                                        if (p != null) {
+                                            GroupeTD g = GroupeTD.getGroupeByNomAndPromo(groupeTD, p);
+                                            if (g != null) {
+                                                g.ajouterEtudiant(newEtud);
+                                                newEtud.setGroupe(g); // Associe le groupe à l'étudiant pour l'affichage
+                                            }
+                                        }
+                                    } catch (Exception e) {
+                                        System.out.println("Impossible d'associer le groupe pour l'étudiant : " + nom);
+                                    }
+
                                     etudiants.add(newEtud);
                                 }
                             } catch (SQLException ex) {

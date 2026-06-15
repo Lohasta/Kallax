@@ -113,3 +113,5 @@ INSERT INTO Seance (etudiant, module, statut, dateSeance, horaireDebut, horaireF
 (3, 'R2.02', 'PRESENT', '2025-10-01', '08:00:00', '10:00:00', 'C', 'BUT1'),
 (4, 'S1.01', 'PRESENT', '2026-02-01', '09:00:00', '11:00:00', 'D', 'BUT3'),
 (5, 'R3.04', 'ABSENT', '2025-10-02', '10:00:00', '12:00:00', 'C', 'BUT1');
+
+

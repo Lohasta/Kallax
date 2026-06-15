@@ -82,7 +82,7 @@
          </children>
       </VBox>
    </left>
-    
+   
    <center>
       <VBox spacing="15.0" BorderPane.alignment="TOP_LEFT">
          <padding>
@@ -105,12 +105,9 @@
                   </Label>
                   <TableView fx:id="tableEval" editable="true" prefHeight="450.0" prefWidth="740.0" VBox.vgrow="ALWAYS">
                         <columns>
-                            <TableColumn fx:id="nomS" prefWidth="110.0" text="Nom" />
-                            <TableColumn fx:id="prenomS" prefWidth="95.0" text="Prénom" />
-                            <TableColumn fx:id="groupe" prefWidth="120.0" text="Groupe" />
-                            <TableColumn fx:id="rang" prefWidth="120.0" text="Rang" />
-                            <TableColumn fx:id="avg" prefWidth="75.0" text="Moyenne" />
-                            <TableColumn fx:id="abs" prefWidth="110.0" text="Absences" />
+                            <TableColumn fx:id="nom" prefWidth="250.0" text="Nom" />
+                            <TableColumn fx:id="prenom" prefWidth="250.0" text="Prénom" />
+                            <TableColumn fx:id="groupe" prefWidth="240.0" text="Groupe" />
                         </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
