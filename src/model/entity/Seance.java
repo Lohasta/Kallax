@@ -2,6 +2,7 @@ package model.entity;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Session of a module, with a date, a start time, an end time, a module, a group of students and a dictionary of presence
@@ -28,6 +29,7 @@ public class Seance {
     /** Dictionary of presence */
     private HashMap<Etudiant, EnumPresence> appel;
 
+    private static ArrayList<Seance> seances;
 
     /**
      * Session constructor
@@ -67,6 +69,23 @@ public class Seance {
             this.groupe = gr;
             this.appel = new HashMap<Etudiant, EnumPresence>();
         }
+        if (seances == null) {
+            seances = new ArrayList<>();
+        }
+    }
+
+    public static void clearSceances() {
+        seances = new ArrayList<>();
+    }
+
+    public static void addSeance(Seance seance) {
+        if (!seances.contains(seance)) {
+            seances.add(seance);
+        }
+    }
+
+    public static ArrayList<Seance> getSeances() {
+        return seances;
     }
 
     /**

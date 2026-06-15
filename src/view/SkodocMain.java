@@ -12,6 +12,11 @@ import model.dao.EnseignantDAO;
 import model.dao.EtudiantDAO;
 import model.dao.PromotionDAO;
 import model.dao.UtilisateurDAO;
+import model.dao.EvaluationDAO;
+import model.dao.ModuleDAO;
+import model.dao.SeanceDAO;
+import model.dao.GroupeTDDAO;
+import model.entity.Module;
 import model.entity.Enseignant;
 import model.entity.EnumPromo;
 import model.entity.Etudiant;
@@ -26,6 +31,22 @@ public class SkodocMain extends Application{
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        PromotionDAO pDao = new PromotionDAO();
+        pDao.findAll();
+        ModuleDAO mDao = new ModuleDAO();
+        mDao.findAll();
+        EtudiantDAO etDao = new EtudiantDAO();
+        etDao.findAll();
+        GroupeTDDAO gtDao = new GroupeTDDAO();
+        gtDao.findAll();
+        EnseignantDAO ensDao = new EnseignantDAO();
+        ensDao.findAll();
+        SeanceDAO seaDao = new SeanceDAO();
+        seaDao.findAll();
+        EvaluationDAO evalDao = new EvaluationDAO();
+        evalDao.findAll();
+
         //UtilisateurDAO testDao = new UtilisateurDAO();
         user = new Utilisateur();
         /*Utilisateur test = new Utilisateur("Avril", "Pierre", "pierre@moi.com", "test");

@@ -73,6 +73,10 @@ public class Promotion{
         return groupe;
     }
 
+    public static ArrayList<Promotion> getPromotions() {
+        return promotions;
+    }
+
     public String toString(){
         return ("\n*** Promotion ***\n" + this.nomPromo);
     }
