@@ -130,7 +130,7 @@
             
             <HBox spacing="20.0" alignment="BASELINE_LEFT">
                <children>
-                  <Button fx:id="addSeance" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="+ Ajouter une séance">
+                  <Button fx:id="addSeance" onAction="#handleAddSeance" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="+ Ajouter une séance">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -70,6 +70,8 @@ public class EnseignantAddSeanceController extends EnseignantController {
         paramEns1.setOnAction((ActionEvent e) -> parametre(email));
         retour.setOnAction((ActionEvent e) -> handleCancel(e));
     }
+
+
     
     /**
      * Action déclenchée lors du clic sur le bouton "Ajouter"
@@ -138,6 +140,8 @@ public class EnseignantAddSeanceController extends EnseignantController {
 
             System.out.println("valide :");
 
+            //TODO
+
             handleCancel(event);
 
         } catch (NumberFormatException e) {
@@ -150,7 +154,7 @@ public class EnseignantAddSeanceController extends EnseignantController {
     private void handleCancel(ActionEvent event) {
         
         try {
-            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("EnseignantGrades");
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("EnseignantAssiduite");
             view.SkodocMain.loadFXML(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
