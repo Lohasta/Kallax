@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * a list of Etudiant.
  * Can add a Student to it's list, a Module to it's list and
  * compare two GroupeTD to check if they are equal.
- * @author G.REBECHE
+ * @author TEAM KALLAX
  */
 public class GroupeTD {
 

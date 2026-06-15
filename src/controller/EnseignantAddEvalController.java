@@ -29,10 +29,13 @@ public class EnseignantAddEvalController extends EnseignantController {
     private Button deconnexion;
 
     @FXML
-    private TextField scoreTF;
+    private TextField idTF;
 
     @FXML
     private TextField coeffTF;
+    
+    @FXML
+    private TextField moduleTF;
 
     @FXML
     private Button retour;
@@ -60,24 +63,21 @@ public class EnseignantAddEvalController extends EnseignantController {
      */
     @FXML
     private void handleAdd(ActionEvent event) {
-        String noteSaisie = scoreTF.getText().trim();
+        String idSaisi = idTF.getText().trim();
         String coeffSaisi = coeffTF.getText().trim();
+        String moduleSaisi = moduleTF.getText().trim();
 
-        // Petite validation de sécurité avant traitement
-        if (noteSaisie.isEmpty() || coeffSaisi.isEmpty()) {
+        if (idSaisi.isEmpty() || coeffSaisi.isEmpty() || moduleSaisi.isEmpty()) {
             System.out.println("remplir tous les champs avant de soumettre.");
-            // TODO: Afficher une alerte visuelle à l'utilisateur si nécessaire
+            // TODO
             return;
         }
 
         try {
-            // Conversion des données saisies
-            double note = Double.parseDouble(noteSaisie.replace(',', '.'));
             double coefficient = Double.parseDouble(coeffSaisi.replace(',', '.'));
 
             // TODO
 
-            // Optionnel : Retourner à la page précédente après l'ajout réussi
             handleCancel(event);
 
         } catch (NumberFormatException e) {
