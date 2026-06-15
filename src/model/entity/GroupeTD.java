@@ -40,6 +40,12 @@ public class GroupeTD {
         this.etudiants=new ArrayList<>();
     }
 
+    /** 
+     * Static getter of GroupeTD by their name and promotion
+     * @param nom the name to look for
+     * @param promo the promotion to look for
+     * @return the GroupeTD that was found or null
+     */
     public static GroupeTD getGroupeByNomAndPromo(String nom, Promotion promo) {
         if (groupes == null) {
             groupes = new ArrayList<>();
@@ -61,12 +67,20 @@ public class GroupeTD {
         return grp;
     }
 
+    /**
+     * Public method to add a GrouptTD to the static list
+     * @param groupe the groupeTD to add
+     */
     public static void addGroupe(GroupeTD groupe) {
         if (!groupes.contains(groupe)) {
             groupes.add(groupe);
         }
     }
 
+    /**
+     * Static getter to get the GroupeTD static list
+     * @return the ArrayList
+     */
     public static ArrayList<GroupeTD> getGroupes() {
         return groupes;
     }

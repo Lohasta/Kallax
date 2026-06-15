@@ -47,6 +47,11 @@ public class Evaluation {
         this.notes = new HashMap<>();
     }
 
+    /** 
+     * Static getter of Evaluation by their ident
+     * @param ident the id to look for
+     * @return the evaluation that was found or null
+     */
     public static Evaluation getEvaluationByIdent(String ident) {
         if (evaluations == null) {
             evaluations = new ArrayList<>();
@@ -69,12 +74,20 @@ public class Evaluation {
         return eval;
     }
 
+    /**
+     * Public method to add an Evaluation to the static list
+     * @param eval the evaluation to add
+     */
     public static void addEvaluation(Evaluation eval) {
         if (evaluations.contains(eval)) {
             evaluations.add(eval);
         }
     }
 
+    /**
+     * Static getter to get the Evaluation static list
+     * @return the ArrayList
+     */
     public static ArrayList<Evaluation> getEvaluations() {
         return evaluations;
     }

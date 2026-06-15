@@ -20,6 +20,7 @@ public class Enseignant extends Utilisateur{
     /** List of modules */
     private ArrayList<Module> modules;
 
+    /** List of enseignants */
     private static ArrayList<Enseignant> enseignants;
 
     /**
@@ -43,6 +44,11 @@ public class Enseignant extends Utilisateur{
 
     }
 
+    /** 
+     * Static getter of Enseignant by their id
+     * @param id the id to look for
+     * @return the enseignant that was found or null
+     */
     public static Enseignant getEnseignantByID(String id) {
         if (enseignants == null) {
             enseignants = new ArrayList<>();
@@ -65,12 +71,20 @@ public class Enseignant extends Utilisateur{
         return ens;
     }
 
+    /**
+     * Public method to add an Enseignant to the static list
+     * @param enseignant the enseignant to add
+     */
     public static void addEnseignant(Enseignant enseignant) {
         if (!enseignants.contains(enseignant)) {
             enseignants.add(enseignant);
         }
     }
 
+    /**
+     * Static getter to get the Enseignant static list
+     * @return the ArrayList
+     */
     public static ArrayList<Enseignant> getEnseignants() {
         return enseignants;
     }

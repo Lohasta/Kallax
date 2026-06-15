@@ -16,7 +16,7 @@ public class Etudiant extends Utilisateur{
     /**The Student's group */
     private GroupeTD groupe;
 
-
+    /** List of Etudiant */
     private static ArrayList<Etudiant> etudiants;
 
 
@@ -38,6 +38,11 @@ public class Etudiant extends Utilisateur{
         }
     }
 
+    /** 
+     * Static getter of Etudiant by their id
+     * @param id the id to look for
+     * @return the etudiant that was found or null
+     */
     public static Etudiant getEtudiantById(int id) {
         if (etudiants == null) {
             etudiants = new ArrayList<>();
@@ -60,12 +65,20 @@ public class Etudiant extends Utilisateur{
         return etu;
     }
 
+    /**
+     * Public method to add an Etudiant to the static list
+     * @param etudiant the etudiant to add
+     */
     public static void addEtudiant(Etudiant etudiant) {
         if (!etudiants.contains(etudiant)) {
             etudiants.add(etudiant);
         }
     }
 
+    /**
+     * Static getter to get the Etudiant static list
+     * @return the ArrayList
+     */
     public static ArrayList<Etudiant> getEtudiants() {
         return etudiants;
     }

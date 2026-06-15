@@ -108,13 +108,21 @@ public class DEListStudentController extends EnseignantController {
     public void refresh() {
         try {
             List<Etudiant> listeBDD = etudiantDAO.findAll(); 
-            
-            System.out.println("nb etudiants : " + listeBDD.size());
-
             listeEtudiants.setAll(listeBDD);
         } catch (Exception e) {
             System.out.println("Erreur lors du chargement des étudiants");
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    private void addStudent(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEAddStudent");
+            view.SkodocMain.loadFXML(fxmlLoader);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }  
 }
