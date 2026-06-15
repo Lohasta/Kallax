@@ -71,7 +71,7 @@ public class DEGestionController extends EnseignantController{
     @FXML 
     public void etud(){
         try {
-            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("ListStudent");
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEListStudent");
             view.SkodocMain.loadFXML(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,7 +81,7 @@ public class DEGestionController extends EnseignantController{
     @FXML 
     public void ress(){
         try {
-            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("ListRessources");
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEListRessource");
             view.SkodocMain.loadFXML(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();

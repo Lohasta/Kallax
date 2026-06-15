@@ -93,27 +93,16 @@ public class ListRessourcesController extends EnseignantController{
         assiduiteEns1.setOnAction((ActionEvent e) -> assiduite());
         gestionEns1.setOnAction((ActionEvent e) -> gestion(email));
         paramEns1.setOnAction((ActionEvent e) -> parametre(email));
-        retour.setOnAction((ActionEvent e) -> retour(email));
+        retour.setOnAction((ActionEvent e) -> retour());
     }
 
     @FXML 
-    public void retour(String email){
-        model.dao.EnseignantDAO dao = new EnseignantDAO();
-        if(dao.estDE(email)){
-            try {
-                FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEGestion");
-                view.SkodocMain.loadFXML(fxmlLoader);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        else{
-            try {
-                FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("EnseignantGestion");
-                view.SkodocMain.loadFXML(fxmlLoader);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    public void retour(){
+        try {
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("EnseignantGestion");
+            view.SkodocMain.loadFXML(fxmlLoader);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
