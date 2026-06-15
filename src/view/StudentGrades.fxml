@@ -32,7 +32,7 @@
                                     <Font name="System Bold" size="28.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="infosEleve" text="Né le  • Étudiant n°" textFill="#555555">
+                              <Label fx:id="moyStd" text="Moyenne Générale : " textFill="#555555">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
