@@ -97,10 +97,22 @@ public class EnseignantGradesController extends EnseignantController {
         utilisateur.setText(nom);
         deconnexion.setOnAction((ActionEvent e) -> logout());
         notesEns1.setOnAction((ActionEvent e) -> notes());
+        addCtrl.setOnAction((ActionEvent e) -> ajouterNotes());
         assiduiteEns1.setOnAction((ActionEvent e) -> assiduite());
         gestionEns1.setOnAction((ActionEvent e) -> gestion(email));
         paramEns1.setOnAction((ActionEvent e) -> parametre(email));
         retour.setOnAction((ActionEvent e) -> retour());
+    }
+
+
+    public void ajouterNotes(){
+        try {
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("EnseignantAddEval");
+            view.SkodocMain.loadFXML(fxmlLoader);
+        } catch (Exception e) {
+            System.out.println("here");
+            e.printStackTrace();
+        }
     }
 
     /** to return on the precedent page */

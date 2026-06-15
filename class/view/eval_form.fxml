@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="controller.EvalFormController"
+          alignment="CENTER"
+          hgap="5.5"
+          vgap="5.5">
+        <Label text="Note:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="scoreTF" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label text="Coefficient:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="coeffTF" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <BorderPane GridPane.rowIndex="3" GridPane.columnIndex="1">
+                <right>
+                        <HBox>
+                                <Button text="Annuler" styleClass="secondary-button" onAction="#handleCancel"/>
+                                <Button text="Ajouter" onAction="#handleAdd"/>                                
+                        </HBox>
+                </right>
+        </BorderPane>
+</GridPane>
