@@ -33,6 +33,7 @@ public class Module{
     /** List of sessions for the module */
     private ArrayList<Seance> seances;
 
+    private static ArrayList<Module> modules;
 
 
     /**
@@ -70,6 +71,37 @@ public class Module{
             this.seances = new ArrayList<Seance>();
             this.responsables = new ArrayList<Enseignant>();
         }
+    }
+
+    public static Module getModuleById(String code) {
+        if (modules == null) {
+            modules = new ArrayList<>();
+        }
+        boolean found = false;
+        int i = 0;
+        Module mod = null;
+        while (!found && i < modules.size()) {
+            mod = modules.get(i);
+            if (mod.getCode().equals(code)) {
+                found = true;
+            }
+            i++;
+        }
+
+        if (!found) {
+            mod = null;
+        }
+        return mod;
+    }
+
+    public static void addModule(Module module) {
+        if (!modules.contains(module)) {
+            modules.add(module);
+        }
+    }
+
+    public static ArrayList<Module> getModules() {
+        return modules;
     }
 
     /**
@@ -411,7 +443,11 @@ public class Module{
      */
     public void setPromotion(Promotion newPromo){
         if(newPromo != null){
+            if (this.promo.getModules().contains(this)) {
+                this.promo.getModules().remove(this);
+            }
             this.promo = newPromo;
+            newPromo.ajouterModule(this);
         } else{
             System.out.println("Erreur : Promotion null");
         }

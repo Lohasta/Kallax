@@ -1,6 +1,7 @@
 package model.entity;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 import model.entity.Utilisateur;
 /**
@@ -18,6 +19,10 @@ public class Etudiant extends Utilisateur{
     /**The Student's group */
     private GroupeTD groupe;
 
+
+    private static ArrayList<Etudiant> etudiants;
+
+
     /**
     * Constructor : Initializes a Etudiant object with its parameters.
     * @param nom Student's name
@@ -34,6 +39,38 @@ public class Etudiant extends Utilisateur{
         } else{
             throw new IllegalArgumentException("Argument(s) invalide(s) dans le constructeur de Etudiant");
         }
+    }
+
+    public static Etudiant getEtudiantById(int id) {
+        if (etudiants == null) {
+            etudiants = new ArrayList<>();
+        }
+        boolean found = false;
+        int i = 0;
+        Etudiant etu = null;
+        while (!found && i < etudiants.size()) {
+            etu = etudiants.get(i);
+
+            if (etu.getNum() == id) {
+                found = true;
+            }
+            i++;
+        }
+
+        if (!found) {
+            etu = null;
+        }
+        return etu;
+    }
+
+    public static void addEtudiant(Etudiant etudiant) {
+        if (!etudiants.contains(etudiant)) {
+            etudiants.add(etudiant);
+        }
+    }
+
+    public static ArrayList<Etudiant> getEtudiants() {
+        return etudiants;
     }
 
     /**

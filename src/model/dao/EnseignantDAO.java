@@ -52,11 +52,20 @@ public class EnseignantDAO extends DAO<Enseignant, String> {
                                     String motDePasse = rs2.getString("motDePasse");
                                     String nom = rs2.getString("nom");
                                     String prenom = rs2.getString("prenom");
-                                    if (estDe) {
-                                        enseignants.add(new DirecteurEtudes(nom, prenom, userEns, motDePasse, identifiant));
+                                    
+                                    
+                                    Enseignant ens = Enseignant.getEnseignantByID(identifiant);
+                                    if (ens == null) {
+                                        if (estDe) {
+                                            ens = new DirecteurEtudes(nom, prenom, userEns, motDePasse, identifiant);
+                                        } else {
+                                            ens = new Enseignant(nom, prenom, userEns, motDePasse, identifiant);
+                                        }
+                                        Enseignant.addEnseignant(ens);
                                     } else {
-                                        enseignants.add(new Enseignant(nom, prenom, userEns, motDePasse, identifiant));
                                     }
+                                    
+                                    enseignants.add(ens);
                                 }
                             } catch (SQLException ex) {
                                 ex.printStackTrace();
@@ -88,11 +97,19 @@ public class EnseignantDAO extends DAO<Enseignant, String> {
                                         String motDePasse = rs2.getString("motDePasse");
                                         String nom = rs2.getString("nom");
                                         String prenom = rs2.getString("prenom");
-                                        if (estDe) {
-                                            return new DirecteurEtudes(nom, prenom, userEns, motDePasse, identifiant);
+                                        
+                                        Enseignant ens = Enseignant.getEnseignantByID(identifiant);
+                                        if (ens == null) {
+                                            if (estDe) {
+                                                ens = new DirecteurEtudes(nom, prenom, userEns, motDePasse, identifiant);
+                                            } else {
+                                                ens = new Enseignant(nom, prenom, userEns, motDePasse, identifiant);
+                                            }
+                                            Enseignant.addEnseignant(ens);
                                         } else {
-                                            return new Enseignant(nom, prenom, userEns, motDePasse, identifiant);
                                         }
+
+                                        return ens;
                                     }
                                 } catch (SQLException ex) {
                                     ex.printStackTrace();

@@ -1,5 +1,6 @@
 package model.entity;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * Evaluation with an type, a coefficient,
@@ -9,10 +10,13 @@ import java.util.HashMap;
  * @author Team KALLAX
  */
 public class Evaluation {
+
     private String ident;
     private double coeff;
     private HashMap<Etudiant, Double> notes;
     private Module module;
+
+    private static ArrayList<Evaluation> evaluations;
 
     /**
      * Constructor : Initializes a Evaluation object with its parameters.
@@ -41,6 +45,38 @@ public class Evaluation {
         }
 
         this.notes = new HashMap<>();
+    }
+
+    public static Evaluation getEvaluationByIdent(String ident) {
+        if (evaluations == null) {
+            evaluations = new ArrayList<>();
+        }
+        boolean found = false;
+        int i = 0;
+        Evaluation eval = null;
+        while (!found && i < evaluations.size()) {
+            eval = evaluations.get(i);
+
+            if (eval.getIdent().equals(ident)) {
+                found = true;
+            }
+            i++;
+        }
+
+        if (!found) {
+            eval = null;
+        }
+        return eval;
+    }
+
+    public static void addEvaluation(Evaluation eval) {
+        if (evaluations.contains(eval)) {
+            evaluations.add(eval);
+        }
+    }
+
+    public static ArrayList<Evaluation> getEvaluations() {
+        return evaluations;
     }
 
     /**

@@ -78,11 +78,13 @@ public class SeanceDAO extends DAO<Seance, String> {
                     Module module = moduleDAO.findByID(idModule);
                     LocalTime heureFin = rs.getTime("horaireFin").toLocalTime();
                 
-                    String idGroupe = rs.getString("groupeTD");
-                    GroupeTD groupe = groupeDAO.findByID(idGroupe);
+                    String idGroupe = rs.getString("sigleGroupe");
+                    String promoGroupe = rs.getString("promoGroupe");
+                    GroupeTD groupe = groupeDAO.findByID(idGroupe+"_"+promoGroupe);
 
                     if (module != null && groupe != null) {
                         Seance nouvelleSeance = new Seance(dateSeance, heureDeb, heureFin, module, groupe);
+                        Seance.addSeance(nouvelleSeance);
                         seancesDict.put(cleSeance, nouvelleSeance);
                     }
                 }
@@ -96,7 +98,7 @@ public class SeanceDAO extends DAO<Seance, String> {
                     
                     if (etu != null && statutEtu != null) {
                         EnumPresence statut = EnumPresence.valueOf(statutEtu);
-                        seance.getAppel().put(etu, statut);
+                        seance.ajouterPresence(etu, statut);
                     }
                 }
             }

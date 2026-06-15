@@ -43,16 +43,23 @@ public class ModuleDAO extends DAO<Module, String> {
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM Module")) {
             while (rs.next()) {
-                String code = rs.getString("code");
-                String intitule = rs.getString("intitule");
+                String code = rs.getString("intitule");
+                String intitule = rs.getString("nom");
                 String type = rs.getString("typeModule");
                 String idPromo = rs.getString("promo");
-                PromotionDAO promotionDAO = new PromotionDAO();
-                Promotion promo = promotionDAO.findByID(idPromo);
-
-                if (promo != null) {
-                    modules.add(new Module(code, intitule, EnumModule.valueOf(type), promo));
+                Promotion promo = Promotion.getPromotionByName(idPromo);
+                
+                Module mod = Module.getModuleById(code);
+                if (mod == null) {
+                    mod = new Module(code, intitule, EnumModule.valueOf(type), promo);
+                    Module.addModule(mod);
+                } else {
+                    mod.setIntitule(intitule);
+                    mod.setPromotion(promo);
+                    mod.setType(EnumModule.valueOf(type));
                 }
+                
+                modules.add(mod);
                 
             }
         } catch (SQLException ex) {
@@ -72,11 +79,20 @@ public class ModuleDAO extends DAO<Module, String> {
                     String codeMod = rs.getString("intitule");
                     String intitule = rs.getString("nom");
                     String typeMod = rs.getString("typeModule");
-                    String idPromo = rs.getString("idPromo");
-                    PromotionDAO promotionDAO = new PromotionDAO();
-                    Promotion promo = promotionDAO.findByID(idPromo);
+                    String idPromo = rs.getString("promo");
+                    Promotion promo = Promotion.getPromotionByName(idPromo);
+                
+                    Module mod = Module.getModuleById(code);
+                    if (mod == null) {
+                        mod = new Module(code, intitule, EnumModule.valueOf(typeMod), promo);
+                        Module.addModule(mod);
+                    } else {
+                        mod.setIntitule(intitule);
+                        mod.setPromotion(promo);
+                        mod.setType(EnumModule.valueOf(typeMod));
+                    }
 
-                    return new Module(codeMod, intitule,  EnumModule.valueOf(typeMod), promo);
+                    return mod;
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();

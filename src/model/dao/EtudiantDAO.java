@@ -55,7 +55,18 @@ public class EtudiantDAO extends DAO<Etudiant, Integer> {
                                     String motDePasse = rs2.getString("motDePasse");
                                     String nom = rs2.getString("nom");
                                     String prenom = rs2.getString("prenom");
-                                    Etudiant newEtud = new Etudiant(nom, prenom, userEtud, motDePasse, numero);
+                                    Etudiant oldEtud = Etudiant.getEtudiantById(numero);
+                                    Etudiant newEtud = null;
+                                    if (oldEtud == null) {
+                                        newEtud = new Etudiant(nom, prenom, userEtud, motDePasse, numero);
+                                        Etudiant.addEtudiant(newEtud);
+                                    } else {
+                                        oldEtud.setNom(nom);
+                                        oldEtud.setPrenom(prenom);
+                                        oldEtud.setEmail(userEtud);
+                                        oldEtud.setMdp(motDePasse);
+                                        newEtud = oldEtud;
+                                    }
                                     Promotion.getPromotionByName(promo).getGroupeByName(groupeTD).ajouterEtudiant(newEtud);
                                     etudiants.add(newEtud);
                                 }
@@ -91,7 +102,19 @@ public class EtudiantDAO extends DAO<Etudiant, Integer> {
                                         String motDePasse = rs2.getString("motDePasse");
                                         String nom = rs2.getString("nom");
                                         String prenom = rs2.getString("prenom");
-                                        Etudiant newEtud = new Etudiant(nom, prenom, userEtud, motDePasse, numero);
+
+                                        Etudiant oldEtud = Etudiant.getEtudiantById(numero);
+                                        Etudiant newEtud = null;
+                                        if (oldEtud == null) {
+                                            newEtud = new Etudiant(nom, prenom, userEtud, motDePasse, numero);
+                                            Etudiant.addEtudiant(newEtud);
+                                        } else {
+                                            oldEtud.setNom(nom);
+                                            oldEtud.setPrenom(prenom);
+                                            oldEtud.setEmail(userEtud);
+                                            oldEtud.setMdp(motDePasse);
+                                            newEtud = oldEtud;
+                                        }
                                         Promotion.getPromotionByName(promo).getGroupeByName(groupeTD).ajouterEtudiant(newEtud);
                                         return newEtud;
                                     }

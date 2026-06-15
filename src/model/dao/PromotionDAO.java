@@ -41,7 +41,7 @@ public class PromotionDAO extends DAO<Promotion, String> {
                 ResultSet rs = st.executeQuery("SELECT * FROM Promotion")) {
             while (rs.next()) {
                 String code = rs.getString("code");
-                promotions.add(new Promotion(EnumPromo.valueOf(code)));
+                promotions.add(Promotion.getPromotionByName(code));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -57,7 +57,7 @@ public class PromotionDAO extends DAO<Promotion, String> {
             try (ResultSet rs = st.executeQuery()) {
                 if (rs.next()) {
                     String codeRs = rs.getString("code");
-                    return new Promotion(EnumPromo.valueOf(codeRs));
+                    return Promotion.getPromotionByName(code);
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();

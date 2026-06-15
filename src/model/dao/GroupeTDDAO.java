@@ -66,6 +66,20 @@ public class GroupeTDDAO extends DAO<GroupeTD, String> {
 
                     groupe.setEtudiants(EtudiantsInGroupe(con, nom, idPromo));
                     groupe.setModulesSuivis(ModulesInGroupe(con, nom, idPromo));
+
+                    ArrayList<GroupeTD> groupesPromo = promo.getGroupes();
+                    boolean found = false;
+                    GroupeTD oldGrp = null;
+                    for (GroupeTD grp : groupesPromo) {
+                        if(nom.equals(grp.getNom())) {
+                            found = true;
+                            oldGrp = grp;
+                        }
+                    }
+                    if (found) {
+                        groupesPromo.remove(oldGrp);
+                        groupesPromo.add(groupe);
+                    }
                     groupes.add(groupe);
                 }
                 
@@ -106,6 +120,20 @@ public class GroupeTDDAO extends DAO<GroupeTD, String> {
                         groupe.setEtudiants(EtudiantsInGroupe(con, nom, idPromo));
                         groupe.setModulesSuivis(ModulesInGroupe(con, nom, idPromo));
                         
+                        ArrayList<GroupeTD> groupesPromo = promo.getGroupes();
+                        boolean found = false;
+                        GroupeTD oldGrp = null;
+                        for (GroupeTD grp : groupesPromo) {
+                            if(nom.equals(grp.getNom())) {
+                                found = true;
+                                oldGrp = grp;
+                            }
+                        }
+                        if (found) {
+                            groupesPromo.remove(oldGrp);
+                            groupesPromo.add(groupe);
+                        }
+
                         return groupe;
                     }
                 }
@@ -156,7 +184,7 @@ public class GroupeTDDAO extends DAO<GroupeTD, String> {
         ArrayList<Etudiant> etudiants = new ArrayList<>();
         EtudiantDAO etudiantDAO = new EtudiantDAO();
 
-        try (PreparedStatement st = con.prepareStatement("SELECT numero FROM Etudiant WHERE sigleGroupe = ? AND promoGroupe = ?")) {
+        try (PreparedStatement st = con.prepareStatement("SELECT numero FROM Etudiant WHERE groupeTD = ? AND promo = ?")) {
             st.setString(1, sigle);
             st.setString(2, promo);
             

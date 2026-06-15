@@ -20,6 +20,8 @@ public class Enseignant extends Utilisateur{
     /** List of modules */
     private ArrayList<Module> modules;
 
+    private static ArrayList<Enseignant> enseignants;
+
     /**
      * Constructor of Enseignant
      * @param nom name of the teacher
@@ -39,6 +41,38 @@ public class Enseignant extends Utilisateur{
             throw new IllegalArgumentException("Constructeur de Enseignant : id incorrect.");
         }
 
+    }
+
+    public static Enseignant getEnseignantByID(String id) {
+        if (enseignants == null) {
+            enseignants = new ArrayList<>();
+        }
+        boolean found = false;
+        int i = 0;
+        Enseignant ens = null;
+        while (!found && i < enseignants.size()) {
+            ens = enseignants.get(i);
+
+            if (ens.getIdent().equals(id)) {
+                found = true;
+            }
+            i++;
+        }
+
+        if (!found) {
+            ens = null;
+        }
+        return ens;
+    }
+
+    public static void addEnseignant(Enseignant enseignant) {
+        if (!enseignants.contains(enseignant)) {
+            enseignants.add(enseignant);
+        }
+    }
+
+    public static ArrayList<Enseignant> getEnseignants() {
+        return enseignants;
     }
 
     /**

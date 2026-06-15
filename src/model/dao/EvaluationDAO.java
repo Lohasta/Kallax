@@ -92,8 +92,22 @@ public class EvaluationDAO extends DAO<Evaluation, String> {
                         }
                     }
                 }
-
-                Evaluation eval = new Evaluation(id, coeff, module);
+                Evaluation eval = Evaluation.getEvaluationByIdent(id);
+                if (eval == null) {
+                    eval = new Evaluation(id, coeff, module);
+                    Evaluation.addEvaluation(eval);
+                    module.ajouterEvaluation(eval);
+                } else {
+                    eval.setCoeff(coeff);
+                    Module modEv = eval.getModule();
+                    if (modEv == module) {
+                        module.ajouterEvaluation(eval);
+                    } else {
+                        modEv.retirerEvaluation(eval);
+                        module.ajouterEvaluation(eval);
+                    }
+                    eval.setModule(module);
+                }
                 eval.setNotes(notes);
                 evaluations.add(eval);
 
@@ -122,7 +136,7 @@ public class EvaluationDAO extends DAO<Evaluation, String> {
                     String moduleId = rs.getString("module");
 
                     ModuleDAO moduleDAO = new ModuleDAO();
-                    Module module = moduleDAO.findByID(moduleId);
+                    Module module = Module.getModuleById(moduleId);
 
                     HashMap<Etudiant, Double> notes = new HashMap<>();
 
@@ -144,7 +158,14 @@ public class EvaluationDAO extends DAO<Evaluation, String> {
                         }
                     }
 
-                    Evaluation eval = new Evaluation(idEval, coeff, module);
+                    Evaluation eval = Evaluation.getEvaluationByIdent(id);
+                    if (eval == null) {
+                        eval = new Evaluation(id, coeff, module);
+                        Evaluation.addEvaluation(eval);
+                    } else {
+                        eval.setCoeff(coeff);
+                        eval.setModule(module);
+                    }
                     eval.setNotes(notes);
 
                     return eval;
