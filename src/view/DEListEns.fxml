@@ -115,7 +115,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Button fx:id="addCtrl" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="+ Ajouter un enseignant">
+                  <Button fx:id="addEns" onAction="#addEnseignant" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="+ Ajouter un enseignant">
                      <font>
                         <Font size="18.0" />
                      </font>

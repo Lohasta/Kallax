@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #EBF3F5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnseignantAssiduiteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #EBF3F5;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnseignantAssiduiteController">
    
    <left>
       <VBox prefWidth="220.0" style="-fx-background-color: #F6EDF0; -fx-border-color: #707070; -fx-border-width: 0 2 0 0;" BorderPane.alignment="CENTER">
@@ -120,23 +120,17 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Button fx:id="addCtrl" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="+ Ajouter présence">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Button>
                </children>
             </VBox>
             
-            <HBox spacing="20.0" alignment="BASELINE_LEFT">
+            <HBox spacing="20.0">
                <children>
-                  <Button fx:id="addSeance" onAction="#handleAddSeance" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="+ Ajouter une séance">
+                  <Button fx:id="addSeance" mnemonicParsing="false" onAction="#handleAddSeance" style="-fx-background-color: transparent; -fx-cursor: hand;" text="+ Ajouter une séance">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  
-                  <Button fx:id="faireAppel" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="📑 Faire l'appel">
+                  <Button fx:id="faireAppel" mnemonicParsing="false" onAction="#handleFaireAppel" style="-fx-background-color: transparent; -fx-cursor: hand;" text="📑 Faire l'appel">
                      <font>
                         <Font size="18.0" />
                      </font>
