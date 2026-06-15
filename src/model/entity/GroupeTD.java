@@ -52,7 +52,7 @@ public class GroupeTD {
      */
     public void ajouterEtudiant(Etudiant e){
         if (e != null) {
-            if(this.etudiants.size() <= 28 && this.etudiants != null){
+            if(this.etudiants.size() <= 28 && this.etudiants != null && !this.etudiants.contains(e)){
                 this.etudiants.add(e);
                 e.setGroupe(this);
             }

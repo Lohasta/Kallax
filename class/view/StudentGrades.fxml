@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Font?> 
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #DDE4E6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #DDE4E6;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentGradesController">
    <children>
       <VBox prefHeight="720.0" prefWidth="1280.0" spacing="25.0">
          <children>
@@ -44,10 +44,8 @@
 
                         <Button fx:id="deconnexion" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text=" Déconnexion">
                            <font>
-                              <Font size="22.0" />
+                              <Font name="Arial" size="22.0" />
                            </font>
-                           <graphic>
-                              </graphic>
                         </Button>
                      </children>
                   </HBox>
@@ -60,7 +58,7 @@
                      <children>
                         <VBox layoutX="35.0" layoutY="25.0" prefWidth="1130.0" spacing="25.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="25.0">
                            <children>
-                              
+             
                               <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                                  <children>
                                     <Label text="Compétences et ressources" textFill="#1A1A1A">
@@ -146,7 +144,7 @@
                                           </Label>
                                        </children>
                                     </VBox>
-                                    
+                
                                     <VBox alignment="TOP_RIGHT" prefWidth="300.0" spacing="10.0">
                                        <children>
                                           <ListView fx:id="notesListView" minHeight="350.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: transparent; -fx-background-insets: 0; -fx-padding: 0; -fx-control-inner-background: #F5F5F5;" />

@@ -99,6 +99,7 @@ public class StudentController{
      */
     @FXML
     public void initialize() {
+        System.out.println("here0");
         String email = model.MailUser.getEmail();
         UtilisateurDAO dao = new UtilisateurDAO();
         String nom = dao.findNomByID(email);
@@ -131,6 +132,7 @@ public class StudentController{
     public void logout(){
         try {
             FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("LoginScene");
+            System.out.println("Logout");
             view.SkodocMain.loadFXML(fxmlLoader);
             model.MailUser.clear();
         } catch (Exception e) {

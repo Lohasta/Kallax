@@ -13,7 +13,7 @@ public class Utilisateur{
         prenom = null;
         email = null;
         mdp = null;
-        estConnecte = true;
+        estConnecte = false;
     }
 
     public Utilisateur(String nom, String prenom, String email, String mdp){
@@ -40,6 +40,8 @@ public class Utilisateur{
         } else{
             System.out.println("Constructeur de Utilisateur : mdp incorrect.");
         }
+
+        estConnecte = false;
     }
 
     @Override
