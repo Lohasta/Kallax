@@ -36,7 +36,7 @@ import javafx.event.ActionEvent;
  * and manages user interactions for adding evaluations, checking attendance, 
  * viewing grades, and adjusting settings.
  * * It extends {@link EnseignantController} to inherit base teacher navigation functionalities.
- * * @author YourName
+ * * @author Team Kallax
  * @version 1.0
  */
 public class EnseignantGradesController extends EnseignantController {
