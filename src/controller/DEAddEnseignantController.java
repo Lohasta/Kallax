@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField; // Ajouté pour le mot de passe
 import model.dao.UtilisateurDAO;
 import model.entity.Enseignant;
+import model.entity.Utilisateur;
 import model.dao.EnseignantDAO;
 
 public class DEAddEnseignantController extends EnseignantController {
@@ -80,8 +81,11 @@ public class DEAddEnseignantController extends EnseignantController {
         }
 
         try {
+            UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
+            Utilisateur util = new Utilisateur(nom, prenom, email, mdp);
+            utilisateurDAO.create(util);
+
             Enseignant nouvelEnseignant = new Enseignant(nom, prenom, email, mdp, ident);
-            System.out.println("Enseignant créé avec succès");
             
             EnseignantDAO enseignantDAO= new EnseignantDAO();
 

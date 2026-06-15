@@ -15,6 +15,8 @@ public class GroupeTD {
     private ArrayList<Module> modulesSuivis;
     private ArrayList<Etudiant> etudiants;
 
+    private static ArrayList<GroupeTD> groupes;
+
     /**
      * The builder
      * @param nom name of TD group
@@ -36,6 +38,37 @@ public class GroupeTD {
         this.modulesSuivis=new ArrayList<>();
 
         this.etudiants=new ArrayList<>();
+    }
+
+    public static GroupeTD getGroupeByNomAndPromo(String nom, Promotion promo) {
+        if (groupes == null) {
+            groupes = new ArrayList<>();
+        }
+        boolean found = false;
+        int i = 0;
+        GroupeTD grp = null;
+        while (!found && i < groupes.size()) {
+            grp = groupes.get(i);
+            if (grp.getNom().equals(nom) && promo.equals(grp.getPromotion())) {
+                found = true;
+            }
+            i++;
+        }
+
+        if (!found) {
+            grp = null;
+        }
+        return grp;
+    }
+
+    public static void addGroupe(GroupeTD groupe) {
+        if (!groupes.contains(groupe)) {
+            groupes.add(groupe);
+        }
+    }
+
+    public static ArrayList<GroupeTD> getGroupes() {
+        return groupes;
     }
 
     /**

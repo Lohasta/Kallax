@@ -117,10 +117,10 @@
                   <GridPane alignment="CENTER" hgap="15.0" vgap="12.0" style="-fx-background-color: #FFFFFF; -fx-padding: 25; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" maxWidth="480.0">
                      <children>
                         
-                        <Label text="Identifiant :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label text="Ident :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="0">
                            <font> <Font size="16.0" /> </font>
                         </Label>
-                        <TextField fx:id="identTF" prefHeight="35.0" prefWidth="240.0" promptText="Ex: ens_durand" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <TextField fx:id="identTF" prefHeight="35.0" prefWidth="240.0" promptText="Ex: tonin@univ.fr" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0">
                            <font> <Font size="14.0" /> </font>
                         </TextField>
                         

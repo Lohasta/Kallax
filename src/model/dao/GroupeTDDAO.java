@@ -61,26 +61,21 @@ public class GroupeTDDAO extends DAO<GroupeTD, String> {
                 
                 Promotion promo = promotionDAO.findByID(idPromo);
                 
-                if ( promo != null){
-                    GroupeTD groupe = new GroupeTD(nom, promo);
+                if (promo != null){
 
-                    groupe.setEtudiants(EtudiantsInGroupe(con, nom, idPromo));
-                    groupe.setModulesSuivis(ModulesInGroupe(con, nom, idPromo));
+                    
 
-                    ArrayList<GroupeTD> groupesPromo = promo.getGroupes();
-                    boolean found = false;
-                    GroupeTD oldGrp = null;
-                    for (GroupeTD grp : groupesPromo) {
-                        if(nom.equals(grp.getNom())) {
-                            found = true;
-                            oldGrp = grp;
-                        }
+                    GroupeTD grp = GroupeTD.getGroupeByNomAndPromo(nom, promo);
+                    if (grp == null) {
+                        grp = new GroupeTD(nom, promo);
+                        promo.ajouterGroupe(grp);
+                        GroupeTD.addGroupe(grp);
+                    } else {
                     }
-                    if (found) {
-                        groupesPromo.remove(oldGrp);
-                        groupesPromo.add(groupe);
-                    }
-                    groupes.add(groupe);
+                    grp.setEtudiants(EtudiantsInGroupe(con, nom, idPromo));
+                    grp.setModulesSuivis(ModulesInGroupe(con, nom, idPromo));
+
+                    groupes.add(grp);
                 }
                 
             }
@@ -116,25 +111,17 @@ public class GroupeTDDAO extends DAO<GroupeTD, String> {
                     Promotion promo = promotionDAO.findByID(idPromo);
 
                     if (promo != null) {
-                        GroupeTD groupe = new GroupeTD(nom, promo);
-                        groupe.setEtudiants(EtudiantsInGroupe(con, nom, idPromo));
-                        groupe.setModulesSuivis(ModulesInGroupe(con, nom, idPromo));
-                        
-                        ArrayList<GroupeTD> groupesPromo = promo.getGroupes();
-                        boolean found = false;
-                        GroupeTD oldGrp = null;
-                        for (GroupeTD grp : groupesPromo) {
-                            if(nom.equals(grp.getNom())) {
-                                found = true;
-                                oldGrp = grp;
-                            }
+                        GroupeTD grp = GroupeTD.getGroupeByNomAndPromo(nom, promo);
+                        if (grp == null) {
+                            grp = new GroupeTD(nom, promo);
+                            promo.ajouterGroupe(grp);
+                            GroupeTD.addGroupe(grp);
+                        } else {
                         }
-                        if (found) {
-                            groupesPromo.remove(oldGrp);
-                            groupesPromo.add(groupe);
-                        }
+                        grp.setEtudiants(EtudiantsInGroupe(con, nom, idPromo));
+                        grp.setModulesSuivis(ModulesInGroupe(con, nom, idPromo));
 
-                        return groupe;
+                        return grp;
                     }
                 }
             } catch (SQLException ex) {

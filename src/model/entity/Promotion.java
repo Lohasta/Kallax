@@ -27,7 +27,6 @@ public class Promotion{
         if (promotions == null) {
             promotions = new ArrayList<>();
         }
-        promotions.add(this);
     }
 
     public static Promotion getPromotionByName(String name) {
@@ -53,7 +52,7 @@ public class Promotion{
         return promo;
     }
 
-    public GroupeTD getGroupeByName(String name) {
+    /*public GroupeTD getGroupeByName(String name) {
         boolean found = false;
         int i = 0;
         GroupeTD groupe = null;
@@ -71,7 +70,7 @@ public class Promotion{
             this.ajouterGroupe(groupe);
         }
         return groupe;
-    }
+    }*/
 
     public static ArrayList<Promotion> getPromotions() {
         return promotions;
