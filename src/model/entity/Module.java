@@ -73,6 +73,11 @@ public class Module{
         }
     }
 
+    /** 
+     * Static getter of Module by their code
+     * @param code the code to look for
+     * @return the module that was found or null
+     */
     public static Module getModuleById(String code) {
         if (modules == null) {
             modules = new ArrayList<>();
@@ -94,12 +99,20 @@ public class Module{
         return mod;
     }
 
+    /**
+     * Public method to add a Module to the static list
+     * @param module the module to add
+     */
     public static void addModule(Module module) {
         if (!modules.contains(module)) {
             modules.add(module);
         }
     }
 
+    /**
+     * Static getter to get the Module static list
+     * @return the ArrayList
+     */
     public static ArrayList<Module> getModules() {
         return modules;
     }
