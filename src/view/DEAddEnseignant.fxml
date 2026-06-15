@@ -42,7 +42,7 @@
                               <Font size="13.0" />
                            </font>
                         </Label>
-                        <Label fx:id="utilisateur" text="Directeur Études" textFill="#E03A3E">
+                        <Label fx:id="utilisateur" text="Enseignant" textFill="#E03A3E">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -57,15 +57,19 @@
             
             <VBox spacing="15.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Button fx:id="btnEnseignants" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-color: #707070; -fx-border-width: 0 0 1 0; -fx-cursor: hand;" text="Enseignants">
+                  <Button fx:id="notesEns1" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-color: #707070; -fx-border-width: 0 0 1 0; -fx-cursor: hand;" text="Notes">
                      <font> <Font size="18.0" /> </font>
                      <padding> <Insets left="30.0" /> </padding>
                   </Button>
-                  <Button fx:id="btnEtudiants" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-color: #707070; -fx-border-width: 0 0 1 0; -fx-cursor: hand;" text="Étudiants">
+                  <Button fx:id="assiduiteEns1" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-color: #707070; -fx-border-width: 0 0 1 0; -fx-cursor: hand;" text="Assiduité">
                      <font> <Font size="18.0" /> </font>
                      <padding> <Insets left="30.0" /> </padding>
                   </Button>
-                  <Button fx:id="btnFormations" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-color: #707070; -fx-border-width: 0 0 1 0; -fx-cursor: hand;" text="Formations">
+                  <Button fx:id="gestionEns1" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-color: #707070; -fx-border-width: 0 0 1 0; -fx-cursor: hand;" text="Gestion">
+                     <font> <Font size="18.0" /> </font>
+                     <padding> <Insets left="30.0" /> </padding>
+                  </Button>
+                  <Button fx:id="paramEns1" alignment="BASELINE_LEFT" graphicTextGap="15.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="220.0" style="-fx-background-color: transparent; -fx-border-color: #707070; -fx-border-width: 0 0 1 0; -fx-cursor: hand;" text="Paramètres">
                      <font> <Font size="18.0" /> </font>
                      <padding> <Insets left="30.0" /> </padding>
                   </Button>
