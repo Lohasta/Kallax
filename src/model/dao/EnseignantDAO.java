@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.*;
 import model.entity.DirecteurEtudes;
 import model.entity.Enseignant;
+import model.dao.EnseignantDAO;
+import model.entity.Module;
 
 public class EnseignantDAO extends DAO<Enseignant, String> {
 
@@ -64,6 +66,10 @@ public class EnseignantDAO extends DAO<Enseignant, String> {
                                         Enseignant.addEnseignant(ens);
                                     } else {
                                     }
+                                    ens.setModules(ReponsableOfModule(con, identifiant));
+                                    for (Module mod : ReponsableOfModule(con, identifiant)) {
+                                        mod.ajouterResponsable(ens);
+                                    }
                                     
                                     enseignants.add(ens);
                                 }
@@ -107,6 +113,10 @@ public class EnseignantDAO extends DAO<Enseignant, String> {
                                             }
                                             Enseignant.addEnseignant(ens);
                                         } else {
+                                        }
+                                        ens.setModules(ReponsableOfModule(con, identifiant));
+                                        for (Module mod : ReponsableOfModule(con, identifiant)) {
+                                            mod.ajouterResponsable(ens);
                                         }
 
                                         return ens;
@@ -172,4 +182,26 @@ public class EnseignantDAO extends DAO<Enseignant, String> {
         }
         return false;
     }
+
+    private ArrayList<Module> ReponsableOfModule(Connection con, String ident) throws SQLException {
+        ArrayList<Module> modules = new ArrayList<>();
+        ModuleDAO moduleDAO = new ModuleDAO();
+
+        try (PreparedStatement st = con.prepareStatement("SELECT * FROM Responsable WHERE ens = ?")) {
+            st.setString(1, ident);
+            
+            try (ResultSet rs = st.executeQuery()) {
+                
+                while (rs.next()) {
+                    String idModule = rs.getString("module");
+                    Module module = moduleDAO.findByID(idModule);
+                    
+                    if (module != null) {
+                        modules.add(module);
+                    }
+                }
+            }
+        }
+        return modules;
+    } 
 }

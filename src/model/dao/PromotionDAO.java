@@ -40,7 +40,6 @@ public class PromotionDAO extends DAO<Promotion, String> {
                 Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery("SELECT * FROM Promotion")) {
             while (rs.next()) {
-                System.out.println("AZAZAZAZAZA");
                 String code = rs.getString("code");
                 promotions.add(Promotion.getPromotionByName(code));
             }
