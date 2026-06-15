@@ -11,16 +11,10 @@ import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
 import model.dao.EnseignantDAO;
 import model.dao.EtudiantDAO;
 import model.dao.UtilisateurDAO;
+import model.entity.Enseignant;
 import model.entity.Etudiant;
 import model.entity.Promotion;
 import model.entity.Utilisateur;
@@ -30,6 +24,9 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import model.entity.Utilisateur;
 import javafx.scene.control.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class DEUsersController extends EnseignantController {
     
@@ -62,7 +59,7 @@ public class DEUsersController extends EnseignantController {
 
     /**The table */
     @FXML
-    private TableView<Utilisateur> tableEval; 
+    private TableView<Utilisateur> tableUsers; 
 
     @FXML
     private TableColumn<Utilisateur, String> nom;
@@ -76,6 +73,8 @@ public class DEUsersController extends EnseignantController {
     @FXML
     private TableColumn<Utilisateur, Button> discard; 
 
+    private ObservableList<Utilisateur> userList = FXCollections.observableArrayList();
+    private UtilisateurDAO uDAO = new UtilisateurDAO();
 
     @FXML
     private Button addCtrl;
@@ -83,8 +82,8 @@ public class DEUsersController extends EnseignantController {
     public void initialize(){
         String email = model.MailUser.getEmail();
         model.dao.UtilisateurDAO dao = new UtilisateurDAO();
-        String nom = dao.findNomByID(email);
-        utilisateur.setText(nom);
+        String name = dao.findNomByID(email);
+        utilisateur.setText(name);
         deconnexion.setOnAction((ActionEvent e) -> logout());
         notesEns1.setOnAction((ActionEvent e) -> notes());
         assiduiteEns1.setOnAction((ActionEvent e) -> assiduite());
@@ -92,6 +91,14 @@ public class DEUsersController extends EnseignantController {
         paramEns1.setOnAction((ActionEvent e) -> parametre(email));
         retour.setOnAction((ActionEvent e) -> retour());
         addCtrl.setOnAction((ActionEvent e) -> ajouterUser());
+
+        nom.setCellValueFactory(new PropertyValueFactory<>("Nom"));
+        prenom.setCellValueFactory(new PropertyValueFactory<>("Prenom"));
+        mail.setCellValueFactory(new PropertyValueFactory<>("Email"));
+
+        tableUsers.setItems(userList);
+
+        refresh();
     }
 
     /** to return on the precedent page */
@@ -111,6 +118,16 @@ public class DEUsersController extends EnseignantController {
             FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEAddUser");
             view.SkodocMain.loadFXML(fxmlLoader);
         } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void refresh() {
+        try {
+            List<Utilisateur> listeBDD = uDAO.findAll(); 
+            userList.setAll(listeBDD);
+        } catch (Exception e) {
+            System.out.println("erreur ici");
             e.printStackTrace();
         }
     }
