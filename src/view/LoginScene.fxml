@@ -16,7 +16,7 @@
       
       <ImageView pickOnBounds="true" preserveRatio="false" StackPane.alignment="CENTER">
          <image>
-            <Image url="@../../assets/iut_blurred.png" />
+            <Image url="@/assets/iut_blurred.png" />
          </image>
          <fitWidth><StackPane fx:constant="USE_COMPUTED_SIZE" /></fitWidth>
          <fitHeight><StackPane fx:constant="USE_COMPUTED_SIZE" /></fitHeight>
@@ -27,7 +27,7 @@
             
             <ImageView fitHeight="500.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../assets/logoKallax.png" />
+                  <Image url="@/assets/logoKallax.png" />
                </image>
             </ImageView>
             

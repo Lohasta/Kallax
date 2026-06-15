@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import model.dao.UtilisateurDAO;
 import javafx.event.ActionEvent;
+import model.entity.*;
+
 
 
 public class LoginController{
@@ -73,12 +75,20 @@ public class LoginController{
                     if (user instanceof Enseignant) {
                         sceneName = "EnseignantScene";
                         fxmlLoader = view.SkodocMain.getFXMLLoader(sceneName);
-                    } else if(user instanceof Etudiant){
+                    } else if (user instanceof Etudiant) {
                         sceneName = "StudentScene";
                         fxmlLoader = view.SkodocMain.getFXMLLoader(sceneName);
+                    } else {
+                        System.out.println("[WARNING] Type d'utilisateur inconnu (" + user.getClass().getSimpleName() + "). Redirection par défaut vers StudentScene.");
+                        sceneName = "StudentScene"; 
+                        fxmlLoader = view.SkodocMain.getFXMLLoader(sceneName);
                     }
-                   
-                    view.SkodocMain.loadFXML(fxmlLoader);
+
+                    if (fxmlLoader != null && fxmlLoader.getLocation() != null) {
+                        view.SkodocMain.loadFXML(fxmlLoader);
+                    } else {
+                        System.out.println("[ERREUR] Le fichier FXML '" + sceneName + ".fxml' est introuvable dans class/view/");
+                    }
                     
                 } else {
                     setError(usernameField);
