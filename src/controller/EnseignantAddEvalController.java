@@ -69,14 +69,18 @@ public class EnseignantAddEvalController extends EnseignantController {
 
         if (idSaisi.isEmpty() || coeffSaisi.isEmpty() || moduleSaisi.isEmpty()) {
             System.out.println("remplir tous les champs avant de soumettre.");
-            // TODO
+
+            setError(idTF);
+            setError(coeffTF);
+            setError(moduleTF);
+
             return;
         }
 
         try {
             double coefficient = Double.parseDouble(coeffSaisi.replace(',', '.'));
 
-            // TODO
+            // TODO (dao.create(...))
 
             handleCancel(event);
 
@@ -95,5 +99,15 @@ public class EnseignantAddEvalController extends EnseignantController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**Sets the border of an element to red, indicating error */
+    private void setError(Control field) {
+        field.setStyle("-fx-border-color: red;");
+    }
+
+    /**Sets the border of an element to green, indicating success */
+    private void setSuccess(Control field) {
+        field.setStyle("-fx-border-color: green;");
     }
 }
