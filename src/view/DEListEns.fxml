@@ -104,17 +104,19 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
+                  
                   <TableView fx:id="tableEval" editable="true" prefHeight="450.0" prefWidth="740.0" VBox.vgrow="ALWAYS">
-                        <columns>
-                            <TableColumn fx:id="nom" prefWidth="110.0" text="Nom" />
-                            <TableColumn fx:id="prenom" prefWidth="95.0" text="Prénom" />
-                            <TableColumn fx:id="ress" prefWidth="120.0" text="Ressources" />
-                            <TableColumn fx:id="tuteur" prefWidth="120.0" text="Tuteur" />
-                        </columns>
+                     <columns>
+                        <TableColumn fx:id="ident" prefWidth="100.0" text="Identifiant" />
+                        <TableColumn fx:id="nom" prefWidth="150.0" text="Nom" />
+                        <TableColumn fx:id="prenom" prefWidth="150.0" text="Prénom" />
+                        <TableColumn fx:id="email" prefWidth="240.0" text="Email" />
+                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
+                  
                   <Button fx:id="addEns" onAction="#addEnseignant" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="+ Ajouter un enseignant">
                      <font>
                         <Font size="18.0" />

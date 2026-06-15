@@ -75,41 +75,41 @@ public class DEListEnsController extends EnseignantController{
     private TableView<Enseignant> tableEval; 
 
     @FXML
+    private TableColumn<Enseignant, String> ident; 
+
+    @FXML
     private TableColumn<Enseignant, String> nom; 
 
     @FXML
     private TableColumn<Enseignant, String> prenom;
 
     @FXML
-    private TableColumn<Enseignant, String> ress; 
-
-    @FXML
-    private TableColumn<Enseignant, String> tuteur; 
+    private TableColumn<Enseignant, String> email;
 
     // Liste observable qui notifie le TableView à chaque changement
     private ObservableList<Enseignant> listeEnseignants = FXCollections.observableArrayList();
     private EnseignantDAO enseignantDAO = new EnseignantDAO();
 
     public void initialize(){
-        String email = model.MailUser.getEmail();
+        String emailUser = model.MailUser.getEmail();
         model.dao.UtilisateurDAO dao = new UtilisateurDAO();
-        String nomUser = dao.findNomByID(email);
+        String nomUser = dao.findNomByID(emailUser);
         utilisateur.setText(nomUser);
         deconnexion.setOnAction((ActionEvent e) -> logout());
         notesEns1.setOnAction((ActionEvent e) -> notes());
         assiduiteEns1.setOnAction((ActionEvent e) -> assiduite());
-        gestionEns1.setOnAction((ActionEvent e) -> gestion(email));
-        paramEns1.setOnAction((ActionEvent e) -> parametre(email));
+        gestionEns1.setOnAction((ActionEvent e) -> gestion(emailUser));
+        paramEns1.setOnAction((ActionEvent e) -> parametre(emailUser));
         retour.setOnAction((ActionEvent e) -> retour());
 
 
-        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        ident.setCellValueFactory(new PropertyValueFactory<>("ident"));   
+        nom.setCellValueFactory(new PropertyValueFactory<>("nom")); 
         prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        ress.setCellValueFactory(new PropertyValueFactory<>("ress")); 
-        tuteur.setCellValueFactory(new PropertyValueFactory<>("tuteur")); 
+        email.setCellValueFactory(new PropertyValueFactory<>("email"));
 
+        // 3. Liaison de la liste et chargement
         tableEval.setItems(listeEnseignants);
-
         refresh();
     }
 
