@@ -106,4 +106,14 @@ public class DEListEnsController extends EnseignantController{
         }
     }
 
+
+    public void addEnseignant() {
+        try {
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEAddEnseignant");
+            view.SkodocMain.loadFXML(fxmlLoader);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

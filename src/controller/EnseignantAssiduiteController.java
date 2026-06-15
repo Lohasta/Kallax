@@ -69,10 +69,10 @@ public class EnseignantAssiduiteController extends EnseignantController {
     private TableView<Seance> tableEval; 
 
     @FXML
-    private TableColumn<Etudiant, String> nomS; 
+    private TableColumn<Seance, String> nomS; 
 
     @FXML
-    private TableColumn<Etudiant, String> prenomS;
+    private TableColumn<Seance, String> prenomS;
 
     @FXML
     private TableColumn<Seance, String> groupe;
