@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField; // Ajouté pour le mot de passe
 import model.dao.UtilisateurDAO;
 import model.entity.Enseignant;
+import model.dao.EnseignantDAO;
 
 public class DEAddEnseignantController extends EnseignantController {
 
@@ -28,17 +29,19 @@ public class DEAddEnseignantController extends EnseignantController {
     private TextField emailTF;
 
     @FXML
-    private PasswordField mdpTF; // Modifié en PasswordField pour correspondre au FXML
-
-    // Identifiants mis à jour pour correspondre parfaitement au FXML
-    @FXML
-    private Button btnEnseignants;
+    private PasswordField mdpTF; 
 
     @FXML
-    private Button btnEtudiants;
+    private Button notesEns1;
 
     @FXML
-    private Button btnFormations;
+    private Button assiduiteEns1;
+
+    @FXML
+    private Button gestionEns1;
+
+    @FXML
+    private Button paramEns1;
 
     @FXML
     private Button deconnexion;
@@ -52,15 +55,12 @@ public class DEAddEnseignantController extends EnseignantController {
         model.dao.UtilisateurDAO dao = new UtilisateurDAO();
         String nom = dao.findNomByID(email);
         utilisateur.setText(nom);
+        retour.setOnAction((ActionEvent e) -> handleCancel(e));
         
-        // Configuration des événements sur les composants existants
         deconnexion.setOnAction((ActionEvent e) -> logout());
         retour.setOnAction((ActionEvent e) -> handleCancel(null));
 
-        // TODO: Si tes boutons "btnEnseignants", "btnEtudiants" et "btnFormations" 
-        // doivent rediriger vers d'autres pages, configure leurs actions ici.
-        // Exemple :
-        // btnEnseignants.setOnAction((ActionEvent e) -> chargerPageEnseignants());
+
     }
 
     /**
@@ -83,7 +83,9 @@ public class DEAddEnseignantController extends EnseignantController {
             Enseignant nouvelEnseignant = new Enseignant(nom, prenom, email, mdp, ident);
             System.out.println("Enseignant créé avec succès");
             
-            //TODO model.DAO.EnseignantDAO.insert(nouvelEnseignant);
+            EnseignantDAO enseignantDAO= new EnseignantDAO();
+
+            enseignantDAO.create(nouvelEnseignant);
 
             System.out.println("Succès : L'enseignant a été ajouté avec succès !");
             handleCancel(null); 
@@ -102,7 +104,7 @@ public class DEAddEnseignantController extends EnseignantController {
     @FXML
     private void handleCancel(ActionEvent event) {
          try {
-            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEGestionEnseignants");
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEListEns");
             view.SkodocMain.loadFXML(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
