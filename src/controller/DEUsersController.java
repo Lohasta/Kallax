@@ -29,6 +29,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import model.entity.Utilisateur;
+import javafx.scene.control.*;
 
 public class DEUsersController extends EnseignantController {
     

@@ -1,5 +1,40 @@
 package controller;
 
+import controller.EnseignantController;
+import javafx.fxml.FXML;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import model.dao.UtilisateurDAO;
+import model.entity.*;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
+import model.dao.EnseignantDAO;
+import model.dao.EtudiantDAO;
+import model.dao.UtilisateurDAO;
+import model.entity.Etudiant;
+import model.entity.Promotion;
+import model.entity.Enseignant;
+import model.entity.Utilisateur;
+import javafx.fxml.Initializable;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import model.dao.UtilisateurDAO;
 
 public class DEGestionController extends EnseignantController{
