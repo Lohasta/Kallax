@@ -80,6 +80,9 @@ public class SkodocMain extends Application{
             fxmlLoader = getFXMLLoader("StudentScene");
         } else {
             fxmlLoader = getFXMLLoader("LoginScene");
+            if (fxmlLoader == null) {
+                return;
+            }
         }
         scene = new Scene(fxmlLoader.load(), 1200, 600);
 
@@ -123,7 +126,11 @@ public class SkodocMain extends Application{
      * @return FXMLLoader object
      */
     public static FXMLLoader getFXMLLoader(String fxml) {
-        return new FXMLLoader(SkodocMain.class.getResource(fxml + ".fxml"));
+        java.net.URL fxmlLocation = SkodocMain.class.getResource("/view/" + fxml + ".fxml");
+    
+        return new FXMLLoader(fxmlLocation);
+
+
     }
 
     public static void main(String[] args) {
