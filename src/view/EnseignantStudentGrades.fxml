@@ -97,7 +97,7 @@
                </font>
             </Button>
             
-            <VBox alignment="CENTER" spacing="15.0" VBox.vgrow="ALWAYS">
+            <VBox alignment="TOP_LEFT" spacing="15.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label fx:id="titreEval" text="Nom Eval">
                      <font>
@@ -118,6 +118,11 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
+                  <Button fx:id="addCtrl" alignment="BASELINE_LEFT" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-cursor: hand;" text="+ Ajouter une note">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
          </children>
