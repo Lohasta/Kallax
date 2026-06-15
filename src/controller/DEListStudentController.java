@@ -8,33 +8,20 @@ import model.dao.UtilisateurDAO;
 import model.entity.*;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputControl;
-import model.dao.EnseignantDAO;
 import model.dao.EtudiantDAO;
-import model.dao.UtilisateurDAO;
-import model.entity.Module;
-import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-public class DEListStudentController extends EnseignantController{
-    /**Left-bar attributes */
+public class DEListStudentController extends EnseignantController {
+    
+    /** Left-bar attributes */
     @FXML
     private Label utilisateur;
 
@@ -53,61 +40,80 @@ public class DEListStudentController extends EnseignantController{
     @FXML
     private Button deconnexion;
 
-    /**Return to previous page */
+    /** Return to previous page */
     @FXML
     private Button retour;
 
-    /**Title above the TableView */
+    /** Title above the TableView */
     @FXML
     private Label titre;
 
-
-    /**Table view and its TableColumns */
+    /** Table view and its TableColumns */
     @FXML
     private TableView<Etudiant> tableEval;
 
     @FXML
-    private TableColumn<Etudiant, String> nomS;
+    private TableColumn<Etudiant, String> nom;
     
     @FXML
-    private TableColumn<Etudiant, String> prenomS;
+    private TableColumn<Etudiant, String> prenom;
 
     @FXML
-    private TableColumn<Etudiant, GroupeTD> groupe;
+    private TableColumn<Etudiant, String> groupe;
 
-    @FXML
-    private TableColumn<Etudiant, Integer> rang;
 
-    @FXML
-    private TableColumn<Etudiant, Double> avg;
-
-    @FXML
-    private TableColumn<Etudiant, Seance> abs;
-
-    /**Button under the table */
+    /** Button under the table */
     @FXML
     private Button addSeance;
 
-    public void initialize(){
+    // 1. Liste observable pour mettre à jour automatiquement le TableView
+    private ObservableList<Etudiant> listeEtudiants = FXCollections.observableArrayList();
+    private EtudiantDAO etudiantDAO = new EtudiantDAO();
+
+    @FXML
+    public void initialize() {
+        // Infos de connexion et boutons du menu
         String email = model.MailUser.getEmail();
-        model.dao.UtilisateurDAO dao = new UtilisateurDAO();
-        String nom = dao.findNomByID(email);
-        utilisateur.setText(nom);
+        UtilisateurDAO dao = new UtilisateurDAO();
+        String nomUser = dao.findNomByID(email);
+        utilisateur.setText(nomUser);
+        
         deconnexion.setOnAction((ActionEvent e) -> logout());
         notesEns1.setOnAction((ActionEvent e) -> notes());
         assiduiteEns1.setOnAction((ActionEvent e) -> assiduite());
         gestionEns1.setOnAction((ActionEvent e) -> gestion(email));
         paramEns1.setOnAction((ActionEvent e) -> parametre(email));
         retour.setOnAction((ActionEvent e) -> retour());
+
+        nom.setCellValueFactory(new PropertyValueFactory<>("nom")); 
+        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        groupe.setCellValueFactory(new PropertyValueFactory<>("groupe"));
+        groupe.setCellValueFactory(new PropertyValueFactory<>("nomGroupe"));
+        
+        tableEval.setItems(listeEtudiants);
+        refresh();
+    
     }
 
     @FXML 
-    public void retour(){
+    public void retour() {
         try {
-            // Chargement direct par le chemin absolu du fichier
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/DEGestion.fxml"));
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEGestion");
             view.SkodocMain.loadFXML(fxmlLoader);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refresh() {
+        try {
+            List<Etudiant> listeBDD = etudiantDAO.findAll(); 
+            
+            System.out.println("nb etudiants : " + listeBDD.size());
+
+            listeEtudiants.setAll(listeBDD);
+        } catch (Exception e) {
+            System.out.println("Erreur lors du chargement des étudiants");
             e.printStackTrace();
         }
     }

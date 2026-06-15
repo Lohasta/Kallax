@@ -90,6 +90,7 @@ public class DEListEnsController extends EnseignantController{
     private ObservableList<Enseignant> listeEnseignants = FXCollections.observableArrayList();
     private EnseignantDAO enseignantDAO = new EnseignantDAO();
 
+    @FXML
     public void initialize(){
         String emailUser = model.MailUser.getEmail();
         model.dao.UtilisateurDAO dao = new UtilisateurDAO();
@@ -138,7 +139,7 @@ public class DEListEnsController extends EnseignantController{
     public void refresh() {
         try {
             List<Enseignant> listeBDD = enseignantDAO.findAll(); 
-            
+            System.out.println("Nombre d'étudiants récupérés depuis la BDD : " + listeBDD.size());
             listeEnseignants.setAll(listeBDD);
         } catch (Exception e) {
             System.out.println("erreur ici");

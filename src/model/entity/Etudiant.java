@@ -1,9 +1,6 @@
 package model.entity;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.ArrayList;
-
-import model.entity.Utilisateur;
 /**
  * Student with an id (numEtudiant) and a group (groupe).
  * Can calculate his average on a Module and on all Modules,
@@ -232,5 +229,16 @@ public class Etudiant extends Utilisateur{
             }
         }
         return ret;
+    }
+
+    /**
+     * Returns the name of the group of the student as a String.
+     * @return the name of the group or "Aucun groupe" if the group is null.
+     */
+    public String getNomGroupe() {
+    if (this.groupe != null) {
+        return this.groupe.getNom(); 
+    }
+    return "Aucun groupe";
     }
 }
