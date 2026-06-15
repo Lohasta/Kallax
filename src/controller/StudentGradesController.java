@@ -17,6 +17,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import model.dao.EtudiantDAO;
 import model.dao.UtilisateurDAO;
+import model.entity.Etudiant;
+import model.entity.Utilisateur;
 import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
@@ -53,6 +55,9 @@ public class StudentGradesController extends StudentController{
     @FXML 
     private Label r1C1, r2C1, r1C2, r2C2, r1C3, r2C3, r1C4, r2C4, r1C5, r2C5, r1C6, r2C6;
 
+    @FXML
+    private Label moyStd;
+
     /**
      * Initializes the attributes of the Controller,
      * such as the logout button, the chooser of semester
@@ -60,8 +65,17 @@ public class StudentGradesController extends StudentController{
     @FXML
     public void initialize() {
         String email=model.MailUser.getEmail();
-        UtilisateurDAO dao = new UtilisateurDAO();
-        String nom = dao.findNomByID(email);
+        UtilisateurDAO Udao = new UtilisateurDAO();
+        EtudiantDAO Edao = new EtudiantDAO();
+        String nom = Udao.findNomByID(email);
+        Etudiant std;
+        for(Etudiant etd : Etudiant.getEtudiants()){
+            if(etd.getEmail().equals(email)){
+                std = Edao.findByID(etd.getNum());
+                moyStd.setText(std.calculerMoyenneGenerale() + "");
+                break;
+            }
+        }
         nomEtudiant.setText(nom);
         List<String> listeSemestres = new LinkedList<>();
         listeSemestres.add("Semestre 1");
@@ -81,7 +95,6 @@ public class StudentGradesController extends StudentController{
         });
         deconnexion.setOnAction((ActionEvent e) -> logout());
         reduceButton.setOnAction((ActionEvent e) -> retour());
-
     }
 
     /**

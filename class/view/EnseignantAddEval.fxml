@@ -5,18 +5,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="controller.EnseignantAddEvalController" 
-            maxHeight="-Infinity" maxWidth="-Infinity" 
-            minHeight="-Infinity" minWidth="-Infinity" 
-            prefHeight="600.0" prefWidth="1000.0" 
-            style="-fx-background-color: #EBF3F5;" 
-            xmlns="http://javafx.com/javafx/26" 
-            xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:controller="controller.EnseignantAddEvalController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #EBF3F5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnseignantAddEvalController">
    
    <left>
       <VBox prefWidth="220.0" style="-fx-background-color: #F6EDF0; -fx-border-color: #707070; -fx-border-width: 0 2 0 0;" BorderPane.alignment="CENTER">
@@ -107,57 +103,90 @@
             <VBox alignment="CENTER" spacing="25.0" VBox.vgrow="ALWAYS">
                <children>
                   
-                  <Label text="Ajouter une Évaluation" textFill="#1a1a1a">
+                  <Label text="Ajouter un Contrôle" textFill="#1a1a1a">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
                   
-                  <GridPane alignment="CENTER" hgap="15.0" vgap="15.0" style="-fx-background-color: #FFFFFF; -fx-padding: 30; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" maxWidth="450.0">
-                     <children>
-                        
-                        <Label text="Note :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="scoreTF" prefHeight="35.0" prefWidth="200.0" promptText="Ex: 15.5" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                        
-                        <Label text="Coefficient :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="coeffTF" prefHeight="35.0" prefWidth="200.0" promptText="Ex: 2" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </TextField>
-                        
-                        <HBox alignment="CENTER_RIGHT" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets top="15.0" />
-                           </GridPane.margin>
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#handleCancel" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #707070; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 5;" text="Annuler">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#handleAdd" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #b63d31; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 5;" text="Ajouter">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
-                        
-                     </children>
-                  </GridPane>
+                 <GridPane alignment="CENTER" hgap="15.0" maxWidth="450.0" style="-fx-background-color: #FFFFFF; -fx-padding: 30; -fx-background-radius: 8; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" vgap="15.0">
+                  <children>
+                     
+                     <Label text="Nom eval :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="nameE" prefHeight="35.0" prefWidth="200.0" promptText="Ex: DS1" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextField>
+
+                     <Label text="Enseignant :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="ens" prefHeight="35.0" prefWidth="200.0" promptText="Ex: M. Dupont" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextField>
+
+                     <Label text="Date éval :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="dateE" prefHeight="35.0" prefWidth="200.0" promptText="Ex: 15/06/2026" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextField>
+                     
+                     <Label text="Coefficient :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="coeffE" prefHeight="35.0" prefWidth="200.0" promptText="Ex: 2" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextField>
+                     
+                     <HBox alignment="CENTER_RIGHT" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <GridPane.margin>
+                           <Insets top="15.0" />
+                        </GridPane.margin>
+                        <children>
+                           <Button mnemonicParsing="false" onAction="#handleCancel" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #707070; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 5;" text="Annuler">
+                              <font>
+                                 <Font name="System Bold" size="14.0" />
+                              </font>
+                           </Button>
+                           <Button mnemonicParsing="false" onAction="#handleAdd" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #b63d31; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 5;" text="Ajouter">
+                              <font>
+                                 <Font name="System Bold" size="14.0" />
+                              </font>
+                           </Button>
+                        </children>
+                     </HBox>
+                     
+                  </children>
+                  <columnConstraints>
+                     <ColumnConstraints />
+                     <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                  </rowConstraints>
+               </GridPane>
                   
                </children>
             </VBox>
