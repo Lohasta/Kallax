@@ -9,7 +9,7 @@ public abstract class DAO<T, K> {
     private static String driverClassName = "com.mysql.cj.jdbc.Driver";
     private static String url = "jdbc:mysql://localhost:3306/bd_scodoc";
     private static String username = "root";
-    private static String password = "Chat-Conceal-Bully5";
+    private static String password = "root";
 
     protected Connection getConnection() throws SQLException {
         // Load driver class

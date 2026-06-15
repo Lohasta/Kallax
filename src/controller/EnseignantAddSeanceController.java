@@ -11,6 +11,9 @@ import model.dao.ModuleDAO;
 import model.entity.GroupeTD;
 import model.entity.Module;
 import java.util.ArrayList;
+import java.util.List;
+
+import model.dao.UtilisateurDAO;
 
 public class EnseignantAddSeanceController extends EnseignantController {
 
@@ -79,41 +82,66 @@ public class EnseignantAddSeanceController extends EnseignantController {
         String dateSaisi = dateTF.getText().trim();
         String heureDebSaisi = heureDebTF.getText().trim();
 
-        if (groupeSaisi.isEmpty() || coeffSaisi.isEmpty() || moduleSaisi.isEmpty() || dateSaisi.isEmpty() || heureDebSaisi.isEmpty()) {
-            System.out.println("remplir tous les champs avant de soumettre.");
-            // TODO: Afficher une alerte visuelle à l'utilisateur si nécessaire
+       if (groupeSaisi.isEmpty() || coeffSaisi.isEmpty() || moduleSaisi.isEmpty() || dateSaisi.isEmpty() || heureDebSaisi.isEmpty()) {
+            System.err.println("Erreur de saisie");
             return;
         }
 
         GroupeTDDAO groupeDAO = new GroupeTDDAO();
-        ArrayList<GroupeTD> groupes = (ArrayList<GroupeTD>) groupeDAO.findAll();
-        for (GroupeTD groupe : groupes){
-            if (!groupe.getNom().equals(groupeSaisi)){
-                System.out.println("Groupe incorrect");
-                return;
+        List<GroupeTD> groupes = groupeDAO.findAll();
+        boolean groupeExiste = false;
+        
+        for (GroupeTD groupe : groupes) {
+            if (groupe.getNom().equalsIgnoreCase(groupeSaisi)) {
+                groupeExiste = true;
+                break;
             }
         }
+        
+        if (!groupeExiste) {
+            System.out.println("groupe incorrect");
+            return;
+        }
+        
         ModuleDAO moduleDAO = new ModuleDAO();
-        ArrayList<Module> modules = (ArrayList<Module>) moduleDAO.findAll();
-        for (Module module : modules){
-            if (!module.getCode().equals(moduleSaisi)){
-                System.out.println("Module incorrect");
-                return;
+        List<Module> modules = moduleDAO.findAll();
+        boolean moduleExiste = false;
+        for (Module module : modules) {
+            if (module.getCode().equalsIgnoreCase(moduleSaisi)) {
+                moduleExiste = true;
+                break;
             }
         }
-
-
-
+        
+        if (!moduleExiste) {
+            System.out.println("Module incorrect");
+            return;
+        }
         try {
             double coefficient = Double.parseDouble(coeffSaisi.replace(',', '.'));
+            if (coefficient <= 0) {
+                System.out.println("Coefficient invalide");
+                return;
+            }
 
-            // TODO
+            //regex pour les dates
+            if (!dateSaisi.matches("\\d{2}/\\d{2}/\\d{4}") && !dateSaisi.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                System.out.println("Date invalide");
+                return;
+            }
 
-            // Optionnel : Retourner à la page précédente après l'ajout réussi
+            // regex heure : HH:mm ou HHhmm
+            if (!heureDebSaisi.matches("\\d{2}[:h]\\d{2}")) {
+                System.out.println("Heure invalide");
+                return;
+            }
+
+            System.out.println("valide :");
+
             handleCancel(event);
 
         } catch (NumberFormatException e) {
-            System.out.println("Erreur : Veuillez saisir des nombres valides.");
+            System.out.println("Veuillez saisir un nombre valide pour le coefficient.");
         }
     }
 
