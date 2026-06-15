@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.*;
 import model.entity.Etudiant;
 import model.entity.Promotion;
+import model.entity.GroupeTD;
 
 public class EtudiantDAO extends DAO<Etudiant, Integer> {
 
@@ -67,7 +68,7 @@ public class EtudiantDAO extends DAO<Etudiant, Integer> {
                                         oldEtud.setMdp(motDePasse);
                                         newEtud = oldEtud;
                                     }
-                                    Promotion.getPromotionByName(promo).getGroupeByName(groupeTD).ajouterEtudiant(newEtud);
+                                    GroupeTD.getGroupeByNomAndPromo(groupeTD, Promotion.getPromotionByName(promo)).ajouterEtudiant(newEtud);
                                     etudiants.add(newEtud);
                                 }
                             } catch (SQLException ex) {
@@ -115,7 +116,7 @@ public class EtudiantDAO extends DAO<Etudiant, Integer> {
                                             oldEtud.setMdp(motDePasse);
                                             newEtud = oldEtud;
                                         }
-                                        Promotion.getPromotionByName(promo).getGroupeByName(groupeTD).ajouterEtudiant(newEtud);
+                                        GroupeTD.getGroupeByNomAndPromo(groupeTD, Promotion.getPromotionByName(promo)).ajouterEtudiant(newEtud);
                                         return newEtud;
                                     }
                                 } catch (SQLException ex) {
