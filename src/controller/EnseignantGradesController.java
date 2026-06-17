@@ -16,6 +16,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Control;
@@ -23,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
+import javafx.stage.Stage;
 import model.dao.EnseignantDAO;
 import model.dao.EtudiantDAO;
 import javafx.fxml.Initializable;
@@ -88,6 +91,9 @@ public class EnseignantGradesController extends EnseignantController {
     @FXML
     private TableColumn<Evaluation, String> ens;
 
+    @FXML
+    private TableColumn<Evaluation, String> ress;
+
     /** Column displaying the date of the evaluation. */
     @FXML
     private TableColumn<Evaluation, String> dateEval;
@@ -103,10 +109,6 @@ public class EnseignantGradesController extends EnseignantController {
     /** Column displaying the weight/coefficient of the evaluation. */
     @FXML
     private TableColumn<Evaluation, Double> coeff; 
-
-    /** Column containing a button to view the overall results of the evaluation. */
-    @FXML
-    private TableColumn<Evaluation, Button> result; 
 
     /** Column containing a button to open the grade input form for the evaluation. */
     @FXML
@@ -133,6 +135,7 @@ public class EnseignantGradesController extends EnseignantController {
         paramEns1.setOnAction((ActionEvent e) -> parametre(email));
         retour.setOnAction((ActionEvent e) -> retour());
         addCtrl.setOnAction((ActionEvent e) -> ajoutCtrl());
+        creerColonneRemplirNotes();
     }
 
     /**
@@ -170,10 +173,62 @@ public class EnseignantGradesController extends EnseignantController {
     @FXML
     public void ajoutCtrl(){
         try {
-            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("EnseignantAddEval");
+            FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("EnseignantAddGrades");
             view.SkodocMain.loadFXML(fxmlLoader);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void creerColonneRemplirNotes() {
+        Callback<TableColumn<Evaluation, Void>, TableCell<Evaluation, Void>> cellFactory = 
+            new Callback<>() {
+                @Override
+                public TableCell<Evaluation, Void> call(final TableColumn<Evaluation, Void> param) {
+                    return new TableCell<>() {
+
+                        private final Button btnRemplir = new Button("Remplir");
+
+                        {
+                            btnRemplir.setStyle("-fx-background-color: #2A9D8F; -fx-text-fill: white; -fx-cursor: hand;");
+                            
+                            btnRemplir.setOnAction(event -> {
+                                Evaluation selectionnee = getTableView().getItems().get(getIndex());
+                                try {
+                                    // 1. Récupérer le loader via votre classe Main
+                                    FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("EnseignantStudentGrades");
+                                    
+                                    // 2. Charger la vue (votre méthode loadFXML s'occupe de l'affichage)
+                                    view.SkodocMain.loadFXML(fxmlLoader);
+                                    
+                                    // 3. Récupérer le contrôleur de la page cible qui vient d'être instanciée
+                                    EnseignantStudentGradesController cibleController = fxmlLoader.getController();
+                                    
+                                    // 4. Injecter l'évaluation sélectionnée dedans
+                                    if (cibleController != null) {
+                                        cibleController.initialiserDonnees(selectionnee);
+                                    }
+
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                    System.out.println("Erreur lors du chargement de la page des notes de l'évaluation.");
+                                }
+                            });
+                        }
+
+                        @Override
+                        protected void updateItem(Void item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (empty) {
+                                setGraphic(null);
+                            } else {
+                                setGraphic(btnRemplir);
+                            }
+                        }
+                    };
+                }
+            };
+
+        remplirNote.setCellFactory(cellFactory);
     }
 }

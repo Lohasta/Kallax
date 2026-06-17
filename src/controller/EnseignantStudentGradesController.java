@@ -116,6 +116,7 @@ public class EnseignantStudentGradesController extends EnseignantController {
         
         // CORRECTION: Merged the duplicate overwritten handler to explicitly point to the target navigation method
         addCtrl.setOnAction((ActionEvent e) -> ajoutCtrl());
+        creerColonneSuppression();
     }
 
     /**
@@ -159,5 +160,52 @@ public class EnseignantStudentGradesController extends EnseignantController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void creerColonneSuppression() {
+        Callback<TableColumn<VotreClasseEtudiant, Void>, TableCell<VotreClasseEtudiant, Void>> cellFactory = 
+            new Callback<>() {
+                @Override
+                public TableCell<VotreClasseEtudiant, Void> call(final TableColumn<VotreClasseEtudiant, Void> param) {
+                    final TableCell<VotreClasseEtudiant, Void> cell = new TableCell<>() {
+
+                        // On crée le bouton unique pour cette cellule
+                        private final Button btnSupp = new Button("Supprimer");
+
+                        {
+                            // Style optionnel pour le bouton
+                            btnSupp.setStyle("-fx-background-color: #E03A3E; -fx-text-fill: white; -fx-cursor: hand;");
+                            
+                            // Action du bouton au clic
+                            btnSupp.setOnAction(event -> {
+                                // Récupère l'objet associé à la ligne actuelle
+                                VotreClasseEtudiant etudiant = getTableView().getItems().get(getIndex());
+                                
+                                // --- Votre logique de suppression ici ---
+                                System.out.println("Suppression de : " + etudiant.getNom());
+                                
+                                // Supprime la ligne de la table visuellement
+                                getTableView().getItems().remove(etudiant);
+                            });
+                        }
+
+                        @Override
+                        protected void updateItem(Void item, boolean empty) {
+                            super.updateItem(item, empty);
+                            // Si la ligne est vide, on n'affiche rien
+                            if (empty) {
+                                setGraphic(null);
+                            } else {
+                                // Sinon, on affiche le bouton
+                                setGraphic(btnSupp);
+                            }
+                        }
+                    };
+                    return cell;
+                }
+            };
+
+        // On applique la factory à votre colonne
+        supp.setCellFactory(cellFactory);
     }
 }

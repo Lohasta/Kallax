@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="controller.EnseignantGradesController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #EBF3F5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnseignantGradesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #EBF3F5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnseignantGradesController">
    
    <left>
       <VBox prefWidth="220.0" style="-fx-background-color: #F6EDF0; -fx-border-color: #707070; -fx-border-width: 0 2 0 0;" BorderPane.alignment="CENTER">
@@ -108,9 +108,9 @@
                      <columns>
                         <TableColumn fx:id="nomEval" prefWidth="110.0" text="Nom de l'évaluation" />
                         <TableColumn fx:id="ens" prefWidth="95.0" text="Enseignant" />
+                        <TableColumn fx:id="ress" prefWidth="95.0" text="Ressource" />
                         <TableColumn fx:id="dateEval" prefWidth="120.0" text="Date de l'évaluation" />
                         <TableColumn fx:id="coeff" prefWidth="75.0" text="Coefficient" />
-                        <TableColumn fx:id="result" prefWidth="100.0" text="Résultats" />
                         <TableColumn fx:id="remplirNote" prefWidth="110.0" text="Remplir notes" />
                      </columns>
                      <columnResizePolicy>

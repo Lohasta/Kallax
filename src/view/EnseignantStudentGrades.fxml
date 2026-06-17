@@ -111,6 +111,7 @@
                             <TableColumn fx:id="groupe" prefWidth="120.0" text="Groupe" />
                             <TableColumn fx:id="coeff" prefWidth="120.0" text="Coefficient" />
                             <TableColumn fx:id="note" prefWidth="75.0" text="Note" />
+                            <TableColumn fx:id="supp" prefWidth="75.0" text="Supprimer" />
                         </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

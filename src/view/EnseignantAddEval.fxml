@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:controller="controller.EnseignantAddEvalController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #EBF3F5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnseignantAddEvalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #EBF3F5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EnseignantAddEvalController">
    
    <left>
       <VBox prefWidth="220.0" style="-fx-background-color: #F6EDF0; -fx-border-color: #707070; -fx-border-width: 0 2 0 0;" BorderPane.alignment="CENTER">
@@ -134,29 +134,40 @@
                         </font>
                      </TextField>
 
-                     <Label text="Date éval :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                     <Label text="Ressource :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="2">
                         <font>
                            <Font size="16.0" />
                         </font>
                      </Label>
-                     <TextField fx:id="dateE" prefHeight="35.0" prefWidth="200.0" promptText="Ex: 15/06/2026" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <TextField fx:id="ress" prefHeight="35.0" prefWidth="200.0" promptText="Ex: R2.05" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="14.0" />
+                        </font>
+                     </TextField>
+
+                     <Label text="Date éval :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </Label>
+                     <TextField fx:id="dateE" prefHeight="35.0" prefWidth="200.0" promptText="Ex: 15/06/2026" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                         <font>
                            <Font size="14.0" />
                         </font>
                      </TextField>
                      
-                     <Label text="Coefficient :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                     <Label text="Coefficient :" textFill="#1a1a1a" GridPane.columnIndex="0" GridPane.rowIndex="4">
                         <font>
                            <Font size="16.0" />
                         </font>
                      </Label>
-                     <TextField fx:id="coeffE" prefHeight="35.0" prefWidth="200.0" promptText="Ex: 2" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <TextField fx:id="coeffE" prefHeight="35.0" prefWidth="200.0" promptText="Ex: 2" style="-fx-background-radius: 5; -fx-border-color: #707070; -fx-border-radius: 5;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                         <font>
                            <Font size="14.0" />
                         </font>
                      </TextField>
                      
-                     <HBox alignment="CENTER_RIGHT" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <HBox alignment="CENTER_RIGHT" spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                         <GridPane.margin>
                            <Insets top="15.0" />
                         </GridPane.margin>

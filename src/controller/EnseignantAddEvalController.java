@@ -88,7 +88,7 @@ public class EnseignantAddEvalController extends EnseignantController {
      * and highlights empty fields in red using {@link #setError(Control)}.
      * * @param event The ActionEvent triggered by clicking the add button.
      */
-    /*
+
     @FXML
     private void handleAdd(ActionEvent event) {
         String idSaisi = nameE.getText().trim();
@@ -116,7 +116,7 @@ public class EnseignantAddEvalController extends EnseignantController {
         } catch (NumberFormatException e) {
             System.out.println("Erreur : Veuillez saisir des nombres valides (ex: 15.5 ou 2).");
         }
-    }*/
+    }
 
     /**
      * Handles the action when the "Cancel" or "Return" button is clicked.
