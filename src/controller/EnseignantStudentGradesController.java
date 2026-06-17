@@ -20,7 +20,7 @@ import javafx.event.ActionEvent;
  * * @author Team Kallax
  * @version 1.1
  */
-public class EnseignantGradesController extends EnseignantController {
+public class EnseignantStudentGradesController extends EnseignantController {
 
 
     /** Label displaying the currently logged-in user's name. */
