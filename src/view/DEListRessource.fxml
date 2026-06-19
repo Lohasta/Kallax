@@ -103,12 +103,10 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tableEval" editable="true" prefHeight="450.0" prefWidth="740.0" VBox.vgrow="ALWAYS">
+                  <TableView fx:id="tableRes" editable="true" prefHeight="450.0" prefWidth="740.0" VBox.vgrow="ALWAYS">
                         <columns>
                             <TableColumn fx:id="code" prefWidth="110.0" text="Code" />
-                            <TableColumn fx:id="sem" prefWidth="95.0" text="Semestre" />
                             <TableColumn fx:id="intitule" prefWidth="120.0" text="Intitulé" />
-                            <TableColumn fx:id="ens" prefWidth="120.0" text="Enseignant" />
                         </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

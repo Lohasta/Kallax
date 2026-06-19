@@ -115,3 +115,11 @@ INSERT INTO Seance (etudiant, module, statut, dateSeance, horaireDebut, horaireF
 (5, 'R3.04', 'ABSENT', '2025-10-02', '10:00:00', '12:00:00', 'C', 'BUT1');
 
 
+INSERT INTO Suivre (sigleGroupe, promoGroupe, idModule) VALUES
+('C', 'BUT1', 'R2.02'),
+('A', 'BUT2', 'R2.02'),
+('B', 'BUT2', 'R3.04'),
+('B', 'BUT1', 'R3.04'),
+('C', 'BUT1', 'R3.04'),
+('D', 'BUT3', 'S1.01');
+

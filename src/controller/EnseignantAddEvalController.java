@@ -8,6 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.dao.UtilisateurDAO;
 import javafx.scene.control.Control;
+import model.dao.EvaluationDAO;
+import model.entity.Evaluation;
+import model.entity.Module;
 
 /**
  * Controller class for the evaluation creation view ("Add Evaluation").
@@ -109,8 +112,15 @@ public class EnseignantAddEvalController extends EnseignantController {
         try {
             double coefficient = Double.parseDouble(coeffSaisi.replace(',', '.'));
 
-            // TODO (dao.create(...))
-
+            EvaluationDAO evalDAO = new EvaluationDAO();
+            Evaluation eval = Evaluation.getEvaluationByIdent(idSaisi);
+            if (eval != null) {
+                System.out.println("Can't create eval, duplicate in table");
+            } else {
+                evalDAO.create(new Evaluation(idSaisi, coefficient, Module.getModules().get(0)));
+                evalDAO.findAll();
+            }
+            
             handleCancel(event);
 
         } catch (NumberFormatException e) {

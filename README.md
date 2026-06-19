@@ -26,7 +26,7 @@ ScoDoc est un logiciel utilisé par les professeurs et l'administration à l'uni
 - [x] Besoins utilisateurs
 - [x] Scénarios d'utilisation
 - [x] Wireframes
-- [ ] Storyboards
+- [x] Storyboards
 
 ### Partie Gestion :
 - [x] Présentation de l'équipe
@@ -35,6 +35,19 @@ ScoDoc est un logiciel utilisé par les professeurs et l'administration à l'uni
 - [x] Diagrammes (Gantt, bête à corne, pieuvre)
 
 ### Partie développement :
-- [ ] Diagramme de classes
-- [ ] Rendu du code
-- [ ] Rendu de l'application finale
+- [x] Diagramme de classes
+- [x] Rendu du code
+- [x] Rendu de l'application finale
+
+
+
+Commandes pour compiler et exécuter notre projet Scodoc :
+
+Compilation :
+javac --module-path $PATH_TO_FX --add-modules javafx.controls,javafx.fxml -d class -sourcepath src `find . -name '*.java'`
+
+Exécution :
+java -cp "class:lib/mysql-connector-j-9.7.0.jar" --module-path $PATH_TO_FX --add-modules javafx.controls,javafx.fxml view.SkodocMain
+
+Copie des fxml pour exécuter :
+cp -r src/view/*.fxml class/view/

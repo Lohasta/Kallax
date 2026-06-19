@@ -10,6 +10,37 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
+import model.dao.ModuleDAO;
+import model.entity.Module;
+import java.util.List;
+
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Control;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
+import model.dao.EnseignantDAO;
+import model.dao.EtudiantDAO;
+import model.dao.UtilisateurDAO;
+import model.entity.Etudiant;
+import model.entity.Promotion;
+import model.entity.Enseignant;
+import model.entity.Utilisateur;
+import javafx.fxml.Initializable;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 /**
  * Controller class for the Director of Studies' Resource List view ("DEListRessources").
@@ -68,31 +99,23 @@ public class DEListRessourcesController extends EnseignantController {
 
     /** Primary table view layout element populated with records matching an {@link Etudiant} context. */
     @FXML
-    private TableView<Etudiant> tableEval;
+    private TableView<Module> tableRes;
 
     /** Column mapping and displaying the specific target student's family name (last name). */
     @FXML
-    private TableColumn<Etudiant, String> nomS;
+    private TableColumn<Module, String> code;
     
     /** Column mapping and displaying the specific target student's given name (first name). */
-    @FXML
-    private TableColumn<Etudiant, String> prenomS;
 
     /** Column displaying the unique TD layout group assignment ({@link GroupeTD}) mapped to the student record. */
     @FXML
-    private TableColumn<Etudiant, GroupeTD> groupe;
+    private TableColumn<Module, String> intitule;
 
     /** Column tracking and visualizing the current statistical ranking score of the student within the module. */
-    @FXML
-    private TableColumn<Etudiant, Integer> rang;
 
-    /** Column rendering the aggregated raw decimal average score achieved by the specific student. */
-    @FXML
-    private TableColumn<Etudiant, Double> avg;
 
-    /** Column illustrating an explicit linked absence event element instance mapped to a specific {@link Seance}. */
-    @FXML
-    private TableColumn<Etudiant, Seance> abs;
+    private ObservableList<Module> listeModules = FXCollections.observableArrayList();
+    private ModuleDAO moduleDAO = new ModuleDAO();
 
     // ==========================================
     // FXML Fields - Footer Action Controls
@@ -122,6 +145,12 @@ public class DEListRessourcesController extends EnseignantController {
         gestionEns1.setOnAction((ActionEvent e) -> gestion(email));
         paramEns1.setOnAction((ActionEvent e) -> parametre(email));
         retour.setOnAction((ActionEvent e) -> retour());
+
+        code.setCellValueFactory(new PropertyValueFactory<>("code"));
+        intitule.setCellValueFactory(new PropertyValueFactory<>("intitule"));
+
+        tableRes.setItems(listeModules);
+        refresh();
     }
 
     /**
@@ -136,6 +165,17 @@ public class DEListRessourcesController extends EnseignantController {
             FXMLLoader fxmlLoader = view.SkodocMain.getFXMLLoader("DEGestion");
             view.SkodocMain.loadFXML(fxmlLoader);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void refresh() {
+        try {
+            List<Module> listeBDD = moduleDAO.findAll(); 
+            System.out.println("Nombre de modules récupérés depuis la BDD : " + listeBDD.size());
+            listeModules.setAll(listeBDD);
+        } catch (Exception e) {
+            System.out.println("erreur ici");
             e.printStackTrace();
         }
     }

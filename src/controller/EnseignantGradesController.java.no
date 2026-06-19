@@ -32,6 +32,8 @@ import javafx.fxml.Initializable;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.scene.control.TableCell;
+import model.dao.EvaluationDAO;
 
 /**
  * Controller class for the Teacher's Grades management view ("EnseignantGrades").
