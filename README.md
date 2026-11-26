@@ -1,5 +1,7 @@
 # S201 - Développement d'une application
 
+## /!\ Pour voir le code source, rdv sur la branche develop /!\
+
 ## Contexte
 
 ScoDoc est un logiciel utilisé par les professeurs et l'administration à l'université. Elle permet, entre autres, d'ajouter et gérer des notes ; de consulter des listes d'étudiants pour noter les absences ou encore de générer le bulletin d'un élève. Actuellement, la version utilisée est la 9.7. Nous devons améliorer la plateforme en proposant une nouvelle version de ScoDoc, codée en Java et JavaFX
